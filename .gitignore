@@ -1,6 +1,14 @@
 *.class
 
+
 # Package Files #
 *.jar
 *.war
 *.ear
+
+
+# Project Files #
+/TP2-JUnit/target
+/TP2-JUnit/.classpath
+/TP2-JUnit/.project
+/TP2-JUnit/.settings
