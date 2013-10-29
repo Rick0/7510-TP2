@@ -2,7 +2,7 @@ package Grupo8;
 
 public class TestCase extends Test {
 	private String nombre;	
-	TestResult unTestResult;
+	private TestResult unTestResult;
 	
 	TestCase (String nombre){
 		this.setNombre(nombre);
@@ -16,11 +16,16 @@ public class TestCase extends Test {
 	protected void tearDown(){}
 	
 	//Debe ser implementado por el cliente. Aquí está el assertTrue.
-	protected void runTest(){}
+	protected void runTest() throws Throwable {}
 	
 	private void runTestResult(TestResult unTestResult){
-		this.setUp();
-		this.runTest();
+		this.setUp();		
+		try {
+			this.runTest();
+		} catch (Throwable e) {
+			this.unTestResult.addFailure(e);
+		}		
+		
 		this.tearDown();
 	}
 	

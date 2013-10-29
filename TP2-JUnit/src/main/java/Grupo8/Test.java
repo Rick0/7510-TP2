@@ -2,10 +2,10 @@ package Grupo8;
 
 public abstract class Test {
 	Test () {
-		this.Assert = new Assertions();
+		this.evaluador = new Assertions();
 	}
 	
-	public Assertions Assert;
+	protected Assertions evaluador;
 	
 	public void run(){};
 }
