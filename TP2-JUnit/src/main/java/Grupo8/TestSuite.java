@@ -4,15 +4,15 @@ import java.util.Enumeration;
 import java.util.Vector;
 
 public class TestSuite extends Test {
-	private String nombre;
-	private Vector tests= new Vector();
+	//private String nombre;
+	private Vector<Test> tests= new Vector<Test>();
 
-	TestSuite(String name){
+	/*TestSuite(String name){
 		nombre = name;
-	}
+	}*/
 
 	public void run(TestResult result){
-		for (Enumeration elements= tests.elements(); elements.hasMoreElements(); ) { 
+		for (Enumeration<Test> elements= tests.elements(); elements.hasMoreElements(); ) { 
 			Test test= (Test)elements.nextElement();
 			try{
 				test.run();

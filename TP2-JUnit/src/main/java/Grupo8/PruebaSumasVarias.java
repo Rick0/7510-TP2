@@ -1,7 +1,7 @@
 package Grupo8;
 
 public class PruebaSumasVarias {	
-	TestSuite conjunto = new TestSuite("Prueba General");
+	TestSuite conjunto = new TestSuite();
 	
 	public void crearPruebas(){
 		TestCase test1 = new TestCase("UnoYUno");
