@@ -24,6 +24,7 @@ public class TestCase extends Test {
 			this.runTest();
 		} catch (Throwable e) {
 			this.unTestResult.addFailure(e);
+			this.unTestResult.addFailure(this);
 		}		
 		
 		this.tearDown();
