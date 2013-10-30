@@ -10,13 +10,8 @@ public class Assertions {
 //		OkException e = new OkException();
 //		FailureException f = new FailureException();
 //		ErrorException er = new ErrorException();
-		try{
-			if (a!=b) throw e;
-			else throw f;
-		}
-		catch(Throwable t){
-
-		}
+		if (a!=b) throw e;
+		else throw f;
 	}
 	
 /*
