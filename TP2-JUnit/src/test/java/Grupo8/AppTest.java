@@ -20,6 +20,7 @@ public class AppTest
         super( testName );
     }
 
+
     /**
      * @return the suite of tests being tested
      */
@@ -30,9 +31,19 @@ public class AppTest
 
     /**
      * Rigourous Test :-)
-     */
+     */    
     public void testApp()
     {
         assertTrue( true );
+    }
+        
+    public void testTrulala()
+    {
+    	assertEquals(1,1);
+    }    
+    
+    public void testTrulale()
+    {
+    	assertEquals(1,2);
     }
 }
