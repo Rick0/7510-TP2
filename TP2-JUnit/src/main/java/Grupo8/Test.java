@@ -1,11 +1,13 @@
 package Grupo8;
 
 public abstract class Test {
-	Test () {
-		this.evaluador = new Assertions();
-	}
 	
 	protected Assertions evaluador;
+	
+	
+	Test () {
+		evaluador = new Assertions();
+	}
 	
 	public void runTest(TestResult result) {};
 }
