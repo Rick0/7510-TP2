@@ -5,22 +5,18 @@ public class TestCase extends Test {
 	private Object valorATestear1;
 	private Object valorATestear2;
 	private boolean valoresSeteados;
-	//private TestResult unTestResult;
 	
 	TestCase (String nombre){
 		this.setNombre(nombre);
 		this.valoresSeteados = false;
-		//this.unTestResult = new TestResult();
 	}
-	
-	//Puede ser o no implementado por el cliente.
+		
 	public void setUp(Object valorATestear1, Object valorATestear2){
 		this.valorATestear1 = valorATestear1;
 		this.valorATestear2 = valorATestear2;
 		this.valoresSeteados = true;
 	}
 	
-	//Debe ser implementado por el cliente. Aquí está el assertTrue.
 	public void runTest(TestResult result)  {
 		if (this.valoresSeteados){
 			try{

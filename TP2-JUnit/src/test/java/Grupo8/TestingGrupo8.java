@@ -1,9 +1,5 @@
 package Grupo8;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Assert;
-import org.junit.Test;
 
 public class TestingGrupo8 {
 
