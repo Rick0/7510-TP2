@@ -8,15 +8,22 @@ public class PruebaSumasVarias {
 	
 	public void crearPruebas(){
 		TestCase test1 = new TestCase("UnoYUno");
-		test1.setUp(2,2);		
-		TestCase test2 = new TestCase("DosYDos");
-		test2.setUp(2,1);		
+		test1.setUp(1,1);		
+		TestCase test2 = new TestCase("DosYUno");
+		test2.setUp(2,1);
+		TestCase test3 = new TestCase("AbYAb");
+		test3.setUp("Ab", "Ab");
+		TestCase test4 = new TestCase("AbYAB");
+		test4.setUp("Ab", "AB");
 		conjunto.addTest(test1);
 		conjunto.addTest(test2);
+		conjunto.addTest(test3);
+		conjunto.addTest(test4);
 		TestResult resultados = new TestResult();
 		conjunto.run(resultados);
 		System.out.println("Ok");
 		imprimirLista(resultados.getListPassed());
+		System.out.println("");
 		System.out.println("Fallados");
 		imprimirLista(resultados.getListFailure());
 				
