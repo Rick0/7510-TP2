@@ -56,11 +56,11 @@ public class TestCase extends Test {
 		}		
 	}	
 	
-	public String getNombre() {
+	public String getName() {
 		return testCaseName;
 	}
 
-	public void setNombre(String aName) {
+	public void setName(String aName) {
 		testCaseName = aName;
 	}
 	

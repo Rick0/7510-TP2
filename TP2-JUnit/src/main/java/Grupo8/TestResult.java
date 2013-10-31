@@ -64,7 +64,7 @@ public class TestResult {
 			Iterator<Test> it = aList.iterator();
 			while (it.hasNext()) {
 				TestCase t = (TestCase)it.next();
-				System.out.println("\t" + t.getNombre());
+				System.out.println("\t" + t.getName());
 			}
 		}
 	}
