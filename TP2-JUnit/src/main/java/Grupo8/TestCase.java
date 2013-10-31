@@ -1,5 +1,10 @@
 package Grupo8;
 
+/*
+ * Clase que representa un "test individual".
+ * Para poder ejecutar correctamente "runTest", primero hay que setear los valores a comparar,
+ * con "setUp".
+ */
 public class TestCase extends Test {
 	
 	private String testCaseName;	

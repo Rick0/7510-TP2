@@ -1,5 +1,9 @@
 package Grupo8;
 
+/*
+ * Clase encargada de comparar los valores de los tests, o sea de evaluar los asserts.
+ * Retorna OkException si el assert es correcto, caso contrario retorna un FailureException.
+ */
 public class Assertions {
 
 	public static void assertTrue (boolean testValue) throws Throwable {

@@ -3,6 +3,9 @@ package Grupo8;
 import java.util.Enumeration;
 import java.util.Vector;
 
+/*
+ * Clase que contiene a todos los "tests individuales".
+ */
 public class TestSuite extends Test {
 
 	private Vector<TestCase> tests = new Vector<TestCase>();

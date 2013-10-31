@@ -4,6 +4,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+/*
+ * Clase encargado de la logica de los resultados de los tests.
+ * Tiene 3 listas que guarda, acordemente, los tests correctos, los tests fallidos,
+ * y los tests con errores, para luego mostrarlos ordenadamente por consola.
+ */
 public class TestResult {
 	
 	List<Test> testsPassed;
