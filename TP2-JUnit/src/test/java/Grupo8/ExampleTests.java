@@ -24,7 +24,7 @@ public class ExampleTests {
 		
 		TestResult results = new TestResult();
 		conjunto.runTest(results);
-		results.mostrarResultados();
+		results.showResults();
 	}
 	
 }

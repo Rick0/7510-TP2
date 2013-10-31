@@ -41,27 +41,27 @@ public class TestResult {
 		return testsError;
 	}
 	
-	public void mostrarResultados() {
+	public void showResults() {
 		System.out.println("");
 		System.out.println("Resultado de los tests corridos");
 		System.out.println("");
 		System.out.println("Tests OK (" + getListPassed().size() + "):");
-		imprimirLista(getListPassed());
+		printList(getListPassed());
 		System.out.println("\n");
 		System.out.println("Tests fallados (" + getListFailure().size() + "):");
-		imprimirLista(getListFailure());
+		printList(getListFailure());
 		System.out.println("\n");
 		System.out.println("Tests con errores (" + getListError().size() + "):");
-		imprimirLista(getListError());
+		printList(getListError());
 		System.out.println("");
 	}
 	
-	private void imprimirLista(List<Test> lista) {
-		if (lista.isEmpty()) {
+	private void printList(List<Test> aList) {
+		if (aList.isEmpty()) {
 			System.out.println("\t-");
 		}
 		else {
-			Iterator<Test> it = lista.iterator();
+			Iterator<Test> it = aList.iterator();
 			while (it.hasNext()) {
 				TestCase t = (TestCase)it.next();
 				System.out.println("\t" + t.getNombre());

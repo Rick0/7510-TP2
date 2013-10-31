@@ -2,27 +2,27 @@ package Grupo8;
 
 public class TestCase extends Test {
 	
-	private String nombre;	
-	private Object valorATestear1;
-	private Object valorATestear2;
-	private boolean valoresSeteados;
+	private String testCaseName;	
+	private Object testValue1;
+	private Object testValue2;
+	private boolean valuesAreSeted;
 	
 	
-	TestCase (String testCaseNombre) {
-		nombre = testCaseNombre;
-		valoresSeteados = false;
+	TestCase (String aTestCaseName) {
+		testCaseName = aTestCaseName;
+		valuesAreSeted = false;
 	}
 		
-	public void setUp(Object unValorATestear1, Object unValorATestear2) {
-		valorATestear1 = unValorATestear1;
-		valorATestear2 = unValorATestear2;
-		valoresSeteados = true;
+	public void setUp(Object aTestValue1, Object aTestValue2) {
+		testValue1 = aTestValue1;
+		testValue2 = aTestValue2;
+		valuesAreSeted = true;
 	}
 	
 	public void runTest(TestResult result) {
-		if (valoresSeteados) {
+		if (valuesAreSeted) {
 			try {
-				evaluador.testear(valorATestear1, valorATestear2);
+				evaluator.assertEqual(testValue1, testValue2);
 			}		
 			catch(OkException e) {
 				result.addPassed(this);
@@ -40,11 +40,11 @@ public class TestCase extends Test {
 	}	
 	
 	public String getNombre() {
-		return nombre;
+		return testCaseName;
 	}
 
-	public void setNombre(String unNombre) {
-		nombre = unNombre;
+	public void setNombre(String aName) {
+		testCaseName = aName;
 	}
 	
 }

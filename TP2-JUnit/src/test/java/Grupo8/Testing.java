@@ -12,7 +12,7 @@ public class Testing {
 		int a = 0;
 		int b = 0;
 		try {
-			tester.testear(a, b);
+			tester.assertEqual(a, b);
 		}
 		catch (Throwable e){
 			assertEquals(e instanceof OkException, true);
@@ -26,7 +26,7 @@ public class Testing {
 		int a = 0;
 		int b = 1;
 		try {
-			tester.testear(a, b);
+			tester.assertEqual(a, b);
 		}
 		catch (Throwable e){
 			assertEquals(e instanceof OkException, false);

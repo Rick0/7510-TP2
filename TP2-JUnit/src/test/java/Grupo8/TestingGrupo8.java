@@ -4,7 +4,7 @@ public class TestingGrupo8 {
 
 	public static void main(String[] args) {
 		TestResult result = new TestResult();
-		TestSuite conjunto = new TestSuite();
+		TestSuite testsList = new TestSuite();
 		
 		TestCase test1  = new TestCase("test1");
 		TestCase test2  = new TestCase("test2");
@@ -14,30 +14,30 @@ public class TestingGrupo8 {
 		TestCase test4b = new TestCase("test4b");
 		TestCase test4c = new TestCase("test4c");
 		
-		completarTest1(test1);
-		completarTest2(test2);
-		completarTest3(test3a, test3b);
-		completarTest4(test4a, test4b, test4c);
+		fillTest1(test1);
+		fillTest2(test2);
+		fillTest3(test3a, test3b);
+		fillTest4(test4a, test4b, test4c);
 		
-		conjunto.addTest(test1);
-		conjunto.addTest(test2);
-		conjunto.addTest(test3a);
-		conjunto.addTest(test3b);
-		conjunto.addTest(test4a);
-		conjunto.addTest(test4b);
-		conjunto.addTest(test4c);
-		conjunto.runTest(result);
+		testsList.addTest(test1);
+		testsList.addTest(test2);
+		testsList.addTest(test3a);
+		testsList.addTest(test3b);
+		testsList.addTest(test4a);
+		testsList.addTest(test4b);
+		testsList.addTest(test4c);
 		
-		result.mostrarResultados();
+		testsList.runTest(result);
+		result.showResults();
 	}
 
 	
-	public static void completarTest1(TestCase test) {
+	public static void fillTest1(TestCase test) {
 		Assertions tester = new Assertions();
 		int a = 0;
 		int b = 0;
 		try {
-			tester.testear(a, b);
+			tester.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
 			test.setUp(e instanceof OkException, true);
@@ -45,12 +45,12 @@ public class TestingGrupo8 {
 	}
 	
 	
-	public static void completarTest2(TestCase test) {
+	public static void fillTest2(TestCase test) {
 		Assertions tester = new Assertions();
 		int a = 0;
 		int b = 1;
 		try {
-			tester.testear(a, b);
+			tester.assertEqual(a, b);
 		}
 		catch (Throwable e) {
 			test.setUp(e instanceof FailureException, true);
@@ -58,7 +58,7 @@ public class TestingGrupo8 {
 	}
 	
 	
-	public static void completarTest3(TestCase test3a, TestCase test3b) {		
+	public static void fillTest3(TestCase test3a, TestCase test3b) {		
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
 		test3a.setUp(result.getListError().size(), 0);
@@ -67,7 +67,7 @@ public class TestingGrupo8 {
 	}
 		
 	
-	public static void completarTest4(TestCase a, TestCase b, TestCase c) {
+	public static void fillTest4(TestCase a, TestCase b, TestCase c) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
 		TestCase test1 = new TestCase("test1");
