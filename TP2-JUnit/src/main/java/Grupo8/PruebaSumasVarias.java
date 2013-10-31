@@ -15,10 +15,12 @@ public class PruebaSumasVarias {
 		test3.setUp("Ab", "Ab");
 		TestCase test4 = new TestCase("AbYAB");
 		test4.setUp("Ab", "AB");
+		TestCase test5 = new TestCase("eeYaa");
 		conjunto.addTest(test1);
 		conjunto.addTest(test2);
 		conjunto.addTest(test3);
 		conjunto.addTest(test4);
+		conjunto.addTest(test5);
 		TestResult resultados = new TestResult();
 		conjunto.run(resultados);
 		System.out.println("Ok");
@@ -26,7 +28,12 @@ public class PruebaSumasVarias {
 		System.out.println("");
 		System.out.println("Fallados");
 		imprimirLista(resultados.getListFailure());
-				
+		System.out.println("");
+		System.out.println("Errores");
+		imprimirLista(resultados.getListError());
+		System.out.println("");
+		System.out.println("Sonrie la vida es bella");
+		System.out.println("");
 	}
 	
 	private void imprimirLista(List<Test> lista){
