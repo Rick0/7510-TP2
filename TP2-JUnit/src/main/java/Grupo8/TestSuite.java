@@ -14,16 +14,8 @@ public class TestSuite extends Test {
 	public void run(TestResult result){
 		for (Enumeration<Test> elements= tests.elements(); elements.hasMoreElements(); ) { 
 			Test test= (Test)elements.nextElement();
-			try{
-				test.run();
-			}
-			catch(NullPointerException e){
-				result.addPassed(test);
-			}
-			catch(ExceptionInInitializerError e){
-				result.addFailure(test);
-			}
-		} 
+			test.runTest(result);		
+		}  
 	}
 	
 	public void addTest(Test test) { 

@@ -7,5 +7,5 @@ public abstract class Test {
 	
 	protected Assertions evaluador;
 	
-	public void run(){};
+	public void runTest(TestResult result) {};
 }

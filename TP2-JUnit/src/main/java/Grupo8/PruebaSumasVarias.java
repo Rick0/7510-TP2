@@ -5,13 +5,13 @@ public class PruebaSumasVarias {
 	
 	public void crearPruebas(){
 		TestCase test1 = new TestCase("UnoYUno");
-		test1.evaluador.assertEquals(1,1);
+		test1.setUp(2,2);		
 		TestCase test2 = new TestCase("DosYDos");
-		test2.evaluador.assertEquals(2,2);
+		test2.setUp(2,2);		
 		conjunto.addTest(test1);
 		conjunto.addTest(test2);
 		TestResult resultados = new TestResult();
-		conjunto.run(resultados);
+		conjunto.run(resultados);		
 	}
 }
 

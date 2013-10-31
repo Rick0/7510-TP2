@@ -2,38 +2,37 @@ package Grupo8;
 
 public class TestCase extends Test {
 	private String nombre;	
-	private TestResult unTestResult;
+	private Object valorATestear1;
+	private Object valorATestear2;
+	//private TestResult unTestResult;
 	
 	TestCase (String nombre){
 		this.setNombre(nombre);
-		this.unTestResult = new TestResult();
+		//this.unTestResult = new TestResult();
 	}
 	
 	//Puede ser o no implementado por el cliente.
-	protected void setUp(){}
-	
-	//Puede ser o no implementado por el cliente.
-	protected void tearDown(){}
+	public void setUp(Object valorATestear1, Object valorATestear2){
+		this.valorATestear1 = valorATestear1;
+		this.valorATestear2 = valorATestear2;
+	}
 	
 	//Debe ser implementado por el cliente. Aquí está el assertTrue.
-	protected void runTest() throws Throwable {}
-	
-	private void runTestResult(TestResult unTestResult){
-		this.setUp();		
-		try {
-			this.runTest();
-		} catch (Throwable e) {
-			this.unTestResult.addFailure(e);
-			this.unTestResult.addFailure(this);
+	public void runTest(TestResult result)  {
+		try{
+			this.evaluador.testear(this.valorATestear1,this.valorATestear2);
 		}		
-		
-		this.tearDown();
-	}
+		catch(OkException e){
+			result.addPassed(this);
+		}
+		catch(FailureException e){
+			result.addFailure(this);
+		}		
+		catch(Throwable e){
+			result.addError(this);
+		}
+	}	
 	
-	//Debe ser llamado por el usuario para correr el test.
-	public void run() {		
-		this.runTestResult(this.unTestResult);
-	}
 
 	public String getNombre() {
 		return nombre;
