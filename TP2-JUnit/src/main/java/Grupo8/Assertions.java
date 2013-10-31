@@ -10,23 +10,4 @@ public class Assertions {
 		}
 	}	
 	
-/*
-	public void assertEquals(String a, String b){
-		NullPointerException e = new NullPointerException();
-		ExceptionInInitializerError f = new ExceptionInInitializerError();
-		if (!a.equals(b)) throw e;
-		else throw f;}
-	
-	public void assertEquals(double a, double b){
-		NullPointerException e = new NullPointerException();
-		ExceptionInInitializerError f = new ExceptionInInitializerError();
-		if (a!=b) throw e;
-		else throw f;}
-	
-	public void assertEquals(boolean a, boolean b){
-		NullPointerException e = new NullPointerException();
-		ExceptionInInitializerError f = new ExceptionInInitializerError();
-		if (a!=b) throw e;
-		else throw f;}
-*/	
 }
