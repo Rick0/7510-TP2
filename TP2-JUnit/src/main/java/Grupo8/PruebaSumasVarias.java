@@ -22,7 +22,7 @@ public class PruebaSumasVarias {
 		conjunto.addTest(test4);
 		conjunto.addTest(test5);
 		TestResult resultados = new TestResult();
-		conjunto.run(resultados);
+		conjunto.runTest(resultados);
 		System.out.println("Ok");
 		imprimirLista(resultados.getListPassed());
 		System.out.println("");

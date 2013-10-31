@@ -56,7 +56,7 @@ public class Testing {
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
-		suite.run(result);
+		suite.runTest(result);
 		Assert.assertTrue(result.getListError().size() == 1);
 		Assert.assertTrue(result.getListFailure().size() == 1);
 		Assert.assertTrue(result.getListPassed().size() == 1);

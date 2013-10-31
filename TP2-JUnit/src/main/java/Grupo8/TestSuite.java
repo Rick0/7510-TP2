@@ -11,7 +11,7 @@ public class TestSuite extends Test {
 		nombre = name;
 	}*/
 
-	public void run(TestResult result){
+	public void runTest(TestResult result){
 		for (Enumeration<Test> elements= tests.elements(); elements.hasMoreElements(); ) { 
 			Test test= (Test)elements.nextElement();
 			test.runTest(result);		
