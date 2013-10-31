@@ -1,5 +1,6 @@
 package Grupo8;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -38,6 +39,27 @@ public class TestResult {
 	public List<Test> getListError(){
 		return testsError;
 	}
+	
+	public void mostrarResultados(){
+		System.out.println("Ok");
+		imprimirLista(getListPassed());
+		System.out.println("");
+		System.out.println("Fallados");
+		imprimirLista(getListFailure());
+		System.out.println("");
+		System.out.println("Errores");
+		imprimirLista(getListError());
+	}
+	
+	private void imprimirLista(List<Test> lista){
+		Iterator it = lista.iterator();
+		while (it.hasNext()){
+			TestCase t = (TestCase)it.next();
+			System.out.println(t.getNombre());
+		}
+			
+	}
+	
 	
 	
 }

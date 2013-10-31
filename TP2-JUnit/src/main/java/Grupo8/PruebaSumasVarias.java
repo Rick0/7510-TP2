@@ -15,17 +15,15 @@ public class PruebaSumasVarias {
 		test3.setUp("Ab", "Ab");
 		TestCase test4 = new TestCase("AbYAB");
 		test4.setUp("Ab", "AB");
+		TestCase test5 = new TestCase("ABCD");
 		conjunto.addTest(test1);
 		conjunto.addTest(test2);
 		conjunto.addTest(test3);
 		conjunto.addTest(test4);
+		conjunto.addTest(test5);
 		TestResult resultados = new TestResult();
 		conjunto.run(resultados);
-		System.out.println("Ok");
-		imprimirLista(resultados.getListPassed());
-		System.out.println("");
-		System.out.println("Fallados");
-		imprimirLista(resultados.getListFailure());
+		resultados.mostrarResultados();
 				
 	}
 	
