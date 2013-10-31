@@ -5,17 +5,17 @@ import java.util.Vector;
 
 public class TestSuite extends Test {
 
-	private Vector<Test> tests = new Vector<Test>();
+	private Vector<TestCase> tests = new Vector<TestCase>();
 
 
 	public void runTest(TestResult result) {
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			Test test = (Test)elements.nextElement();
+		for (Enumeration<TestCase> elements = tests.elements(); elements.hasMoreElements(); ) { 
+			TestCase test = (TestCase)elements.nextElement();
 			test.runTest(result);		
 		}  
 	}
 	
-	public void addTest(Test test) { 
+	public void addTest(TestCase test) { 
 	    tests.addElement(test); 
 	}
 
