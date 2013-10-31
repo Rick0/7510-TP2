@@ -13,11 +13,25 @@ public class TestingGrupo8 {
 		TestCase test4a = new TestCase("test4a");
 		TestCase test4b = new TestCase("test4b");
 		TestCase test4c = new TestCase("test4c");
+		TestCase test5  = new TestCase("test5");
+		TestCase test6  = new TestCase("test6");
+		TestCase test7  = new TestCase("test7");
+		TestCase test8  = new TestCase("test8");
+		TestCase test9  = new TestCase("test9");
+		TestCase test10  = new TestCase("test10");
+		TestCase test11  = new TestCase("test11");
 		
 		fillTest1(test1);
 		fillTest2(test2);
 		fillTest3(test3a, test3b);
 		fillTest4(test4a, test4b, test4c);
+		fillTest2(test5);
+		fillTest2(test6);
+		fillTest2(test7);
+		fillTest2(test8);
+		fillTest2(test9);
+		fillTest2(test10);
+		fillTest2(test11);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -26,6 +40,13 @@ public class TestingGrupo8 {
 		testsList.addTest(test4a);
 		testsList.addTest(test4b);
 		testsList.addTest(test4c);
+		testsList.addTest(test5);
+		testsList.addTest(test6);
+		testsList.addTest(test7);
+		testsList.addTest(test8);
+		testsList.addTest(test9);
+		testsList.addTest(test10);
+		testsList.addTest(test11);
 		
 		testsList.runTest(result);
 		result.showResults();
@@ -80,6 +101,89 @@ public class TestingGrupo8 {
 		a.setUp(result.getListError().size(), 1);
 		b.setUp(result.getListFailure().size(), 1);
 		c.setUp(result.getListPassed().size(), 1);		
+	}
+
+	
+	public static void fillTest5(TestCase test) {
+		float a = 12.3f;
+		float b = 12.3f;
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof OkException, true);
+		}
+	}
+	
+	
+	public static void fillTest6(TestCase test) {
+		float a = 12.3f;
+		float b = 12.28f;
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	public static void fillTest7(TestCase test) {
+		boolean a = true;
+		boolean b = true;
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof OkException, true);
+		}
+	}
+	
+	
+	public static void fillTest8(TestCase test) {
+		boolean a = true;
+		boolean b = false;
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	public static void fillTest9(TestCase test) {
+		char a = 'f';
+		char b = 'f';
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof OkException, true);
+		}
+	}
+	
+	
+	public static void fillTest10(TestCase test) {
+		char a = 'f';
+		char b = 'j';
+		try {
+			Assertions.assertEqual(a, b);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	public static void fillTest11(TestCase test) {
+		boolean a = true;
+		try {
+			Assertions.assertTrue(a);
+		}
+		catch (Throwable e) {			
+			test.setUp(e instanceof OkException, true);
+		}
 	}
 
 }
