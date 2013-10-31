@@ -7,36 +7,91 @@ import org.junit.Test;
 public class Testing {
 
 	@Test
-	public void test1() {
+	public void testEqualInt() {
 		Assertions tester = new Assertions();
-		int a = 0;
-		int b = 0;
+		int testValue1 = 0;
+		int testValue2 = 0;
 		try {
-			tester.assertEqual(a, b);
+			tester.assertEqual(testValue1, testValue2);
 		}
-		catch (Throwable e){
+		catch (Throwable e) {
 			assertEquals(e instanceof OkException, true);
 		}
 	}
 	
 	
 	@Test
-	public void test2() {
+	public void testNotEqualInt() {
 		Assertions tester = new Assertions();
-		int a = 0;
-		int b = 1;
+		int testValue1 = 0;
+		int testValue2 = 1;
 		try {
-			tester.assertEqual(a, b);
+			tester.assertEqual(testValue1, testValue2);
 		}
-		catch (Throwable e){
-			assertEquals(e instanceof OkException, false);
+		catch (Throwable e) {
 			assertEquals(e instanceof FailureException, true);
 		}
 	}
 	
 	
 	@Test
-	public void test3() {		
+	public void testEqualChar() {
+		Assertions tester = new Assertions();
+		int testValue1 = 'a';
+		int testValue2 = 'a';
+		try {
+			tester.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof OkException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testNotEqualChar() {
+		Assertions tester = new Assertions();
+		int testValue1 = 'b';
+		int testValue2 = 'B';
+		try {
+			tester.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testEqualFloat() {
+		Assertions tester = new Assertions();
+		float testValue1 = 1.2f;
+		float testValue2 = 1.2f;
+		try {
+			tester.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof OkException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testNotEqualFloat() {
+		Assertions tester = new Assertions();
+		float testValue1 = 1.2f;
+		float testValue2 = 1.19f;
+		try {
+			tester.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testResultErrorListGrowth() {		
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
 		Assert.assertEquals(result.getListError().size(), 0);
@@ -47,7 +102,7 @@ public class Testing {
 	
 	
 	@Test
-	public void test4() {
+	public void testResultListsGrowth() {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
 		TestCase test1 = new TestCase("test1");

@@ -12,20 +12,26 @@ public class ExampleUserTests {
 		TestSuite testsList = new TestSuite();
     
 		TestCase test1 = new TestCase("UnoYUno");
-		test1.setUp(1,1);		
+		test1.setUp(1, 1);		
 		TestCase test2 = new TestCase("DosYUno");
-		test2.setUp(2,1);
+		test2.setUp(2, 1);
 		TestCase test3 = new TestCase("AbYAb");
 		test3.setUp("Ab", "Ab");
 		TestCase test4 = new TestCase("AbYAB");
 		test4.setUp("Ab", "AB");
-		TestCase test5 = new TestCase("eeYaa");
+		TestCase test5 = new TestCase("aYa");
+		test5.setUp('a', 'a');
+		TestCase test6 = new TestCase("bYB");
+		test6.setUp('b', 'B');
+		TestCase test7 = new TestCase("eeYaa");
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
 		testsList.addTest(test3);
 		testsList.addTest(test4);
 		testsList.addTest(test5);
+		testsList.addTest(test6);
+		testsList.addTest(test7);
 		
 		TestResult results = new TestResult();
 		testsList.runTest(results);
