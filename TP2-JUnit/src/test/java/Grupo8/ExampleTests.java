@@ -1,12 +1,11 @@
 package Grupo8;
 
-public class PruebaSumasVarias {	
-	
-	TestSuite conjunto = new TestSuite();
-	
-	
-	public void crearPruebas() {
-		
+public class ExampleTests {
+
+    public static void main (String[] args) {
+    	
+		TestSuite conjunto = new TestSuite();
+    
 		TestCase test1 = new TestCase("UnoYUno");
 		test1.setUp(1,1);		
 		TestCase test2 = new TestCase("DosYUno");
@@ -23,9 +22,9 @@ public class PruebaSumasVarias {
 		conjunto.addTest(test4);
 		conjunto.addTest(test5);
 		
-		TestResult resultados = new TestResult();
-		conjunto.runTest(resultados);
-		resultados.mostrarResultados();
+		TestResult results = new TestResult();
+		conjunto.runTest(results);
+		results.mostrarResultados();
 	}
 	
 }

@@ -40,7 +40,7 @@ public class TestingGrupo8 {
 			tester.testear(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException,true);
+			test.setUp(e instanceof OkException, true);
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class TestingGrupo8 {
 			tester.testear(a, b);
 		}
 		catch (Throwable e) {
-			test.setUp(e instanceof FailureException,true);
+			test.setUp(e instanceof FailureException, true);
 		}
 	}
 	
