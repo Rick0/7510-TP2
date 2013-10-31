@@ -1,10 +1,15 @@
-package Grupo8;
+package Grupo8.ExampleUserTest;
 
-public class ExampleTests {
+import Grupo8.TestCase;
+import Grupo8.TestResult;
+import Grupo8.TestSuite;
+
+
+public class ExampleUserTests {
 
     public static void main (String[] args) {
     	
-		TestSuite conjunto = new TestSuite();
+		TestSuite testsList = new TestSuite();
     
 		TestCase test1 = new TestCase("UnoYUno");
 		test1.setUp(1,1);		
@@ -16,14 +21,14 @@ public class ExampleTests {
 		test4.setUp("Ab", "AB");
 		TestCase test5 = new TestCase("eeYaa");
 		
-		conjunto.addTest(test1);
-		conjunto.addTest(test2);
-		conjunto.addTest(test3);
-		conjunto.addTest(test4);
-		conjunto.addTest(test5);
+		testsList.addTest(test1);
+		testsList.addTest(test2);
+		testsList.addTest(test3);
+		testsList.addTest(test4);
+		testsList.addTest(test5);
 		
 		TestResult results = new TestResult();
-		conjunto.runTest(results);
+		testsList.runTest(results);
 		results.showResults();
 	}
 	

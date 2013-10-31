@@ -8,7 +8,7 @@ public class TestCase extends Test {
 	private boolean valuesAreSeted;
 	
 	
-	TestCase (String aTestCaseName) {
+	public TestCase (String aTestCaseName) {
 		testCaseName = aTestCaseName;
 		valuesAreSeted = false;
 	}
