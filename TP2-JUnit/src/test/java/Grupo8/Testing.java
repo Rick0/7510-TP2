@@ -141,8 +141,8 @@ public class Testing {
 		TestCase test1 = new TestCase("test1");
 		TestCase test2 = new TestCase("test2");
 		TestCase test3 = new TestCase("test3");
-		test1.setUp(1, 1);
-		test2.setUp(1, 0);
+		test1.setAssertValue(1, 1);
+		test2.setAssertValue(1, 0);
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);

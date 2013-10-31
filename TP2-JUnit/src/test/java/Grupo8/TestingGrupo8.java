@@ -60,7 +60,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException, true);
+			test.setAssertValue(e instanceof OkException, true);
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {
-			test.setUp(e instanceof FailureException, true);
+			test.setAssertValue(e instanceof FailureException, true);
 		}
 	}
 	
@@ -80,9 +80,9 @@ public class TestingGrupo8 {
 	public static void fillTest3(TestCase test3a, TestCase test3b) {		
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
-		test3a.setUp(result.getListError().size(), 0);
+		test3a.setAssertValue(result.getListError().size(), 0);
 		test.runTest(result);
-		test3b.setUp(result.getListError().size(), 1);		
+		test3b.setAssertValue(result.getListError().size(), 1);		
 	}
 		
 	
@@ -92,15 +92,15 @@ public class TestingGrupo8 {
 		TestCase test1 = new TestCase("test1");
 		TestCase test2 = new TestCase("test2");
 		TestCase test3 = new TestCase("test3");
-		test1.setUp(1, 1);
-		test2.setUp(1, 0);
+		test1.setAssertValue(1, 1);
+		test2.setAssertValue(1, 0);
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.runTest(result);
-		a.setUp(result.getListError().size(), 1);
-		b.setUp(result.getListFailure().size(), 1);
-		c.setUp(result.getListPassed().size(), 1);		
+		a.setAssertValue(result.getListError().size(), 1);
+		b.setAssertValue(result.getListFailure().size(), 1);
+		c.setAssertValue(result.getListPassed().size(), 1);		
 	}
 
 	
@@ -111,7 +111,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException, true);
+			test.setAssertValue(e instanceof OkException, true);
 		}
 	}
 	
@@ -123,7 +123,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof FailureException, true);
+			test.setAssertValue(e instanceof FailureException, true);
 		}
 	}
 	
@@ -135,7 +135,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException, true);
+			test.setAssertValue(e instanceof OkException, true);
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof FailureException, true);
+			test.setAssertValue(e instanceof FailureException, true);
 		}
 	}
 	
@@ -159,7 +159,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException, true);
+			test.setAssertValue(e instanceof OkException, true);
 		}
 	}
 	
@@ -171,7 +171,7 @@ public class TestingGrupo8 {
 			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof FailureException, true);
+			test.setAssertValue(e instanceof FailureException, true);
 		}
 	}
 	
@@ -182,7 +182,7 @@ public class TestingGrupo8 {
 			Assertions.assertTrue(a);
 		}
 		catch (Throwable e) {			
-			test.setUp(e instanceof OkException, true);
+			test.setAssertValue(e instanceof OkException, true);
 		}
 	}
 

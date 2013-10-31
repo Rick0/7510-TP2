@@ -12,17 +12,17 @@ public class ExampleUserTests {
 		TestSuite testsList = new TestSuite();
     
 		TestCase test1 = new TestCase("UnoYUno");
-		test1.setUp(1, 1);		
+		test1.setAssertValue(1, 1);		
 		TestCase test2 = new TestCase("DosYUno");
-		test2.setUp(2, 1);
+		test2.setAssertValue(2, 1);
 		TestCase test3 = new TestCase("AbYAb");
-		test3.setUp("Ab", "Ab");
+		test3.setAssertValue("Ab", "Ab");
 		TestCase test4 = new TestCase("AbYAB");
-		test4.setUp("Ab", "AB");
+		test4.setAssertValue("Ab", "AB");
 		TestCase test5 = new TestCase("aYa");
-		test5.setUp('a', 'a');
+		test5.setAssertValue('a', 'a');
 		TestCase test6 = new TestCase("bYB");
-		test6.setUp('b', 'B');
+		test6.setAssertValue('b', 'B');
 		TestCase test7 = new TestCase("eeYaa");
 		
 		testsList.addTest(test1);

@@ -20,14 +20,14 @@ public class TestCase extends Test {
 		valuesAreSeted = false;
 	}
 	
-	public void setUp(Object aTestValue1, Object aTestValue2) {
+	public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
 		valuesQuantity = 2;
 		valuesAreSeted = true;
 	}
 	
-	public void setUp(Object aTestValue) {
+	public void setAssertValue(Object aTestValue) {
 		testValue1 = aTestValue;
 		valuesQuantity = 1;
 		valuesAreSeted = true;
