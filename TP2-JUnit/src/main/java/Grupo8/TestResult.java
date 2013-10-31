@@ -52,7 +52,7 @@ public class TestResult {
 	}
 	
 	private void imprimirLista(List<Test> lista){
-		Iterator it = lista.iterator();
+		Iterator<Test> it = lista.iterator();
 		while (it.hasNext()){
 			TestCase t = (TestCase)it.next();
 			System.out.println(t.getNombre());

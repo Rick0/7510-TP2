@@ -1,8 +1,5 @@
 package Grupo8;
 
-import java.util.List;
-import java.util.Iterator;
-
 public class PruebaSumasVarias {	
 	TestSuite conjunto = new TestSuite();
 	
@@ -15,7 +12,7 @@ public class PruebaSumasVarias {
 		test3.setUp("Ab", "Ab");
 		TestCase test4 = new TestCase("AbYAB");
 		test4.setUp("Ab", "AB");
-		TestCase test5 = new TestCase("ABCD");
+		TestCase test5 = new TestCase("eeYaa");
 		conjunto.addTest(test1);
 		conjunto.addTest(test2);
 		conjunto.addTest(test3);
@@ -24,16 +21,7 @@ public class PruebaSumasVarias {
 		TestResult resultados = new TestResult();
 		conjunto.run(resultados);
 		resultados.mostrarResultados();
-				
 	}
 	
-	private void imprimirLista(List<Test> lista){
-		Iterator it = lista.iterator();
-		while (it.hasNext()){
-			TestCase t = (TestCase)it.next();
-			System.out.println(t.getNombre());
-		}
-			
-	}
 }
 
