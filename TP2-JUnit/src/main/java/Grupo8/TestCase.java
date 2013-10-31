@@ -32,10 +32,10 @@ public class TestCase extends Test {
 		if (valuesAreSeted) {
 			try {
 				if (valuesQuantity == 2) {
-					evaluator.assertEqual(testValue1, testValue2);
+					Assertions.assertEqual(testValue1, testValue2);
 				}
 				else if (valuesQuantity == 1) {
-					evaluator.assertTrue((boolean)testValue1);
+					Assertions.assertTrue((boolean)testValue1);
 				}
 				else {
 					result.addError(this);

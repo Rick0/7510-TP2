@@ -33,11 +33,10 @@ public class TestingGrupo8 {
 
 	
 	public static void fillTest1(TestCase test) {
-		Assertions tester = new Assertions();
 		int a = 0;
 		int b = 0;
 		try {
-			tester.assertEqual(a, b);
+			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {			
 			test.setUp(e instanceof OkException, true);
@@ -46,11 +45,10 @@ public class TestingGrupo8 {
 	
 	
 	public static void fillTest2(TestCase test) {
-		Assertions tester = new Assertions();
 		int a = 0;
 		int b = 1;
 		try {
-			tester.assertEqual(a, b);
+			Assertions.assertEqual(a, b);
 		}
 		catch (Throwable e) {
 			test.setUp(e instanceof FailureException, true);

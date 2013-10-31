@@ -8,11 +8,10 @@ public class Testing {
 
 	@Test
 	public void testEqualInt() {
-		Assertions tester = new Assertions();
 		int testValue1 = 0;
 		int testValue2 = 0;
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof OkException, true);
@@ -22,11 +21,10 @@ public class Testing {
 	
 	@Test
 	public void testNotEqualInt() {
-		Assertions tester = new Assertions();
 		int testValue1 = 0;
 		int testValue2 = 1;
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof FailureException, true);
@@ -36,11 +34,10 @@ public class Testing {
 	
 	@Test
 	public void testEqualChar() {
-		Assertions tester = new Assertions();
 		int testValue1 = 'a';
 		int testValue2 = 'a';
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof OkException, true);
@@ -50,11 +47,10 @@ public class Testing {
 	
 	@Test
 	public void testNotEqualChar() {
-		Assertions tester = new Assertions();
 		int testValue1 = 'b';
 		int testValue2 = 'B';
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof FailureException, true);
@@ -64,11 +60,10 @@ public class Testing {
 	
 	@Test
 	public void testEqualFloat() {
-		Assertions tester = new Assertions();
 		float testValue1 = 1.2f;
 		float testValue2 = 1.2f;
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof OkException, true);
@@ -78,11 +73,49 @@ public class Testing {
 	
 	@Test
 	public void testNotEqualFloat() {
-		Assertions tester = new Assertions();
 		float testValue1 = 1.2f;
 		float testValue2 = 1.19f;
 		try {
-			tester.assertEqual(testValue1, testValue2);
+			Assertions.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof FailureException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testEqualBooleanTrue() {
+		boolean testValue1 = true;
+		boolean testValue2 = true;
+		try {
+			Assertions.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof OkException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testEqualBooleanFalse() {
+		boolean testValue1 = false;
+		boolean testValue2 = false;
+		try {
+			Assertions.assertEqual(testValue1, testValue2);
+		}
+		catch (Throwable e) {
+			assertEquals(e instanceof OkException, true);
+		}
+	}
+	
+	
+	@Test
+	public void testNotEqualBoolean() {
+		boolean testValue1 = true;
+		boolean testValue2 = false;
+		try {
+			Assertions.assertEqual(testValue1, testValue2);
 		}
 		catch (Throwable e) {
 			assertEquals(e instanceof FailureException, true);
