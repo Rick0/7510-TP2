@@ -17,7 +17,7 @@ public class Testing {
 			tester.testear(a, b);
 		}
 		catch (Throwable e){
-			assertTrue(e instanceof OkException);
+			assertEquals(e instanceof OkException,true);
 		}
 	}
 	
@@ -30,8 +30,8 @@ public class Testing {
 			tester.testear(a, b);
 		}
 		catch (Throwable e){
-			assertFalse(e instanceof OkException);
-			assertTrue(e instanceof FailureException);
+			assertEquals(e instanceof OkException,false);
+			assertEquals(e instanceof FailureException,true);
 		}
 	}
 	
@@ -39,9 +39,9 @@ public class Testing {
 	public void test3() {		
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
-		Assert.assertTrue(result.getListError().size() == 0);
+		Assert.assertEquals(result.getListError().size(), 0);
 		test.runTest(result);
-		Assert.assertTrue(result.getListError().size() == 1);		
+		Assert.assertEquals(result.getListError().size(), 1);		
 	}
 	
 	@Test
@@ -57,9 +57,9 @@ public class Testing {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.runTest(result);
-		Assert.assertTrue(result.getListError().size() == 1);
-		Assert.assertTrue(result.getListFailure().size() == 1);
-		Assert.assertTrue(result.getListPassed().size() == 1);
+		Assert.assertEquals(result.getListError().size(), 1);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 1);
 		
 	}
 	
