@@ -38,17 +38,16 @@ public class TestCase extends Test {
 			try {
 				if (valuesQuantity == 2) {
 					Assertions.assertEqual(testValue1, testValue2);
+					result.addPassed(this);
 				}
 				else if (valuesQuantity == 1) {
 					Assertions.assertTrue((boolean)testValue1);
+					result.addPassed(this);
 				}
 				else {
 					result.addError(this);
 				}
 			}		
-			catch(OkException e) {
-				result.addPassed(this);
-			}
 			catch(FailureException e) {
 				result.addFailure(this);
 			}		
@@ -67,6 +66,13 @@ public class TestCase extends Test {
 
 	public void setName(String aName) {
 		testCaseName = aName;
+	}
+
+	// setUp y tearDown vacios por defecto.
+	public void setUp() {	
+	}
+	
+	public void tearDown() {
 	}
 	
 }

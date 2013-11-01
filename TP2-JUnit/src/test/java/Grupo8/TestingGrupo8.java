@@ -1,5 +1,7 @@
 package Grupo8;
 
+import static org.junit.Assert.assertTrue;
+
 public class TestingGrupo8 {
 
 	public static void main(String[] args) {
@@ -58,9 +60,10 @@ public class TestingGrupo8 {
 		int b = 0;
 		try {
 			Assertions.assertEqual(a, b);
+			assertTrue(true);
 		}
-		catch (Throwable e) {			
-			test.setAssertValue(e instanceof OkException, true);
+		catch (Throwable e) {
+			assertTrue(false);
 		}
 	}
 	
@@ -109,9 +112,10 @@ public class TestingGrupo8 {
 		float b = 12.3f;
 		try {
 			Assertions.assertEqual(a, b);
+			assertTrue(true);
 		}
-		catch (Throwable e) {			
-			test.setAssertValue(e instanceof OkException, true);
+		catch (Throwable e) {
+			assertTrue(false);
 		}
 	}
 	
@@ -133,9 +137,10 @@ public class TestingGrupo8 {
 		boolean b = true;
 		try {
 			Assertions.assertEqual(a, b);
+			assertTrue(true);
 		}
-		catch (Throwable e) {			
-			test.setAssertValue(e instanceof OkException, true);
+		catch (Throwable e) {
+			assertTrue(false);
 		}
 	}
 	
@@ -157,9 +162,10 @@ public class TestingGrupo8 {
 		char b = 'f';
 		try {
 			Assertions.assertEqual(a, b);
+			assertTrue(true);
 		}
-		catch (Throwable e) {			
-			test.setAssertValue(e instanceof OkException, true);
+		catch (Throwable e) {
+			assertTrue(false);
 		}
 	}
 	
@@ -180,9 +186,10 @@ public class TestingGrupo8 {
 		boolean a = true;
 		try {
 			Assertions.assertTrue(a);
+			assertTrue(true);
 		}
-		catch (Throwable e) {			
-			test.setAssertValue(e instanceof OkException, true);
+		catch (Throwable e) {
+			assertTrue(false);
 		}
 	}
 

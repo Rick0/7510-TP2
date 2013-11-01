@@ -8,4 +8,8 @@ public abstract class Test {
 	
 	public void runTest(TestResult result) {};
 	
+	public void setUp() {};
+	
+	public void tearDown() {};
+	
 }

@@ -21,5 +21,12 @@ public class TestSuite extends Test {
 	public void addTest(Test test) { 
 	    tests.addElement(test); 
 	}
+	
+	// setUp y tearDown vacios por defecto.
+	public void setUp() {	
+	}
+	
+	public void tearDown() {
+	}
 
 }

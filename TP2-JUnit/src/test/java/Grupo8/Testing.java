@@ -12,9 +12,10 @@ public class Testing {
 		int testValue2 = 0;
 		try {
 			Assertions.assertEqual(testValue1, testValue2);
+			assertTrue(true);
 		}
 		catch (Throwable e) {
-			assertEquals(e instanceof OkException, true);
+			assertTrue(false);
 		}
 	}
 	
@@ -38,9 +39,10 @@ public class Testing {
 		int testValue2 = 'a';
 		try {
 			Assertions.assertEqual(testValue1, testValue2);
+			assertTrue(true);
 		}
 		catch (Throwable e) {
-			assertEquals(e instanceof OkException, true);
+			assertTrue(false);
 		}
 	}
 	
@@ -64,9 +66,10 @@ public class Testing {
 		float testValue2 = 1.2f;
 		try {
 			Assertions.assertEqual(testValue1, testValue2);
+			assertTrue(true);
 		}
 		catch (Throwable e) {
-			assertEquals(e instanceof OkException, true);
+			assertTrue(false);
 		}
 	}
 	
@@ -90,9 +93,10 @@ public class Testing {
 		boolean testValue2 = true;
 		try {
 			Assertions.assertEqual(testValue1, testValue2);
+			assertTrue(true);
 		}
 		catch (Throwable e) {
-			assertEquals(e instanceof OkException, true);
+			assertTrue(false);
 		}
 	}
 	
@@ -103,9 +107,10 @@ public class Testing {
 		boolean testValue2 = false;
 		try {
 			Assertions.assertEqual(testValue1, testValue2);
+			assertTrue(true);
 		}
 		catch (Throwable e) {
-			assertEquals(e instanceof OkException, true);
+			assertTrue(false);
 		}
 	}
 	
