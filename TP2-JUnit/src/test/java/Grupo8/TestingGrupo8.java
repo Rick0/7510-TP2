@@ -27,13 +27,13 @@ public class TestingGrupo8 {
 		fillTest2(test2);
 		fillTest3(test3a, test3b);
 		fillTest4(test4a, test4b, test4c);
-		fillTest2(test5);
-		fillTest2(test6);
-		fillTest2(test7);
-		fillTest2(test8);
-		fillTest2(test9);
-		fillTest2(test10);
-		fillTest2(test11);
+		fillTest5(test5);
+		fillTest6(test6);
+		fillTest7(test7);
+		fillTest8(test8);
+		fillTest9(test9);
+		fillTest10(test10);
+		fillTest11(test11);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -60,10 +60,10 @@ public class TestingGrupo8 {
 		int b = 0;
 		try {
 			Assertions.assertEqual(a, b);
-			assertTrue(true);
+			test.setAssertValue(true);
 		}
 		catch (Throwable e) {
-			assertTrue(false);
+			test.setAssertValue(false);
 		}
 	}
 	
@@ -112,10 +112,10 @@ public class TestingGrupo8 {
 		float b = 12.3f;
 		try {
 			Assertions.assertEqual(a, b);
-			assertTrue(true);
+			test.setAssertValue(true);
 		}
 		catch (Throwable e) {
-			assertTrue(false);
+			test.setAssertValue(false);
 		}
 	}
 	
@@ -125,6 +125,7 @@ public class TestingGrupo8 {
 		float b = 12.28f;
 		try {
 			Assertions.assertEqual(a, b);
+			test.setAssertValue(false);
 		}
 		catch (Throwable e) {			
 			test.setAssertValue(e instanceof FailureException, true);
@@ -137,10 +138,10 @@ public class TestingGrupo8 {
 		boolean b = true;
 		try {
 			Assertions.assertEqual(a, b);
-			assertTrue(true);
+			test.setAssertValue(true);
 		}
 		catch (Throwable e) {
-			assertTrue(false);
+			test.setAssertValue(false);
 		}
 	}
 	
@@ -149,7 +150,7 @@ public class TestingGrupo8 {
 		boolean a = true;
 		boolean b = false;
 		try {
-			Assertions.assertEqual(a, b);
+			Assertions.assertEqual(a, b);			
 		}
 		catch (Throwable e) {			
 			test.setAssertValue(e instanceof FailureException, true);
@@ -162,10 +163,10 @@ public class TestingGrupo8 {
 		char b = 'f';
 		try {
 			Assertions.assertEqual(a, b);
-			assertTrue(true);
+			test.setAssertValue(true);
 		}
 		catch (Throwable e) {
-			assertTrue(false);
+			test.setAssertValue(false);
 		}
 	}
 	
@@ -186,10 +187,10 @@ public class TestingGrupo8 {
 		boolean a = true;
 		try {
 			Assertions.assertTrue(a);
-			assertTrue(true);
+			test.setAssertValue(true);
 		}
 		catch (Throwable e) {
-			assertTrue(false);
+			test.setAssertValue(false);
 		}
 	}
 
