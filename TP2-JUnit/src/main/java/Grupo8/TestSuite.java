@@ -12,7 +12,7 @@ public class TestSuite extends Test {
 
 	public void runRegEx(TestResult result, String regEx) {
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			TestCase test = (TestCase)elements.nextElement();
+			Test test = elements.nextElement();
 			test.runRegEx(result, regEx);		
 		}  
 	}

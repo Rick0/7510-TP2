@@ -9,6 +9,8 @@ public abstract class Test {
 	
 	public void runTest(TestResult result) {};
 	
+	public void runRegEx (TestResult result, String regEx){};
+	
 	public void setUp() {};
 	
 	public void tearDown() {};
