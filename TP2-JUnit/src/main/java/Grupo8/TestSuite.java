@@ -13,7 +13,7 @@ public class TestSuite extends Test {
 
 	public void runTest(TestResult result) {
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			TestCase test = (TestCase)elements.nextElement();
+			Test test = elements.nextElement();
 			test.runTest(result);		
 		}  
 	}

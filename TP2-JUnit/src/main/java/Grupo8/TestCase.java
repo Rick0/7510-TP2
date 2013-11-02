@@ -7,7 +7,6 @@ package Grupo8;
  */
 public class TestCase extends Test {
 	
-	private String testCaseName;	
 	private Object testValue1;
 	private Object testValue2;
 	private int valuesQuantity;
@@ -60,14 +59,6 @@ public class TestCase extends Test {
 		}		
 	}	
 	
-	public String getName() {
-		return testCaseName;
-	}
-
-	public void setName(String aName) {
-		testCaseName = aName;
-	}
-
 	// setUp y tearDown vacios por defecto.
 	public void setUp() {	
 	}
