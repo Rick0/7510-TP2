@@ -1,5 +1,6 @@
 package Grupo8;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 /*
  * Clase que representa un "test individual".
  * Para poder ejecutar correctamente "runTest", primero hay que setear los valores a comparar,
@@ -31,6 +32,14 @@ public class TestCase extends Test {
 		testValue1 = aTestValue;
 		valuesQuantity = 1;
 		valuesAreSeted = true;
+	}
+	
+	public void runRegEx (TestResult result, String regEx){
+	    Pattern regularExpression = Pattern.compile(regEx);
+	    Matcher matcher = regularExpression.matcher(this.testCaseName);
+	    if (matcher.find()) {
+	    	this.runTest(result);
+	    }
 	}
 	
 	public void runTest(TestResult result) {

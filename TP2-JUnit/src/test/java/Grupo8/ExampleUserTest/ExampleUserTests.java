@@ -34,7 +34,8 @@ public class ExampleUserTests {
 		testsList.addTest(test7);
 		
 		TestResult results = new TestResult();
-		testsList.runTest(results);
+		//testsList.runTest(results);
+		testsList.runRegEx(results, "aYa");
 		results.showResults();
 	}
 	

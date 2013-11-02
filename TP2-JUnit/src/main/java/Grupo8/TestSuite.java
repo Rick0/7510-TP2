@@ -10,7 +10,13 @@ public class TestSuite extends Test {
 
 	private Vector<Test> tests = new Vector<Test>();
 
-
+	public void runRegEx(TestResult result, String regEx) {
+		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+			TestCase test = (TestCase)elements.nextElement();
+			test.runRegEx(result, regEx);		
+		}  
+	}
+	
 	public void runTest(TestResult result) {
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
 			TestCase test = (TestCase)elements.nextElement();
