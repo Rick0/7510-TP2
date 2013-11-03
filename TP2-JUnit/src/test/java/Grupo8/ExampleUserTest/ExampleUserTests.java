@@ -24,14 +24,18 @@ public class ExampleUserTests {
 		TestCase test6 = new TestCase("bYB");
 		test6.setAssertValue('b', 'B');
 		TestCase test7 = new TestCase("eeYaa");
+		
 		TestSuite padreSuite = new TestSuite("aYa");
 		TestSuite unSuite = new TestSuite("aYa");
+		
+		TestCase test8 = new TestCase("aYae");
+		test8.setAssertValue(1,1);
 		TestCase test9 = new TestCase("aYae");
 		test9.setAssertValue(1,1);
 		unSuite.addTest(test9);		
-		TestCase test8 = new TestCase("aYae");
-		test8.setAssertValue(1,1);
 		
+		MyTestCase1OK test10 = new MyTestCase1OK("3y3");
+
 		testsList.addTest(test1);
 		testsList.addTest(test2);
 		testsList.addTest(test3);
@@ -40,12 +44,14 @@ public class ExampleUserTests {
 		testsList.addTest(test6);
 		testsList.addTest(test7);
 		testsList.addTest(test8);
+		testsList.addTest(test10);
+		
 		padreSuite.addTest(unSuite);
 		testsList.addTest(padreSuite);
 		
 		TestResult results = new TestResult();
-		//testsList.runTest(results);
-		testsList.runRegEx(results, "aYa");
+		testsList.runTest(results);
+		//testsList.runRegEx(results, "aYa");
 		results.showResults();
 	}
 	

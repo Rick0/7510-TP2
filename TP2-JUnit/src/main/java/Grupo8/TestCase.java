@@ -1,10 +1,12 @@
 package Grupo8;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 /*
  * Clase que representa un "test individual".
  * Para poder ejecutar correctamente "runTest", primero hay que setear los valores a comparar,
- * con "setUp".
+ * con "setAssertValue".
  */
 public class TestCase extends Test {
 	
@@ -21,6 +23,7 @@ public class TestCase extends Test {
 		testType = "TestCase";
 	}
 	
+	
 	public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
@@ -28,11 +31,13 @@ public class TestCase extends Test {
 		valuesAreSeted = true;
 	}
 	
+	
 	public void setAssertValue(Object aTestValue) {
 		testValue1 = aTestValue;
 		valuesQuantity = 1;
 		valuesAreSeted = true;
 	}
+	
 	
 	public void runRegEx (TestResult result, String regEx){
 	    Pattern regularExpression = Pattern.compile(regEx);
@@ -42,8 +47,11 @@ public class TestCase extends Test {
 	    }
 	}
 	
-	public void runTest(TestResult result) {
+	
+	final public void runTest(TestResult result) {
 		setUp();
+		testBody();
+		
 		if (valuesAreSeted) {			
 			try {
 				if (valuesQuantity == 2) {
@@ -68,10 +76,15 @@ public class TestCase extends Test {
 		else {
 			result.addError(this);
 		}
+		
 		tearDown();
 	}	
 	
+	
 	// setUp y tearDown vacios por defecto.
+	public void testBody() {
+	}
+	
 	public void setUp() {	
 	}
 	
