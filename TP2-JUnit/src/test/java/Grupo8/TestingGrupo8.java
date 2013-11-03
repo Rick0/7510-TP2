@@ -1,6 +1,5 @@
 package Grupo8;
 
-import static org.junit.Assert.assertTrue;
 
 public class TestingGrupo8 {
 
@@ -52,6 +51,8 @@ public class TestingGrupo8 {
 		
 		testsList.runTest(result);
 		result.showResults();
+		result = testsList.runTest();
+		result.showReport();
 	}
 
 	

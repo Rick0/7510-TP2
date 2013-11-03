@@ -25,15 +25,10 @@ public abstract class Test {
 	}
 	
 	public boolean repeatedTest(Test anotherTest){
-		if (testType.equals(anotherTest.testType)){
-			if (testCaseName.equals(anotherTest.testCaseName)){
+		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))){			
 				return true;
-			}
-			return false;
-		}else{
-			return false;
-		}
-			
+		}		
+		return false;			
 	}
 	
 }

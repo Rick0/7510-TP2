@@ -69,8 +69,8 @@ public class TestCase extends Test {
 			result.addError(this);
 		}
 		tearDown();
-	}	
-	
+	}
+		
 	// setUp y tearDown vacios por defecto.
 	public void setUp() {	
 	}

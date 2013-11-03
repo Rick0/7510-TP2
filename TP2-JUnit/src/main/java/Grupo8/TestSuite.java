@@ -21,20 +21,45 @@ public class TestSuite extends Test {
 
 	public void runRegEx(TestResult result, String regEx) {
 		setUp();
+		TestResult newTestResult = result.addTestResult(testCaseName);
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
 			Test test = elements.nextElement();
-			test.runRegEx(result, regEx);		
+			test.runRegEx(newTestResult, regEx);		
 		}  
 		tearDown();
 	}
+
+	public TestResult runRegEx(String regEx) {
+		setUp();
+		TestResult newTestResult = new TestResult(testCaseName);
+		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+			Test test = elements.nextElement();
+			test.runRegEx(newTestResult, regEx);		
+		}  
+		tearDown();
+		return newTestResult;
+	}
+	
 	
 	public void runTest(TestResult result) {
 		setUp();
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+		TestResult newTestResult = result.addTestResult(testCaseName);
+		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
-			test.runTest(result);		
+			test.runTest(newTestResult);		
 		}
 		tearDown();
+	}
+
+	public TestResult runTest() {
+		setUp();
+		TestResult newTestResult = new TestResult(testCaseName);
+		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
+			Test test = elements.nextElement();
+			test.runTest(newTestResult);		
+		}
+		tearDown();
+		return newTestResult;
 	}
 	
 	public void addTest(Test test) {

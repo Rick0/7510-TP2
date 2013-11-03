@@ -16,7 +16,7 @@ public class ExampleUserTests {
 		TestCase test2 = new TestCase("DosYUno");
 		test2.setAssertValue(2, 1);
 		TestCase test3 = new TestCase("AbYAb");
-		test3.setAssertValue("Ab", "Ab");
+		test3.setAssertValue("Ab", "AB");
 		TestCase test4 = new TestCase("AbYAB");
 		test4.setAssertValue("Ab", "AB");
 		TestCase test5 = new TestCase("aYa");
@@ -24,13 +24,14 @@ public class ExampleUserTests {
 		TestCase test6 = new TestCase("bYB");
 		test6.setAssertValue('b', 'B');
 		TestCase test7 = new TestCase("eeYaa");
-		TestSuite padreSuite = new TestSuite("aYa");
-		TestSuite unSuite = new TestSuite("aYa");
-		TestCase test9 = new TestCase("aYae");
-		test9.setAssertValue(1,1);
-		unSuite.addTest(test9);		
 		TestCase test8 = new TestCase("aYae");
 		test8.setAssertValue(1,1);
+		TestCase test9 = new TestCase("aYae");
+		test9.setAssertValue(1,1);
+		TestSuite padreSuite = new TestSuite("aYa");
+		TestSuite unSuite = new TestSuite("aYa");
+		unSuite.addTest(test9);		
+		
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -47,6 +48,8 @@ public class ExampleUserTests {
 		//testsList.runTest(results);
 		testsList.runRegEx(results, "aYa");
 		results.showResults();
+		results = testsList.runRegEx("aYa");
+		results.showReport();
 	}
 	
 }
