@@ -18,6 +18,7 @@ public class TestCase extends Test {
 		testCaseName = aTestCaseName;
 		valuesQuantity = 0;
 		valuesAreSeted = false;
+		testType = "TestCase";
 	}
 	
 	public void setAssertValue(Object aTestValue1, Object aTestValue2) {
@@ -42,7 +43,8 @@ public class TestCase extends Test {
 	}
 	
 	public void runTest(TestResult result) {
-		if (valuesAreSeted) {
+		setUp();
+		if (valuesAreSeted) {			
 			try {
 				if (valuesQuantity == 2) {
 					Assertions.assertEqual(testValue1, testValue2);
@@ -65,7 +67,8 @@ public class TestCase extends Test {
 		}
 		else {
 			result.addError(this);
-		}		
+		}
+		tearDown();
 	}	
 	
 	// setUp y tearDown vacios por defecto.

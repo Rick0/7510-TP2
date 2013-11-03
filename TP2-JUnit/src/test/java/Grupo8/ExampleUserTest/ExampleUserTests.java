@@ -24,6 +24,13 @@ public class ExampleUserTests {
 		TestCase test6 = new TestCase("bYB");
 		test6.setAssertValue('b', 'B');
 		TestCase test7 = new TestCase("eeYaa");
+		TestSuite padreSuite = new TestSuite("aYa");
+		TestSuite unSuite = new TestSuite("aYa");
+		TestCase test9 = new TestCase("aYae");
+		test9.setAssertValue(1,1);
+		unSuite.addTest(test9);		
+		TestCase test8 = new TestCase("aYae");
+		test8.setAssertValue(1,1);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -32,6 +39,9 @@ public class ExampleUserTests {
 		testsList.addTest(test5);
 		testsList.addTest(test6);
 		testsList.addTest(test7);
+		testsList.addTest(test8);
+		padreSuite.addTest(unSuite);
+		testsList.addTest(padreSuite);
 		
 		TestResult results = new TestResult();
 		//testsList.runTest(results);

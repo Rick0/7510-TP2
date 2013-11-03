@@ -5,7 +5,8 @@ package Grupo8;
  * Se usa para poder aplicar el patron Composite.
  */
 public abstract class Test {
-	protected String testCaseName;		
+	protected String testCaseName;
+	protected String testType;
 	
 	public void runTest(TestResult result) {};
 	
@@ -21,6 +22,18 @@ public abstract class Test {
 
 	public void setName(String aName) {
 		testCaseName = aName;
-	}	
+	}
+	
+	public boolean repeatedTest(Test anotherTest){
+		if (testType.equals(anotherTest.testType)){
+			if (testCaseName.equals(anotherTest.testCaseName)){
+				return true;
+			}
+			return false;
+		}else{
+			return false;
+		}
+			
+	}
 	
 }
