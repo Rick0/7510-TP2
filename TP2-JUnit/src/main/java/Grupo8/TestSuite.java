@@ -2,7 +2,6 @@ package Grupo8;
 
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -13,10 +12,9 @@ import java.text.SimpleDateFormat;
 public class TestSuite extends Test {	
 
 	private Vector<Test> tests = new Vector<Test>();
-	private Map<String,Object> fixtures;
 	
 	
-	public TestSuite(String name){
+	public TestSuite(String name) {
 		testCaseName = name;
 		testType = "TestSuite";
 		fixtures = new HashMap<String, Object>();
@@ -26,31 +24,6 @@ public class TestSuite extends Test {
 	public TestSuite() {
 		testCaseName = "Unnamed TestSuite";
 		testType = "TestSuite";
-	}
-	
-	
-	public void addAFixtureItem(String name, Object value){
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
-			}
-		}
-		else {
-			fixtures.put(name, value);
-		}
-	}
-	
-	
-	public Object getAFixtureItem(String name){
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
-	
-	
-	private void removeAllFixturesItems(){
-		fixtures.clear();
 	}
 	
 	
@@ -73,6 +46,7 @@ public class TestSuite extends Test {
 			test.runRegEx(newTestResult, regEx);		
 		}  
 		tearDown();
+		
 		return newTestResult;
 	}
 	
@@ -98,8 +72,8 @@ public class TestSuite extends Test {
 			Test test = elements.nextElement();
 			test.runTest(newTestResult);		
 		}
-		
 		tearDown();
+		
 		return newTestResult;
 	}
 	

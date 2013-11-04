@@ -2,8 +2,7 @@ package Grupo8;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Map;
-import java.util.HashMap;;
+import java.util.HashMap;
 
 /*
  * Clase que representa un "test individual".
@@ -16,7 +15,6 @@ public class TestCase extends Test {
 	private Object testValue2;
 	private int valuesQuantity;
 	private boolean valuesAreSeted;
-	private Map<String,Object> fixtures;
 	
 	
 	public TestCase (String name) {
@@ -27,32 +25,7 @@ public class TestCase extends Test {
 		fixtures = new HashMap<String, Object>();
 	}
 	
-	
-	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
-			}
-		}
-		else {
-			fixtures.put(name, value);
-		}
-	}
-	
-	
-	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
-	
-	
-	private void removeAllFixturesItems() {
-		fixtures.clear();
-	}
-	
-	
+
 	final public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
@@ -69,11 +42,16 @@ public class TestCase extends Test {
 	
 	
 	final public void runRegEx (TestResult result, String regEx) {
+		setUp();
+		testBody();
+		
 	    Pattern regularExpression = Pattern.compile(regEx);
 	    Matcher matcher = regularExpression.matcher(this.testCaseName);
 	    if (matcher.find()) {
 	    	this.runTest(result);
 	    }
+	    
+	    tearDown();
 	}
 	
 	
@@ -105,7 +83,8 @@ public class TestCase extends Test {
 		else {
 			result.addError(this);
 		}
-	
+		
+		tearDown();
 	}
 	
 	

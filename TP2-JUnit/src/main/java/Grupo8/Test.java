@@ -1,5 +1,7 @@
 package Grupo8;
 
+import java.util.Map;
+
 /*
  * Clase abstracta, y padre de TestCase y TestSuite.
  * Se usa para poder aplicar el patron Composite.
@@ -8,6 +10,7 @@ public abstract class Test {
 	
 	protected String testCaseName;
 	protected String testType;
+	protected Map<String,Object> fixtures;
 	
 	
 	public abstract void runTest(TestResult result);
@@ -41,5 +44,30 @@ public abstract class Test {
 		}		
 		return false;			
 	}
+	
+	
+	public void addAFixtureItem(String name, Object value) {
+		if (!fixtures.isEmpty()) {
+			if (!fixtures.containsKey(name)) {
+				fixtures.put(name, value);
+			}
+		}
+		else {
+			fixtures.put(name, value);
+		}
+	}
 
+	
+	public Object getAFixtureItem(String name) {
+		if (fixtures.containsKey(name)) {
+			return fixtures.get(name);
+		}
+		return null;
+	}
+	
+	
+	protected void removeAllFixturesItems() {
+		fixtures.clear();
+	}
+	
 }
