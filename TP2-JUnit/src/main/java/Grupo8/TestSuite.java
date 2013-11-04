@@ -4,6 +4,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 /*
  * Clase que contiene a todos los "tests individuales".
@@ -77,7 +79,7 @@ public class TestSuite extends Test {
 	
 	public void runTest(TestResult result) {
 		setUp();
-		TestResult newTestResult = result.addTestResult(testCaseName);
+		TestResult newTestResult = result.addTestResult(testCaseName);		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.runTest(newTestResult);		
@@ -89,6 +91,9 @@ public class TestSuite extends Test {
 	public TestResult runTest() {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		System.out.println(timeStamp);
+		newTestResult.setReportPath(testCaseName);
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.runTest(newTestResult);		
