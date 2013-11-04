@@ -4,6 +4,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
+
+import java.io.*;
+
 /*
  * Clase encargado de la logica de los resultados de los tests.
  * Tiene 3 listas que guarda, acordemente, los tests correctos, los tests fallidos,
@@ -18,22 +21,26 @@ public class TestResult {
 	List<Test> testsFailed;
 	List<Test> testsError;	
 	private String name;
+	private String reportPath;
 	
 	
 	public TestResult() {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
 		name = "Unnamed";
+		reportPath=name+".txt";
 	}
 	
 	public TestResult(String aName) {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
 		name = aName;
+		reportPath=name+".txt";
 	}	
 	
 	public TestResult addTestResult(String testResultName){
 		TestResult newTestResult = new TestResult(name+"."+testResultName);
+		newTestResult.setReportPath(reportPath);
 		testsResults.add(newTestResult);
 		return newTestResult;
 	}	
@@ -48,6 +55,10 @@ public class TestResult {
 	
 	public void addPassed(Test test) {		
 		tests.add(new TestAssertResult(test,"OK"));
+	}
+	
+	public void setReportPath(String path){
+		reportPath = path;
 	}
 	
 	public List<Test> getListPassed() {
@@ -114,44 +125,49 @@ public class TestResult {
 	}
 		
 	public void showReport() {
+		File file = new File(reportPath);
+		file.delete();
 		showTestResultData();
 		int errors = getListError().size();
 		int oks = getListPassed().size();
-		int failures = getListFailure().size(); 
+		int failures = getListFailure().size();
+		String line;		
 		if (errors + failures > 0) {
-			System.out.print("[failure]");
+			//System.out.print("[failure]");
+			line = "[failure]";
 		}else{
-			System.out.print("[OK]");
+			line = "[OK]";
 		}		
-		System.out.println("Summary");
-		System.out.println("-------------------------");
-		System.out.println("-------------------------");
-		System.out.println("Run: "+(oks+errors+failures));
+		line= line+"Summary";
+		writeLine(line);
+		writeLine("-------------------------");
+		writeLine("-------------------------");
+		writeLine("Run: "+(oks+errors+failures));
 		if (errors > 0){
-			System.out.println("Errors: "+errors);
+			writeLine("Errors: "+errors);
 		}
 		if (failures > 0){
-			System.out.println("Failures: "+failures);
+			writeLine("Failures: "+failures);
 		}
 
 	}
 
 	public void showTestResultData(){
-		System.out.println(name);
-		System.out.println("-------------------------");
+		writeLine(name);
+		writeLine("-------------------------");
 		printTestsList();
-		System.out.println("");
+		writeLine("");
 		printTestsResults();
 	}
 	
 	private void printTestsList() {
 		if (tests.isEmpty()) {
-			System.out.println("\t-");
+			writeLine("\t-");
 		}else{
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
 				TestAssertResult t = (TestAssertResult)it.next();
-				System.out.println("\t" + "[" + t.getResult()+"] "+t.getTest().getName());
+				writeLine("\t" + "[" + t.getResult()+"] "+t.getTest().getName());
 			}
 		}
 	}
@@ -166,4 +182,16 @@ public class TestResult {
 		}
 	}
 	
+	private void writeLine(String line) {
+		try {
+			FileWriter outFile = new FileWriter(reportPath,true);
+			PrintWriter out = new PrintWriter(outFile);
+			out.write(line);
+			out.write("\n");
+			out.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
+
 }
