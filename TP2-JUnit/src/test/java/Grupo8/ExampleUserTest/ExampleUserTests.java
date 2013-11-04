@@ -34,7 +34,7 @@ public class ExampleUserTests {
 		test9.setAssertValue(1,1);
 		unSuite.addTest(test9);		
 		
-//		MyTestCase1OK test10 = new MyTestCase1OK("3y3");
+		MapTesting test10 = new MapTesting("mapTesting");
 
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -44,7 +44,7 @@ public class ExampleUserTests {
 		testsList.addTest(test6);
 		testsList.addTest(test7);
 		testsList.addTest(test8);
-//		testsList.addTest(test10);
+		testsList.addTest(test10);
 		
 		padreSuite.addTest(unSuite);
 		testsList.addTest(padreSuite);
@@ -53,7 +53,7 @@ public class ExampleUserTests {
 		testsList.runTest(results);
 		//testsList.runRegEx(results, "aYa");
 		results.showResults();
-		results = testsList.runRegEx("aYa");
+		///results = testsList.runRegEx("aYa");
 		results.showReport();
 	}
 	

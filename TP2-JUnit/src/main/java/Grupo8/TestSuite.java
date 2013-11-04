@@ -1,19 +1,23 @@
 package Grupo8;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 /*
  * Clase que contiene a todos los "tests individuales".
  */
-public class TestSuite extends Test {
+public class TestSuite extends Test {	
 
 	private Vector<Test> tests = new Vector<Test>();
+	private Map<String,Object> fixtures;
 	
 	
 	public TestSuite(String name){
 		testCaseName = name;
 		testType = "TestSuite";
+		fixtures = new HashMap<String, Object>();
 	}
 	
 	
@@ -21,7 +25,32 @@ public class TestSuite extends Test {
 		testCaseName = "Unnamed TestSuite";
 		testType = "TestSuite";
 	}
-
+	
+	
+	public void addAFixtureItem(String name, Object value){
+		if (!fixtures.isEmpty()) {
+			if (!fixtures.containsKey(name)) {
+				fixtures.put(name, value);
+			}
+		}
+		else {
+			fixtures.put(name, value);
+		}
+	}
+	
+	
+	public Object getAFixtureItem(String name){
+		if (fixtures.containsKey(name)) {
+			return fixtures.get(name);
+		}
+		return null;
+	}
+	
+	
+	private void removeAllFixturesItems(){
+		fixtures.clear();
+	}
+	
 	
 	public void runRegEx(TestResult result, String regEx) {
 		setUp();
@@ -33,6 +62,7 @@ public class TestSuite extends Test {
 		tearDown();
 	}
 
+	
 	public TestResult runRegEx(String regEx) {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
@@ -45,7 +75,6 @@ public class TestSuite extends Test {
 	}
 	
 	
-	
 	public void runTest(TestResult result) {
 		setUp();
 		TestResult newTestResult = result.addTestResult(testCaseName);
@@ -56,6 +85,7 @@ public class TestSuite extends Test {
 		tearDown();
 	}
 
+	
 	public TestResult runTest() {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);

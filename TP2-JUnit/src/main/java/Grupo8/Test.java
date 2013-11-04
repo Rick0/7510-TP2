@@ -35,7 +35,7 @@ public abstract class Test {
 	}
 	
 	
-	public boolean repeatedTest(Test anotherTest){
+	public boolean repeatedTest(Test anotherTest) {
 		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))){			
 				return true;
 		}		

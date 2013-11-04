@@ -2,6 +2,8 @@ package Grupo8;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Map;
+import java.util.HashMap;;
 
 /*
  * Clase que representa un "test individual".
@@ -14,14 +16,39 @@ public class TestCase extends Test {
 	private Object testValue2;
 	private int valuesQuantity;
 	private boolean valuesAreSeted;
+	private Map<String,Object> fixtures;
 	
 	
-	public TestCase (String aTestCaseName) {
-		testCaseName = aTestCaseName;
+	public TestCase (String name) {
+		testCaseName = name;
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		testType = "TestCase";
+		fixtures = new HashMap<String, Object>();
 	}
+	
+	public void addAFixtureItem(String name, Object value) {
+		if (!fixtures.isEmpty()) {
+			if (!fixtures.containsKey(name)) {
+				fixtures.put(name, value);
+			}
+		}
+		else {
+			fixtures.put(name, value);
+		}
+	}
+	
+	public Object getAFixtureItem(String name) {
+		if (fixtures.containsKey(name)) {
+			return fixtures.get(name);
+		}
+		return null;
+	}
+	
+	
+	private void removeAllFixturesItems() {
+		fixtures.clear();
+	}	
 	
 	
 	public void setAssertValue(Object aTestValue1, Object aTestValue2) {
@@ -39,7 +66,7 @@ public class TestCase extends Test {
 	}
 	
 	
-	public void runRegEx (TestResult result, String regEx){
+	public void runRegEx (TestResult result, String regEx) {
 	    Pattern regularExpression = Pattern.compile(regEx);
 	    Matcher matcher = regularExpression.matcher(this.testCaseName);
 	    if (matcher.find()) {
@@ -76,11 +103,11 @@ public class TestCase extends Test {
 		else {
 			result.addError(this);
 		}
-		
-	}	
+	
+	}
 	
 	
-	// setUp y tearDown vacios por defecto.
+	// testBody, setUp y tearDown vacios por defecto.
 	public void testBody() {
 	}
 	
