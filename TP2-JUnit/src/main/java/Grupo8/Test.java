@@ -13,7 +13,7 @@ public abstract class Test {
 	public abstract void runTest(TestResult result);
 	
 	
-	public void runRegEx (TestResult result, String regEx) {};
+	public abstract void runRegEx (TestResult result, String regEx);
 	
 	
 	public abstract void testBody();
@@ -36,7 +36,7 @@ public abstract class Test {
 	
 	
 	public boolean repeatedTest(Test anotherTest) {
-		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))){			
+		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))) {			
 				return true;
 		}		
 		return false;			

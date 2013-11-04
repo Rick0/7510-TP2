@@ -23,7 +23,7 @@ public class TestSuite extends Test {
 	}
 	
 	
-	public TestSuite(){
+	public TestSuite() {
 		testCaseName = "Unnamed TestSuite";
 		testType = "TestSuite";
 	}
@@ -54,7 +54,7 @@ public class TestSuite extends Test {
 	}
 	
 	
-	public void runRegEx(TestResult result, String regEx) {
+	final public void runRegEx(TestResult result, String regEx) {
 		setUp();
 		TestResult newTestResult = result.addTestResult(testCaseName);
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
@@ -65,7 +65,7 @@ public class TestSuite extends Test {
 	}
 
 	
-	public TestResult runRegEx(String regEx) {
+	final public TestResult runRegEx(String regEx) {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
@@ -77,7 +77,7 @@ public class TestSuite extends Test {
 	}
 	
 	
-	public void runTest(TestResult result) {
+	final public void runTest(TestResult result) {
 		setUp();
 		TestResult newTestResult = result.addTestResult(testCaseName);		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
@@ -88,7 +88,7 @@ public class TestSuite extends Test {
 	}
 
 	
-	public TestResult runTest() {
+	final public TestResult runTest() {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
