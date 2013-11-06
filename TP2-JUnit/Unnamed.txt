@@ -1,0 +1,30 @@
+Unnamed
+-------------------------
+	-
+
+Unnamed.Unnamed TestSuite
+-------------------------
+	[OK] UnoYUno
+	[Fail] DosYUno
+	[Fail] AbYAb
+	[Fail] AbYAB
+	[OK] aYa
+	[Fail] bYB
+	[Error] eeYaa
+	[OK] aYae
+	[OK] mapTesting
+
+Unnamed.Unnamed TestSuite.aYa
+-------------------------
+	-
+
+Unnamed.Unnamed TestSuite.aYa.aYa
+-------------------------
+	[OK] aYae
+
+[failure]Summary
+-------------------------
+-------------------------
+Run: 10
+Errors: 1
+Failures: 4
