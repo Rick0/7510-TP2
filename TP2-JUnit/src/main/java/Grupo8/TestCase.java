@@ -3,6 +3,7 @@ package Grupo8;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /*
@@ -16,8 +17,7 @@ public class TestCase extends Test {
 	private Object testValue2;
 	private int valuesQuantity;	
 	private boolean valuesAreSeted;
-	private Map<String,Object> fixtures;
-	private Map<String,Object> fixturesFromSuite;
+	private Map<String,Object> fixtures;	
 	
 	
 	public TestCase (String name) {
@@ -25,8 +25,7 @@ public class TestCase extends Test {
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		testType = "TestCase";
-		fixtures = new HashMap<String, Object>();		
-		fixturesFromSuite = new HashMap<String, Object>();
+		fixtures = new HashMap<String, Object>();				
 	}
 	
 
@@ -122,7 +121,17 @@ public class TestCase extends Test {
 	}
 	
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
-		fixturesFromSuite = fixtures;
+		/*Iterator it = fixtures.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry e = (Map.Entry)it.next();			
+			addAFixtureItem((String)e.getKey(),e.getValue());
+		}*/
+		Iterator<String> it = fixtures.keySet().iterator();
+		while (it.hasNext()){
+			String key = it.next();
+			addAFixtureItem(key,fixtures.get(key));
+		}
+
 	}
 	
 	// testBody, setUp y tearDown vacios por defecto.
