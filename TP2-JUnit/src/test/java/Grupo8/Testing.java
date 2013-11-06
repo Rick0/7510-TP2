@@ -253,19 +253,19 @@ public class Testing {
 	
 	@Test
 	public void testTheAccessToTheFixtureOfATestCaseAndATestSuite() {
-		TestResult result = new TestResult();
-		TestSuite suiteA = new TestSuite("Suite A");
-		TestSuite suiteB = new TestSuite("Suite B");
-		TestCase test = new TestCase("my special test case");
-		
-		suiteB.addAFixtureItem("numberA", 1);		
-		suiteA.addAFixtureItem("numberB", 2);		
-		test.addAFixtureItem("numberC", 3);		
-		
-		suiteA.addTest(test);
-		suiteB.addTest(suiteA);			
-		
-		double suma1 = (double)test.getAFixtureItemFromSuite("NumberB");
+//		TestResult result = new TestResult();
+//		TestSuite suiteA = new TestSuite("Suite A");
+//		TestSuite suiteB = new TestSuite("Suite B");
+//		TestCase test = new TestCase("my special test case");
+//		
+//		suiteB.addAFixtureItem("numberA", 1);		
+//		suiteA.addAFixtureItem("numberB", 2);		
+//		test.addAFixtureItem("numberC", 3);		
+//		
+//		suiteA.addTest(test);
+//		suiteB.addTest(suiteA);			
+//		
+//		double suma1 = (double)test.getAFixtureItemFromSuite("NumberB");
 		//double suma2 = 
 		//double assertValueA = suma1 + suma2;
 		//double assertValueB = (double) test.getAFixtureItem("numberC");
@@ -278,5 +278,116 @@ public class Testing {
 		//Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
+	@Test
+	public void testForNameUnicityOfTestCases() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case");		
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);		
+		
+		suite.addTest(test1);
+		suite.addTest(test2);		
+				
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 1);
+	}
+	
+	@Test
+	public void testForNameUnicityOfTestSuites() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("suite");
+		TestSuite suite2 = new TestSuite("suite");
+		TestSuite suite3 = new TestSuite("suite");
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case");
+		TestCase test3 = new TestCase("my special test case");
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);		
+		test3.setAssertValue(0, 0);
+		
+		suite1.addTest(test1);
+		suite1.addTest(suite2);
+		suite1.addTest(suite3);		
+				
+		result = suite1.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 1);
+	}
+	
+	@Test
+	public void testForSetUpForATestCase() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite("suite");
+		TestCase test = new TestCase("my special test case");
+		
+		//This is the set up
+		test.addAFixtureItem("numberA", 1);
+		test.addAFixtureItem("numberB", 2);
+		
+		test.setAssertValue(test.getAFixtureItem("numberA"), test.getAFixtureItem("numberB"));		
+		
+		suite.addTest(test);
+				
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 0);
+	}
+	
+	@Test
+	public void testForTwoTestAndEachSetUp() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite("suite");
+		TestCase test1 = new TestCase("my special test case 1");
+		TestCase test2 = new TestCase("my special test case 2");
+		
+		//This is the set up
+		test1.addAFixtureItem("numberA", 1);
+		test2.addAFixtureItem("numberA", 2);
+		
+		test1.setAssertValue(test1.getAFixtureItem("numberA"), 1);
+		test2.setAssertValue(test1.getAFixtureItem("numberA"), 1);
+		
+		suite.addTest(test1);
+		suite.addTest(test2);
+				
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
+	@Test
+	public void testForASuiteWithTwoSuitesWithATestEachOne() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("suite 1");
+		TestSuite suite2 = new TestSuite("suite 2");
+		TestSuite suite3 = new TestSuite("suite 3");
+		TestCase test1 = new TestCase("my special test case 1");
+		TestCase test2 = new TestCase("my special test case 2");
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		
+		
+		suite2.addTest(test1);
+		suite3.addTest(test2);
+		suite1.addTest(suite2);
+		suite1.addTest(suite3);
+				
+		result = suite1.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
 }
+
 
