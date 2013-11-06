@@ -113,7 +113,10 @@ public class TestSuite extends Test {
 				found = true;
 			}							
 		}
-	    if (!found) tests.addElement(test); 
+	    if (!found) {
+	    	test.setUpVariablesFromSuite(fixtures);
+	    	tests.addElement(test); 
+	    }
 	}
 	
 	

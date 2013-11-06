@@ -14,9 +14,10 @@ public class TestCase extends Test {
 	
 	private Object testValue1;
 	private Object testValue2;
-	private int valuesQuantity;
+	private int valuesQuantity;	
 	private boolean valuesAreSeted;
 	private Map<String,Object> fixtures;
+	private Map<String,Object> fixturesFromSuite;
 	
 	
 	public TestCase (String name) {
@@ -24,7 +25,8 @@ public class TestCase extends Test {
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		testType = "TestCase";
-		fixtures = new HashMap<String, Object>();
+		fixtures = new HashMap<String, Object>();		
+		fixturesFromSuite = new HashMap<String, Object>();
 	}
 	
 	public void addAFixtureItem(String name, Object value) {
@@ -44,7 +46,13 @@ public class TestCase extends Test {
 		}
 		return null;
 	}
-	
+
+	public Object getAFixtureItemFromSuite(String name) {
+		if (fixtures.containsKey(name)) {
+			return fixtures.get(name);
+		}
+		return null;
+	}
 	
 	private void removeAllFixturesItems() {
 		fixtures.clear();
@@ -106,6 +114,9 @@ public class TestCase extends Test {
 	
 	}
 	
+	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
+		fixturesFromSuite = fixtures;
+	}
 	
 	// testBody, setUp y tearDown vacios por defecto.
 	public void testBody() {
@@ -116,5 +127,6 @@ public class TestCase extends Test {
 	
 	public void tearDown() {
 	}
+	
 	
 }

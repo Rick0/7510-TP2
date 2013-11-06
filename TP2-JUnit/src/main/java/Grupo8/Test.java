@@ -1,5 +1,7 @@
 package Grupo8;
 
+import java.util.Map;
+
 /*
  * Clase abstracta, y padre de TestCase y TestSuite.
  * Se usa para poder aplicar el patron Composite.
@@ -7,8 +9,7 @@ package Grupo8;
 public abstract class Test {
 	
 	protected String testCaseName;
-	protected String testType;
-	
+	protected String testType;	
 	
 	public abstract void runTest(TestResult result);
 	
@@ -20,10 +21,10 @@ public abstract class Test {
 	
 	
 	public abstract void setUp();
-	
+
 	
 	public abstract void tearDown();
-	
+		
 	
 	public String getName() {
 		return testCaseName;
@@ -41,5 +42,8 @@ public abstract class Test {
 		}		
 		return false;			
 	}
+
+
+	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {}	
 
 }
