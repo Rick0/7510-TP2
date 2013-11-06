@@ -2,13 +2,13 @@ package Grupo8;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.HashMap;;
 
 /*
  * Clase que representa un "test individual".
- * Para poder ejecutar correctamente "runTest", primero hay que setear los valores a comparar,
- * con "setAssertValue".
+ * Para poder ejecutar correctamente "runTest",
+ * primero hay que setear los valores a comparar, con "setAssertValue".
  */
 public class TestCase extends Test {
 	
@@ -29,6 +29,7 @@ public class TestCase extends Test {
 		fixturesFromSuite = new HashMap<String, Object>();
 	}
 	
+
 	public void addAFixtureItem(String name, Object value) {
 		if (!fixtures.isEmpty()) {
 			if (!fixtures.containsKey(name)) {
@@ -59,7 +60,7 @@ public class TestCase extends Test {
 	}	
 	
 	
-	public void setAssertValue(Object aTestValue1, Object aTestValue2) {
+	final public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
 		valuesQuantity = 2;
@@ -67,19 +68,24 @@ public class TestCase extends Test {
 	}
 	
 	
-	public void setAssertValue(Object aTestValue) {
+	final public void setAssertValue(Object aTestValue) {
 		testValue1 = aTestValue;
 		valuesQuantity = 1;
 		valuesAreSeted = true;
 	}
 	
 	
-	public void runRegEx (TestResult result, String regEx) {
+	final public void runRegEx (TestResult result, String regEx) {
+		setUp();
+		testBody();
+		
 	    Pattern regularExpression = Pattern.compile(regEx);
 	    Matcher matcher = regularExpression.matcher(this.testCaseName);
 	    if (matcher.find()) {
 	    	this.runTest(result);
 	    }
+	    
+	    tearDown();
 	}
 	
 	
@@ -111,7 +117,8 @@ public class TestCase extends Test {
 		else {
 			result.addError(this);
 		}
-	
+		
+		tearDown();
 	}
 	
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
