@@ -1,5 +1,10 @@
 package Grupo8;
 
+/*
+ * Clase que se utiliza para guardar el resultado de correr un test. Los posibles
+ * valores que va a recibir son "Ok", "Fail" o "Error"
+ */
+
 public class TestAssertResult {
 	private Test test;
 	private String result;

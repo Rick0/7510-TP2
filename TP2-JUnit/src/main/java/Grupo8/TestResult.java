@@ -17,9 +17,6 @@ public class TestResult {
 	List<TestAssertResult> tests;	
 	List<TestResult> testsResults;
 	
-	List<Test> testsPassed;	
-	List<Test> testsFailed;
-	List<Test> testsError;	
 	private String name;
 	private String reportPath;
 	
