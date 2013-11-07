@@ -214,7 +214,7 @@ public class Testing {
 	
 	@Test //4
 	public void testForTwoTestAndEachSetUp() {
-		TestResult result = new TestResult();
+/*		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
 		TestCase test1 = new TestCase("my special test case 1");
 		TestCase test2 = new TestCase("my special test case 2");
@@ -232,7 +232,14 @@ public class Testing {
 		result = suite.runRegEx(".*special");
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 2);
+		Assert.assertEquals(result.getListPassed().size(), 2);*/
+		TestSuiteTest4 suite = new TestSuiteTest4("TestSuiteTest4");
+		TestCaseTest4A caseA = new TestCaseTest4A("TestCaseTest4A");
+		TestCaseTest4B caseB = new TestCaseTest4B("TestCaseTest4B");
+		suite.addTest(caseA);
+		suite.addTest(caseB);
+		TestResult result = suite.runTest();
+		assertEquals(2,result.getListPassed().size());
 	}
 	
 	@Test //5
