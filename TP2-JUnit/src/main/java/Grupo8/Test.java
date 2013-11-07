@@ -43,7 +43,7 @@ public abstract class Test {
 		return false;			
 	}
 	
-			
+	
 	public void addAFixtureItem(String name, Object value) {
 		if (!fixtures.isEmpty()) {
 			if (!fixtures.containsKey(name)) {
@@ -55,10 +55,6 @@ public abstract class Test {
 		}
 	}
 	
-
-
-
-//	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {}	
 
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
 		/*Iterator it = fixtures.entrySet().iterator();
@@ -75,16 +71,11 @@ public abstract class Test {
 	}
 	
 
-	
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);
 		}
 		return null;
 	}
-	
-	
-	
-	
 
 }

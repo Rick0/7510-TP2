@@ -3,8 +3,6 @@ package Grupo8;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /*
  * Clase que representa un "test individual".
@@ -35,7 +33,8 @@ public class TestCase extends Test {
 		testType = "TestCase";
 		fixtures = new HashMap<String, Object>();				
 	}
-		
+	
+	
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);
@@ -43,12 +42,14 @@ public class TestCase extends Test {
 		return null;
 	}
 
+	
 	public Object getAFixtureItemFromSuite(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);
 		}
 		return null;
 	}
+	
 	
 	private void removeAllFixturesItems() {
 		fixtures.clear();
@@ -110,7 +111,8 @@ public class TestCase extends Test {
 		
 		tearDown();
 	}
-		
+	
+	
 	// testBody, setUp y tearDown vacios por defecto.
 	public void testBody() {
 	}
@@ -120,6 +122,5 @@ public class TestCase extends Test {
 	
 	public void tearDown() {
 	}
-	
-	
+
 }

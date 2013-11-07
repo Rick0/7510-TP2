@@ -27,13 +27,13 @@ public class TestSuite extends Test {
 		fixtures = new HashMap<String, Object>();
 	}
 	
+	
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);
 		}
 		return null;
 	}
-	
 	
 	
 	final public void runRegEx(TestResult result, String regEx) {

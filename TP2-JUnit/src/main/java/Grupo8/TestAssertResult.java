@@ -9,6 +9,7 @@ public class TestAssertResult {
 	private Test test;
 	private String result;
 	
+	
 	public TestAssertResult(Test aTest,String resultName){
 		test = aTest;
 		result = resultName;

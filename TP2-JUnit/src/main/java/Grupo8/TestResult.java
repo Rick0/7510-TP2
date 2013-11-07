@@ -80,7 +80,6 @@ public class TestResult {
 		
 	}
 	
-	
 	public List<Test> getListFailure() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Fail",this);
@@ -214,7 +213,6 @@ public class TestResult {
 		}		
 				
 		return ("\t-");
-		
 	}
 
 }
