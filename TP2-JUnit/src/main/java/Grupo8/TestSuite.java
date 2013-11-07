@@ -105,9 +105,6 @@ public class TestSuite extends Test {
 	
 	
 	// setUp y tearDown vacios por defecto.
-	public void testBody() {
-	}
-	
 	public void setUp() {	
 	}
 	
