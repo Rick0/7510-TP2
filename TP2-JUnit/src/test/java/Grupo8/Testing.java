@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
+/*
+ * Testing: se testea el correcto funcionamiento de nuestro framework, usando el JUnit.
+ */
 public class Testing {
 
 	/* Tests TP2 */

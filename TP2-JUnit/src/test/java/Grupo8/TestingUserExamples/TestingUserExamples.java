@@ -1,11 +1,14 @@
-package Grupo8.ExampleUserTest;
+package Grupo8.TestingUserExamples;
 
 import Grupo8.TestCase;
 import Grupo8.TestResult;
 import Grupo8.TestSuite;
 
-
-public class ExampleUserTests {
+/*
+ * TestingUserExamples: se testea el correcto funcionamiento de nuestro framework,
+ * con ejemplos de cómo sería usado por un usuario común.
+ */
+public class TestingUserExamples {
 
     public static void main (String[] args) {
     	

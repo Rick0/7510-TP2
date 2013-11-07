@@ -1,21 +1,16 @@
-package Grupo8.ExampleUserTest;
+package Grupo8.TestingUserExamples;
 
 import Grupo8.TestCase;
 
 
-public class MyTestCase1OK extends TestCase {
+public class MyTestCase1Fail extends TestCase {
 	
 	int a;
 	int b;
 
 	
-	public MyTestCase1OK (String testName) {
+	public MyTestCase1Fail (String testName) {
 		super(testName);
-	}
-	
-	
-	public void setUp() {
-		a = 1;
 	}
 	
 	

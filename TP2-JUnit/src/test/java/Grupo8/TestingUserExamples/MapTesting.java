@@ -1,4 +1,4 @@
-package Grupo8.ExampleUserTest;
+package Grupo8.TestingUserExamples;
 
 import Grupo8.TestCase;
 
@@ -10,7 +10,7 @@ public class MapTesting extends TestCase {
 	}
 	
 	
-	public void setUp(){
+	public void setUp() {
 		addAFixtureItem("a", 1);		
 	}
 	

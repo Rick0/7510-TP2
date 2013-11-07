@@ -1,6 +1,8 @@
 package Grupo8;
 
-
+/*
+ * TestingGrupo8: se testea el correcto funcionamiento de nuestro framework, usando el mismo framework.
+ */
 public class TestingGrupo8 {
 	
 	public static void main(String[] args) {

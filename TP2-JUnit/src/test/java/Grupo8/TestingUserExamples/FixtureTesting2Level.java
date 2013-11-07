@@ -1,6 +1,5 @@
-package Grupo8.ExampleUserTest;
+package Grupo8.TestingUserExamples;
 
-//import Grupo8.TestCase;
 import Grupo8.TestSuite;
 
 
