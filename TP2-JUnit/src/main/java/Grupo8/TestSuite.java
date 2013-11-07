@@ -3,8 +3,6 @@ package Grupo8;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 /*
  * Clase que contiene a todos los "tests individuales".
@@ -66,9 +64,7 @@ public class TestSuite extends Test {
 	
 	final public TestResult runTest() {
 		setUp();
-		TestResult newTestResult = new TestResult(testCaseName);
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		System.out.println(timeStamp);		
+		TestResult newTestResult = new TestResult(testCaseName);	
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 	    	test.setUpVariablesFromSuite(fixtures);
