@@ -20,9 +20,6 @@ public abstract class Test {
 	public abstract void runRegEx (TestResult result, String regEx);
 	
 	
-	public abstract void testBody();
-	
-	
 	public abstract void setUp();
 
 	
