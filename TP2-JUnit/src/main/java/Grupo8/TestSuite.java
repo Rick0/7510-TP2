@@ -22,7 +22,7 @@ public class TestSuite extends Test {
 	
 	
 	public TestSuite() {
-		testCaseName = "Unnamed TestSuite";
+		testCaseName = "UnnamedTestSuite";
 		testType = "TestSuite";
 		fixtures = new HashMap<String, Object>();
 	}
@@ -76,8 +76,7 @@ public class TestSuite extends Test {
 		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		System.out.println(timeStamp);
-		newTestResult.setReportPath(testCaseName);
+		System.out.println(timeStamp);		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 	    	test.setUpVariablesFromSuite(fixtures);
