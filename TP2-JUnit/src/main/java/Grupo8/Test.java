@@ -63,13 +63,8 @@ public abstract class Test {
 		return null;
 	}
 	
-
+	
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
-		/*Iterator it = fixtures.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry)it.next();			
-			addAFixtureItem((String)e.getKey(),e.getValue());
-		}*/
 		Iterator<String> it = fixtures.keySet().iterator();
 		while (it.hasNext()){
 			String key = it.next();

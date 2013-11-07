@@ -6,6 +6,7 @@ import java.util.Vector;
 
 /*
  * Clase que contiene a todos los "tests individuales".
+ * Puede contener otro TestSuite.
  */
 public class TestSuite extends Test {	
 

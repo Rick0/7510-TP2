@@ -7,8 +7,8 @@ import java.io.*;
 
 /*
  * Clase encargado de la logica de los resultados de los tests.
- * Tiene 3 listas que guarda, acordemente, los tests correctos, los tests fallidos,
- * y los tests con errores, para luego mostrarlos ordenadamente por consola.
+ * Despues de ordenar los resultados de los tests, puede mostrar los resultados
+ * tanto por consola como a traves de un texto.
  */
 public class TestResult {
 
@@ -127,9 +127,9 @@ public class TestResult {
 		int failures = getListFailure().size();
 		String line;		
 		if (errors + failures > 0) {
-			//System.out.print("[failure]");
 			line = "[failure]";
-		}else{
+		}
+		else {
 			line = "[OK]";
 		}		
 		line= line+"Summary";

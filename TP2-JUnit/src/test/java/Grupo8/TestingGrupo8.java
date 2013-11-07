@@ -94,7 +94,7 @@ public class TestingGrupo8 {
 	}
 	
 	
-	public static void fillTest3(TestCase test3a, TestCase test3b) {		
+	public static void fillTest3(TestCase test3a, TestCase test3b) {
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
 		test3a.setAssertValue(result.getListError().size(), 0);
