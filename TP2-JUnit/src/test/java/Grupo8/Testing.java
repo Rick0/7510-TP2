@@ -277,11 +277,8 @@ public class Testing {
 		//Assert.assertEquals(result.getListFailure().size(), 0);
 		//Assert.assertEquals(result.getListPassed().size(), 1);
 		TestCaseC c = new TestCaseC("TestCaseC");
-		//c.setUp();
 		TestSuiteB b = new TestSuiteB("TestSuiteB");
-		//b.setUp();
 		TestSuiteA a = new TestSuiteA("TestSuiteA");
-		//a.setUp();
 		a.addTest(c);
 		b.addTest(a);
 		TestResult result = b.runTest();
@@ -334,21 +331,9 @@ public class Testing {
 	@Test
 	public void testForSetUpForATestCase() {
 		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite("suite");
-		TestCase test = new TestCase("my special test case");
-		
-		//This is the set up
-		test.addAFixtureItem("numberA", 1);
-		test.addAFixtureItem("numberB", 2);
-		
-		test.setAssertValue(test.getAFixtureItem("numberA"), test.getAFixtureItem("numberB"));		
-		
-		suite.addTest(test);
-				
-		result = suite.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 1);
-		Assert.assertEquals(result.getListPassed().size(), 0);
+		TestCaseSetUpTest test = new TestCaseSetUpTest("TestCaseSetUpTest");
+		test.runTest(result);
+		assertEquals(1,result.getListPassed().size());
 	}
 	
 	@Test
