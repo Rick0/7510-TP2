@@ -277,6 +277,17 @@ public class Testing {
 		assertEquals(2,result.getListPassed().size());
 	}
 	
+	@Test //6
+	public void testTheAccessToTheFixtureOfATestCaseAndATestSuite(){
+		TestCaseC c = new TestCaseC("TestCaseC");
+		TestSuiteB b = new TestSuiteB("TestSuiteB");
+		TestSuiteA a = new TestSuiteA("TestSuiteA");
+		a.addTest(c);
+		b.addTest(a);
+		TestResult result = b.runTest();
+		assertEquals(result.getListPassed().size(),1);	
+	}
+	
 	@Test //7
 	public void testForAFailedTest() {
 		TestResult result = new TestResult();
