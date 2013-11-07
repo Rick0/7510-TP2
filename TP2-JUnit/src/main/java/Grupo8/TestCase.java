@@ -71,16 +71,11 @@ public class TestCase extends Test {
 	
 	
 	final public void runRegEx (TestResult result, String regEx) {
-		setUp();
-		testBody();
-		
 	    Pattern regularExpression = Pattern.compile(regEx);
 	    Matcher matcher = regularExpression.matcher(this.testCaseName);
 	    if (matcher.find()) {
 	    	this.runTest(result);
 	    }
-	    
-	    tearDown();
 	}
 	
 	

@@ -1,12 +1,13 @@
 package Grupo8;
 
-import org.junit.Assert;
 
 public class TestingGrupo8 {
 
+	/* Tests TP2 */
+	
 	public static void main(String[] args) {
 		TestResult result = new TestResult();
-		TestSuite testsList = new TestSuite();
+		TestSuite testsList = new TestSuite("TestingGrupo8");
 		
 		TestCase test1  = new TestCase("test1");
 		TestCase test2  = new TestCase("test2");
@@ -34,6 +35,8 @@ public class TestingGrupo8 {
 		fillTest9(test9);
 		fillTest10(test10);
 		fillTest11(test11);
+		testForUnexistingName(testsList, result);
+		testForExistingName(testsList, result);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -196,9 +199,11 @@ public class TestingGrupo8 {
 		}
 	}
 	
-	public static void testForUnexistingName(){
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
+	
+	/* Tests TP2.1 */
+	
+	public static void testForUnexistingName(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite("testForUnexistingName 1");
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
@@ -211,25 +216,26 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
+		suiteFather.addTest(suite);
+		resultFather = suite.runRegEx(".*unexisting name");
 		
-		result = suite.runRegEx(".*unexisting name");
 		TestCase test5 = new TestCase ("for testing unexisting name1");
 		TestCase test6 = new TestCase ("for testing unexisting name2");
 		TestCase test7 = new TestCase ("for testing unexisting name3");
-		test5.setAssertValue(result.getListError().size(), 0);
-		test6.setAssertValue(result.getListFailure().size(), 0);
-		test7.setAssertValue(result.getListPassed().size(), 0);
-		TestSuite testSuite = new TestSuite ("suite that contains the test");
+		test5.setAssertValue(resultFather.getListError().size(), 0);
+		test6.setAssertValue(resultFather.getListFailure().size(), 0);
+		test7.setAssertValue(resultFather.getListPassed().size(), 0);
+		TestSuite testSuite = new TestSuite ("testForUnexistingName 2");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		TestResult resultOfTesting = testSuite.runRegEx(".*for");
-		resultOfTesting.showReport();
+		suiteFather.addTest(testSuite);
+		resultFather = testSuite.runRegEx(".*for");
 	}
 	
-	public static void testForExistingName(){
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
+	
+	public static void testForExistingName(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite("testForExistingName 1");
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
@@ -242,20 +248,21 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
+		suiteFather.addTest(suite);
+		resultFather = suite.runRegEx(".*");
 		
-		result = suite.runRegEx(".*unexisting name");
 		TestCase test5 = new TestCase ("for testing existing name1");
 		TestCase test6 = new TestCase ("for testing existing name2");
 		TestCase test7 = new TestCase ("for testing existing name3");
-		test5.setAssertValue(result.getListError().size(), 0);
-		test6.setAssertValue(result.getListFailure().size(), 0);
-		test7.setAssertValue(result.getListPassed().size(), 4);
-		TestSuite testSuite = new TestSuite ("suite that contains the test");
+		test5.setAssertValue(resultFather.getListError().size(), 0);
+		test6.setAssertValue(resultFather.getListFailure().size(), 0);
+		test7.setAssertValue(resultFather.getListPassed().size(), 4);
+		TestSuite testSuite = new TestSuite ("testForExistingName 2");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		TestResult resultOfTesting = testSuite.runRegEx(".*for");
-		resultOfTesting.showReport();
+		suiteFather.addTest(testSuite);
+		resultFather = testSuite.runRegEx(".*for");
 	}
 	
 	public static void testThatThrowsAnException(){

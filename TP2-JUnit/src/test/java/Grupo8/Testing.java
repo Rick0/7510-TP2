@@ -6,6 +6,8 @@ import org.junit.Test;
 
 public class Testing {
 
+	/* Tests TP2 */
+	
 	@Test
 	public void testEqualInt() {
 		int testValue1 = 0;
@@ -158,9 +160,9 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
-	/*TP2.1*/
 	
-	
+	/* Tests TP2.1 */
+
 	@Test //1
 	public void testForNameUnicityOfTestCases() {
 		TestResult result = new TestResult();
