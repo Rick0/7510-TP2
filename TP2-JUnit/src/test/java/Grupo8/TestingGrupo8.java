@@ -225,9 +225,9 @@ public class TestingGrupo8 {
 		suiteFather.addTest(suite);
 		resultFather = suite.runRegEx(".*unexisting name");
 		
-		TestCase test5 = new TestCase ("for testing unexisting name1");
-		TestCase test6 = new TestCase ("for testing unexisting name2");
-		TestCase test7 = new TestCase ("for testing unexisting name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(resultFather.getListError().size(), 0);
 		test6.setAssertValue(resultFather.getListFailure().size(), 0);
 		test7.setAssertValue(resultFather.getListPassed().size(), 0);
@@ -257,9 +257,9 @@ public class TestingGrupo8 {
 		suiteFather.addTest(suite);
 		resultFather = suite.runRegEx(".*");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(resultFather.getListError().size(), 0);
 		test6.setAssertValue(resultFather.getListFailure().size(), 0);
 		test7.setAssertValue(resultFather.getListPassed().size(), 4);
@@ -285,9 +285,9 @@ public class TestingGrupo8 {
 		suite.addTest(test4);
 		result = suite.runRegEx(".*");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 4);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 0);
@@ -317,9 +317,9 @@ public class TestingGrupo8 {
 		suite.addTest(test4);
 		result = suite.runRegEx(".*");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 4);
 		test7.setAssertValue(result.getListPassed().size(), 0);
@@ -343,9 +343,9 @@ public class TestingGrupo8 {
 		suite.addTest(test2);		
 		result = suite.runRegEx(".*special");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 1);
@@ -375,9 +375,9 @@ public class TestingGrupo8 {
 		suite1.addTest(suite3);		
 		result = suite1.runRegEx(".*special");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 1);
@@ -404,9 +404,9 @@ public class TestingGrupo8 {
 		suite.addTest(test);
 		result = suite.runRegEx(".*special");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 1);
 		test7.setAssertValue(result.getListPassed().size(), 0);
@@ -436,9 +436,9 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		result = suite.runRegEx(".*special");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 2);
@@ -469,9 +469,9 @@ public class TestingGrupo8 {
 		suite1.addTest(suite3);
 		result = suite1.runRegEx(".*special");
 		
-		TestCase test5 = new TestCase ("for testing existing name1");
-		TestCase test6 = new TestCase ("for testing existing name2");
-		TestCase test7 = new TestCase ("for testing existing name3");
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 2);
