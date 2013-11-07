@@ -160,132 +160,8 @@ public class Testing {
 	
 	/*TP2.1*/
 	
-	@Test
-	public void testForUnexistingNameRegEx() {
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
-		TestCase test1 = new TestCase("my special test case");
-		TestCase test2 = new TestCase("my special test case 1");
-		TestCase test3 = new TestCase("my special");
-		TestCase test4 = new TestCase("a test");
-		test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		test3.setAssertValue(0, 0);
-		test4.setAssertValue(0, 0);
-		suite.addTest(test1);
-		suite.addTest(test2);
-		suite.addTest(test3);
-		suite.addTest(test4);
-		
-		result = suite.runRegEx(".*unexisting name");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 0);
-	}
 	
-	@Test
-	public void testForExistingName() {
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
-		TestCase test1 = new TestCase("my special test case");
-		TestCase test2 = new TestCase("my special test case 1");
-		TestCase test3 = new TestCase("my special");
-		TestCase test4 = new TestCase("a test");
-		test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		test3.setAssertValue(0, 0);
-		test4.setAssertValue(1, 0);
-		suite.addTest(test1);
-		suite.addTest(test2);
-		suite.addTest(test3);
-		suite.addTest(test4);
-		
-		result = suite.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 3);
-	}
-
-	@Test
-	public void testForTestWithErrorWhichThrowAnException() {
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
-		TestCase test1 = new TestCase("my special test case");
-		TestCase test2 = new TestCase("my special test case 1");
-		TestCase test3 = new TestCase("my special");
-		
-		//We are not setting the asserts values
-		/*test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		test3.setAssertValue(0, 0);*/
-		
-		suite.addTest(test1);
-		suite.addTest(test2);
-		suite.addTest(test3);
-				
-		result = suite.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 3);
-		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 0);
-	}
-	
-	@Test
-	public void testForAFailedTest() {
-		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
-		TestCase test1 = new TestCase("my special test case");
-		TestCase test2 = new TestCase("my special test case 1");
-		TestCase test3 = new TestCase("my special");
-		
-		test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		test3.setAssertValue(1, 0);
-		
-		suite.addTest(test1);
-		suite.addTest(test2);
-		suite.addTest(test3);
-				
-		result = suite.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 1);
-		Assert.assertEquals(result.getListPassed().size(), 2);
-	}
-	
-	@Test
-	public void testTheAccessToTheFixtureOfATestCaseAndATestSuite() {
-//		TestResult result = new TestResult();
-//		TestSuite suiteA = new TestSuite("Suite A");
-//		TestSuite suiteB = new TestSuite("Suite B");
-//		TestCase test = new TestCase("my special test case");
-//		
-//		suiteB.addAFixtureItem("numberA", 1);		
-//		suiteA.addAFixtureItem("numberB", 2);		
-//		test.addAFixtureItem("numberC", 3);		
-//		
-//		suiteA.addTest(test);
-//		suiteB.addTest(suiteA);			
-//		
-//		double suma1 = (double)test.getAFixtureItemFromSuite("NumberB");
-		//double suma2 = 
-		//double assertValueA = suma1 + suma2;
-		//double assertValueB = (double) test.getAFixtureItem("numberC");
-		
-		//test.setAssertValue(assertValueA, assertValueB);		
-				
-		//result = suiteB.runRegEx(".*special");		
-		//Assert.assertEquals(result.getListError().size(), 0);
-		//Assert.assertEquals(result.getListFailure().size(), 0);
-		//Assert.assertEquals(result.getListPassed().size(), 1);
-		TestCaseC c = new TestCaseC("TestCaseC");
-		TestSuiteB b = new TestSuiteB("TestSuiteB");
-		TestSuiteA a = new TestSuiteA("TestSuiteA");
-		a.addTest(c);
-		b.addTest(a);
-		TestResult result = b.runTest();
-		assertEquals(result.getListPassed().size(),1);		
-	}
-	
-	@Test
+	@Test //1
 	public void testForNameUnicityOfTestCases() {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -304,7 +180,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
-	@Test
+	@Test //2
 	public void testForNameUnicityOfTestSuites() {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite");
@@ -328,7 +204,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
-	@Test
+	@Test //3
 	public void testForSetUpForATestCase() {
 		TestResult result = new TestResult();
 		TestCaseSetUpTest test = new TestCaseSetUpTest("TestCaseSetUpTest");
@@ -336,7 +212,7 @@ public class Testing {
 		assertEquals(1,result.getListPassed().size());
 	}
 	
-	@Test
+	@Test //4
 	public void testForTwoTestAndEachSetUp() {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
@@ -359,7 +235,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
 	
-	@Test
+	@Test //5
 	public void testForASuiteWithTwoSuitesWithATestEachOne() {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite 1");
@@ -381,6 +257,97 @@ public class Testing {
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
+	@Test //7
+	public void testForAFailedTest() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(1, 0);
+		
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+				
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
+	@Test //8
+	public void testForTestWithErrorWhichThrowAnException() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		
+		//We are not setting the asserts values
+		/*test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0);*/
+		
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+				
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 3);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 0);
+	}
+	
+	@Test //9
+	public void testForExistingName() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		TestCase test4 = new TestCase("a test");
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0);
+		test4.setAssertValue(1, 0);
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+		suite.addTest(test4);
+		
+		result = suite.runRegEx(".*special");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 3);
+	}
+	
+	@Test //10
+	public void testForUnexistingNameRegEx() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		TestCase test4 = new TestCase("a test");
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0);
+		test4.setAssertValue(0, 0);
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+		suite.addTest(test4);
+		
+		result = suite.runRegEx(".*unexisting name");
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
 	
 }
