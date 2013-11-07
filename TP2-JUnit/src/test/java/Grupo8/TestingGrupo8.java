@@ -36,15 +36,16 @@ public class TestingGrupo8 {
 		fillTest10(test10);
 		fillTest11(test11);
 		
-		testForUnexistingName(testsList, result);
-		testForExistingName(testsList, result);
-		testThatThrowsAnException(testsList, result);
-		testThatFails(testsList, result);
-		testForNameUnicityOfTestCases(testsList, result);
-		testForNameUnicityOfTestSuites(testsList, result);
-		testForSetUpForATestCase(testsList, result);
-		testForTwoTestAndEachSetUp(testsList, result);
-		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);
+		testForUnexistingName(testsList, result);		// 10
+		testForExistingName(testsList, result);			//  9
+		testThatThrowsAnException(testsList, result);	//  8
+		testThatFails(testsList, result);				//  7
+		testForNameUnicityOfTestCases(testsList, result);	//  1
+		testForNameUnicityOfTestSuites(testsList, result);	//  2
+		testForSetUpForATestCase(testsList, result);		//  3
+		testForTwoTestAndEachSetUp(testsList, result);		//  4
+		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
+		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -484,6 +485,18 @@ public class TestingGrupo8 {
 		
 		suiteFather.addTest(testSuite);
 		resultFather = testSuite.runRegEx(".*for");
+	}
+	
+	
+	public static void testTheAccessToTheFixtureOfATestCaseAndATestSuite(TestSuite suiteFather, TestResult resultFather) {
+		TestCaseC  caseC  = new TestCaseC ("TestCaseC");
+		TestSuiteB suiteB = new TestSuiteB("testTheAccessToTheFixtureOfATestCaseAndATestSuite");
+		TestSuiteA suiteA = new TestSuiteA("TestSuiteA");
+		suiteA.addTest(caseC);
+		suiteB.addTest(suiteA);
+		
+		suiteFather.addTest(suiteB);
+		resultFather = suiteB.runTest();
 	}
 	
 }
