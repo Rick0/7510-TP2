@@ -15,5 +15,9 @@
 /TP2-JUnit/*.txt
 
 
-#  enunciados   #
+# Enunciados    #
 /Informe/Enunciado
+
+
+# Informe viejo #
+/Informe/TP2
