@@ -244,7 +244,7 @@ public class Testing {
 	
 	@Test //5
 	public void testForASuiteWithTwoSuitesWithATestEachOne() {
-		TestResult result = new TestResult();
+/*		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite 1");
 		TestSuite suite2 = new TestSuite("suite 2");
 		TestSuite suite3 = new TestSuite("suite 3");
@@ -263,7 +263,18 @@ public class Testing {
 		result = suite1.runRegEx(".*special");
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 2);
+		Assert.assertEquals(result.getListPassed().size(), 2);*/
+		TestSuiteTest5 test5 = new TestSuiteTest5("TestSuiteTest5");
+		TestSuiteTest5A test5A = new TestSuiteTest5A("TestSuiteTest5A");
+		TestSuiteTest5B test5B = new TestSuiteTest5B("TestSuiteTest5B");
+		TestCaseTest5A case5A = new TestCaseTest5A("TestCaseTest5A");
+		TestCaseTest5B case5B = new TestCaseTest5B("TestCaseTest5B");
+		test5A.addTest(case5A);
+		test5B.addTest(case5B);
+		test5.addTest(test5A);
+		test5.addTest(test5B);
+		TestResult result = test5.runTest();
+		assertEquals(2,result.getListPassed().size());
 	}
 	
 	@Test //7
