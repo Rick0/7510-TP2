@@ -76,6 +76,7 @@ public class TestSuite extends Test {
 		TestResult newTestResult = result.addTestResult(testCaseName);		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
+	    	test.setUpVariablesFromSuite(fixtures);
 			test.runTest(newTestResult);		
 		}
 		tearDown();
@@ -90,6 +91,7 @@ public class TestSuite extends Test {
 		newTestResult.setReportPath(testCaseName);
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
+	    	test.setUpVariablesFromSuite(fixtures);
 			test.runTest(newTestResult);		
 		}
 		tearDown();
@@ -108,7 +110,6 @@ public class TestSuite extends Test {
 			}							
 		}
 	    if (!found) {
-	    	test.setUpVariablesFromSuite(fixtures);
 	    	tests.addElement(test); 
 	    }
 	}

@@ -193,5 +193,31 @@ public class TestResult {
 			e.printStackTrace();
 		}
 	}
+	
+	public String getResult(String testName){
+		if (! tests.isEmpty()) {		
+			Iterator<TestAssertResult> it = tests.iterator();
+			while (it.hasNext()) {
+				TestAssertResult t = (TestAssertResult)it.next();
+				if (t.getTest().getName().equals(testName)){
+					return (t.getResult());
+				}
+			}
+		}
+		
+		if (!testsResults.isEmpty()) {
+			Iterator<TestResult> it = testsResults.iterator();
+			while (it.hasNext()) {
+				TestResult t = (TestResult)it.next();
+				String result = t.getResult(testName);
+				if (!result.equals("\t-")){
+					return result;
+				}
+			}
+		}		
+				
+		return ("\t-");
+		
+	}
 
 }

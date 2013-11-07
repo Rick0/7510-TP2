@@ -276,6 +276,16 @@ public class Testing {
 		//Assert.assertEquals(result.getListError().size(), 0);
 		//Assert.assertEquals(result.getListFailure().size(), 0);
 		//Assert.assertEquals(result.getListPassed().size(), 1);
+		TestCaseC c = new TestCaseC("TestCaseC");
+		//c.setUp();
+		TestSuiteB b = new TestSuiteB("TestSuiteB");
+		//b.setUp();
+		TestSuiteA a = new TestSuiteA("TestSuiteA");
+		//a.setUp();
+		a.addTest(c);
+		b.addTest(a);
+		TestResult result = b.runTest();
+		assertEquals(result.getListPassed().size(),1);		
 	}
 	
 	@Test

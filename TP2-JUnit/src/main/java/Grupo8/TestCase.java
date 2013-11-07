@@ -19,6 +19,15 @@ public class TestCase extends Test {
 	private boolean valuesAreSeted;
 	private Map<String,Object> fixtures;	
 	
+
+	public TestCase () {
+		testCaseName = "Unnamed TestCase";
+		valuesQuantity = 0;
+		valuesAreSeted = false;
+		testType = "TestCase";
+		fixtures = new HashMap<String, Object>();				
+	}
+	
 	
 	public TestCase (String name) {
 		testCaseName = name;
@@ -119,21 +128,7 @@ public class TestCase extends Test {
 		
 		tearDown();
 	}
-	
-	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
-		/*Iterator it = fixtures.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry)it.next();			
-			addAFixtureItem((String)e.getKey(),e.getValue());
-		}*/
-		Iterator<String> it = fixtures.keySet().iterator();
-		while (it.hasNext()){
-			String key = it.next();
-			addAFixtureItem(key,fixtures.get(key));
-		}
-
-	}
-	
+		
 	// testBody, setUp y tearDown vacios por defecto.
 	public void testBody() {
 	}
