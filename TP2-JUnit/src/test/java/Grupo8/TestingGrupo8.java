@@ -37,6 +37,9 @@ public class TestingGrupo8 {
 		fillTest11(test11);
 		testForUnexistingName(testsList, result);
 		testForExistingName(testsList, result);
+		testThatThrowsAnException(testsList, result);
+		testThatFails(testsList, result);
+		testForNameUnicityOfTestCases(testsList, result);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -265,9 +268,10 @@ public class TestingGrupo8 {
 		resultFather = testSuite.runRegEx(".*for");
 	}
 	
-	public static void testThatThrowsAnException(){
+	
+	public static void testThatThrowsAnException(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
+		TestSuite suite = new TestSuite("testThatThrowsAnException 1");
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
@@ -276,25 +280,26 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
+		result = suite.runRegEx(".*");
 		
-		result = suite.runRegEx(".*unexisting name");
 		TestCase test5 = new TestCase ("for testing existing name1");
 		TestCase test6 = new TestCase ("for testing existing name2");
 		TestCase test7 = new TestCase ("for testing existing name3");
 		test5.setAssertValue(result.getListError().size(), 4);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 0);
-		TestSuite testSuite = new TestSuite ("suite that contains the test");
+		TestSuite testSuite = new TestSuite ("testThatThrowsAnException 2");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		TestResult resultOfTesting = testSuite.runRegEx(".*for");
-		resultOfTesting.showReport();
+		suiteFather.addTest(testSuite);
+		resultFather = testSuite.runRegEx(".*for");
 	}
 	
-	public static void testThatFails(){
+	
+	public static void testThatFails(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
+		TestSuite suite = new TestSuite("testThatFails 1");
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
@@ -307,50 +312,50 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
+		result = suite.runRegEx(".*");
 		
-		result = suite.runRegEx(".*unexisting name");
 		TestCase test5 = new TestCase ("for testing existing name1");
 		TestCase test6 = new TestCase ("for testing existing name2");
 		TestCase test7 = new TestCase ("for testing existing name3");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 4);
 		test7.setAssertValue(result.getListPassed().size(), 0);
-		TestSuite testSuite = new TestSuite ("suite that contains the test");
+		TestSuite testSuite = new TestSuite ("testThatFails 2");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		TestResult resultOfTesting = testSuite.runRegEx(".*for");
-		resultOfTesting.showReport();
+		suiteFather.addTest(testSuite);
+		resultFather = testSuite.runRegEx(".*for");
 	}
 	
-	public void testForNameUnicityOfTestCases() {
+	
+	public static void testForNameUnicityOfTestCases(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite();
+		TestSuite suite = new TestSuite("testForNameUnicityOfTestCases 1");
 		TestCase test1 = new TestCase("my special test case");
-		TestCase test2 = new TestCase("my special test case");		
-		
+		TestCase test2 = new TestCase("my special test case");
 		test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);		
-		
+		test2.setAssertValue(0, 0);
 		suite.addTest(test1);
 		suite.addTest(test2);		
-				
 		result = suite.runRegEx(".*special");
+		
 		TestCase test5 = new TestCase ("for testing existing name1");
 		TestCase test6 = new TestCase ("for testing existing name2");
 		TestCase test7 = new TestCase ("for testing existing name3");
 		test5.setAssertValue(result.getListError().size(), 0);
 		test6.setAssertValue(result.getListFailure().size(), 0);
 		test7.setAssertValue(result.getListPassed().size(), 1);
-		TestSuite testSuite = new TestSuite ("suite that contains the test");
+		TestSuite testSuite = new TestSuite ("testForNameUnicityOfTestCases 2");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		TestResult resultOfTesting = testSuite.runRegEx(".*for");
-		resultOfTesting.showReport();
+		suiteFather.addTest(testSuite);
+		resultFather = testSuite.runRegEx(".*for");
 	}
 	
-	public void testForNameUnicityOfTestSuites() {
+	
+	public static void testForNameUnicityOfTestSuites() {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite");
 		TestSuite suite2 = new TestSuite("suite");
@@ -382,7 +387,7 @@ public class TestingGrupo8 {
 		resultOfTesting.showReport();
 	}
 	
-	public void testForSetUpForATestCase() {
+	public static void testForSetUpForATestCase() {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
 		TestCase test = new TestCase("my special test case");
@@ -410,7 +415,7 @@ public class TestingGrupo8 {
 		resultOfTesting.showReport();
 	}
 	
-	public void testForTwoTestAndEachSetUp() {
+	public static void testForTwoTestAndEachSetUp() {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
 		TestCase test1 = new TestCase("my special test case 1");
@@ -441,7 +446,7 @@ public class TestingGrupo8 {
 		resultOfTesting.showReport();
 	}
 	
-	public void testForASuiteWithTwoSuitesWithATestEachOne() {
+	public static void testForASuiteWithTwoSuitesWithATestEachOne() {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite 1");
 		TestSuite suite2 = new TestSuite("suite 2");
