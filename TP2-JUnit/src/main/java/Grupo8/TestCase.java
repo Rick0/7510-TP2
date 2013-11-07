@@ -16,8 +16,7 @@ public class TestCase extends Test {
 	private Object testValue1;
 	private Object testValue2;
 	private int valuesQuantity;	
-	private boolean valuesAreSeted;
-	private Map<String,Object> fixtures;	
+	private boolean valuesAreSeted;	
 	
 
 	public TestCase () {
@@ -36,19 +35,7 @@ public class TestCase extends Test {
 		testType = "TestCase";
 		fixtures = new HashMap<String, Object>();				
 	}
-	
-
-	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
-			}
-		}
-		else {
-			fixtures.put(name, value);
-		}
-	}
-	
+		
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);

@@ -27,17 +27,6 @@ public class TestSuite extends Test {
 		fixtures = new HashMap<String, Object>();
 	}
 	
-	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
-			}
-		}
-		else {
-			fixtures.put(name, value);
-		}
-	}
-
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
 			return fixtures.get(name);

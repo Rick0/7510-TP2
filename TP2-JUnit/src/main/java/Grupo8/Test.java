@@ -46,7 +46,7 @@ public abstract class Test {
 		return false;			
 	}
 	
-	
+			
 	public void addAFixtureItem(String name, Object value) {
 		if (!fixtures.isEmpty()) {
 			if (!fixtures.containsKey(name)) {
@@ -57,6 +57,7 @@ public abstract class Test {
 			fixtures.put(name, value);
 		}
 	}
+	
 
 
 
