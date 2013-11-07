@@ -182,6 +182,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
+	
 	@Test //2
 	public void testForNameUnicityOfTestSuites() {
 		TestResult result = new TestResult();
@@ -206,6 +207,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
 	
+	
 	@Test //3
 	public void testForSetUpForATestCase() {
 		TestResult result = new TestResult();
@@ -214,27 +216,9 @@ public class Testing {
 		assertEquals(1,result.getListPassed().size());
 	}
 	
+	
 	@Test //4
 	public void testForTwoTestAndEachSetUp() {
-/*		TestResult result = new TestResult();
-		TestSuite suite = new TestSuite("suite");
-		TestCase test1 = new TestCase("my special test case 1");
-		TestCase test2 = new TestCase("my special test case 2");
-		
-		//This is the set up
-		test1.addAFixtureItem("numberA", 1);
-		test2.addAFixtureItem("numberA", 2);
-		
-		test1.setAssertValue(test1.getAFixtureItem("numberA"), 1);
-		test2.setAssertValue(test1.getAFixtureItem("numberA"), 1);
-		
-		suite.addTest(test1);
-		suite.addTest(test2);
-				
-		result = suite.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 2);*/
 		TestSuiteTest4 suite = new TestSuiteTest4("TestSuiteTest4");
 		TestCaseTest4A caseA = new TestCaseTest4A("TestCaseTest4A");
 		TestCaseTest4B caseB = new TestCaseTest4B("TestCaseTest4B");
@@ -244,28 +228,9 @@ public class Testing {
 		assertEquals(2,result.getListPassed().size());
 	}
 	
+	
 	@Test //5
 	public void testForASuiteWithTwoSuitesWithATestEachOne() {
-/*		TestResult result = new TestResult();
-		TestSuite suite1 = new TestSuite("suite 1");
-		TestSuite suite2 = new TestSuite("suite 2");
-		TestSuite suite3 = new TestSuite("suite 3");
-		TestCase test1 = new TestCase("my special test case 1");
-		TestCase test2 = new TestCase("my special test case 2");
-		
-		test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		
-		
-		suite2.addTest(test1);
-		suite3.addTest(test2);
-		suite1.addTest(suite2);
-		suite1.addTest(suite3);
-				
-		result = suite1.runRegEx(".*special");
-		Assert.assertEquals(result.getListError().size(), 0);
-		Assert.assertEquals(result.getListFailure().size(), 0);
-		Assert.assertEquals(result.getListPassed().size(), 2);*/
 		TestSuiteTest5 test5 = new TestSuiteTest5("TestSuiteTest5");
 		TestSuiteTest5A test5A = new TestSuiteTest5A("TestSuiteTest5A");
 		TestSuiteTest5B test5B = new TestSuiteTest5B("TestSuiteTest5B");
@@ -279,6 +244,7 @@ public class Testing {
 		assertEquals(2,result.getListPassed().size());
 	}
 	
+	
 	@Test //6
 	public void testTheAccessToTheFixtureOfATestCaseAndATestSuite(){
 		TestCaseC c = new TestCaseC("TestCaseC");
@@ -289,6 +255,7 @@ public class Testing {
 		TestResult result = b.runTest();
 		assertEquals(result.getListPassed().size(),1);	
 	}
+	
 	
 	@Test //7
 	public void testForAFailedTest() {
@@ -312,6 +279,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
 	
+	
 	@Test //8
 	public void testForTestWithErrorWhichThrowAnException() {
 		TestResult result = new TestResult();
@@ -319,11 +287,6 @@ public class Testing {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
-		
-		//We are not setting the asserts values
-		/*test1.setAssertValue(0, 0);
-		test2.setAssertValue(0, 0);
-		test3.setAssertValue(0, 0);*/
 		
 		suite.addTest(test1);
 		suite.addTest(test2);
@@ -334,6 +297,7 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
+	
 	
 	@Test //9
 	public void testForExistingName() {
@@ -358,6 +322,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 3);
 	}
 	
+	
 	@Test //10
 	public void testForUnexistingNameRegEx() {
 		TestResult result = new TestResult();
@@ -380,7 +345,5 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
-	
+
 }
-
-
