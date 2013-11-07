@@ -28,14 +28,6 @@ public class TestSuite extends Test {
 	}
 	
 	
-	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
-	
-	
 	final public void runRegEx(TestResult result, String regEx) {
 		setUp();
 		TestResult newTestResult = result.addTestResult(testCaseName);

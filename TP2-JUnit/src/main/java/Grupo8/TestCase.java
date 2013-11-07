@@ -33,14 +33,6 @@ public class TestCase extends Test {
 		testType = "TestCase";
 		fixtures = new HashMap<String, Object>();				
 	}
-	
-	
-	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
 
 	
 	public Object getAFixtureItemFromSuite(String name) {

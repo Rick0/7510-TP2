@@ -54,6 +54,14 @@ public abstract class Test {
 			fixtures.put(name, value);
 		}
 	}
+
+	
+	public Object getAFixtureItem(String name) {
+		if (fixtures.containsKey(name)) {
+			return fixtures.get(name);
+		}
+		return null;
+	}
 	
 
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
@@ -67,15 +75,6 @@ public abstract class Test {
 			String key = it.next();
 			addAFixtureItem(key,fixtures.get(key));
 		}
-
-	}
-	
-
-	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
 	}
 
 }
