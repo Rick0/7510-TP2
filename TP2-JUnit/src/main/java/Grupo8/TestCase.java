@@ -43,11 +43,6 @@ public class TestCase extends Test {
 	}
 	
 	
-	private void removeAllFixturesItems() {
-		fixtures.clear();
-	}	
-	
-	
 	final public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
