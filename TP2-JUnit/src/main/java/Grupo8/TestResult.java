@@ -8,7 +8,7 @@ import java.io.*;
 /*
  * Clase encargado de la logica de los resultados de los tests.
  * Despues de ordenar los resultados de los tests, puede mostrar los resultados
- * tanto por consola como a traves de un texto.
+ * tanto por consola como a traves de un archivo de texto.
  */
 public class TestResult {
 
