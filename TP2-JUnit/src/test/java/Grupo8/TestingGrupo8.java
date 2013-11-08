@@ -196,6 +196,7 @@ public class TestingGrupo8 {
 		}
 	}
 	
+	//10
 	public static void testForUnexistingName(){
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -227,6 +228,7 @@ public class TestingGrupo8 {
 		resultOfTesting.showReport();
 	}
 	
+	//9
 	public static void testForExistingName(){
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -258,6 +260,7 @@ public class TestingGrupo8 {
 		resultOfTesting.showReport();
 	}
 	
+	//8
 	public static void testThatThrowsAnException(){
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
