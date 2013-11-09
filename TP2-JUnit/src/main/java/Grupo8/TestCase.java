@@ -19,10 +19,12 @@ public class TestCase extends Test {
 
 	public TestCase () {
 		testCaseName = "Unnamed TestCase";
-		valuesQuantity = 0;
-		valuesAreSeted = false;
 		testType = "TestCase";
-		fixtures = new HashMap<String, Object>();				
+		fixtures = new HashMap<String, Object>();
+		hasToBeSkipped = false;
+		
+		valuesQuantity = 0;
+		valuesAreSeted = false;			
 	}
 	
 	
@@ -59,44 +61,49 @@ public class TestCase extends Test {
 	
 	
 	final public void runRegEx (TestResult result, String regEx) {
-	    Pattern regularExpression = Pattern.compile(regEx);
-	    Matcher matcher = regularExpression.matcher(this.testCaseName);
-	    if (matcher.find()) {
-	    	this.runTest(result);
-	    }
+		if (!hasToBeSkipped) {
+		    Pattern regularExpression = Pattern.compile(regEx);
+		    Matcher matcher = regularExpression.matcher(this.testCaseName);
+		    
+		    if (matcher.find()) {
+		    	this.runTest(result);
+		    }
+		}
 	}
 	
 	
 	final public void runTest(TestResult result) {
-		setUp();
-		testBody();
-		
-		if (valuesAreSeted) {			
-			try {
-				if (valuesQuantity == 2) {
-					Assertions.assertEqual(testValue1, testValue2);
-					result.addPassed(this);
-				}
-				else if (valuesQuantity == 1) {
-					Assertions.assertTrue((boolean)testValue1);
-					result.addPassed(this);
-				}
-				else {
+		if (!hasToBeSkipped) {
+			setUp();
+			testBody();
+			
+			if (valuesAreSeted) {			
+				try {
+					if (valuesQuantity == 2) {
+						Assertions.assertEqual(testValue1, testValue2);
+						result.addPassed(this);
+					}
+					else if (valuesQuantity == 1) {
+						Assertions.assertTrue((boolean)testValue1);
+						result.addPassed(this);
+					}
+					else {
+						result.addError(this);
+					}
+				}		
+				catch(FailureException e) {
+					result.addFailure(this);
+				}		
+				catch(Throwable e) {
 					result.addError(this);
 				}
-			}		
-			catch(FailureException e) {
-				result.addFailure(this);
-			}		
-			catch(Throwable e) {
+			}
+			else {
 				result.addError(this);
 			}
+			
+			tearDown();
 		}
-		else {
-			result.addError(this);
-		}
-		
-		tearDown();
 	}
 	
 	

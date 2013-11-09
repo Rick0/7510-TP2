@@ -16,6 +16,7 @@ public class TestSuite extends Test {
 	public TestSuite(String name) {
 		testCaseName = name;
 		testType = "TestSuite";
+		hasToBeSkipped = false;
 		fixtures = new HashMap<String, Object>();
 	}
 	
@@ -23,55 +24,66 @@ public class TestSuite extends Test {
 	public TestSuite() {
 		testCaseName = "UnnamedTestSuite";
 		testType = "TestSuite";
+		hasToBeSkipped = false;
 		fixtures = new HashMap<String, Object>();
 	}
 	
 	
 	final public void runRegEx(TestResult result, String regEx) {
-		setUp();
-		TestResult newTestResult = result.addTestResult(testCaseName);
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			Test test = elements.nextElement();
-			test.runRegEx(newTestResult, regEx);		
-		}  
-		tearDown();
+		if (!hasToBeSkipped) {
+			setUp();
+			TestResult newTestResult = result.addTestResult(testCaseName);
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runRegEx(newTestResult, regEx);		
+			}  
+			tearDown();
+		}
 	}
 
 	
 	final public TestResult runRegEx(String regEx) {
-		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			Test test = elements.nextElement();
-			test.runRegEx(newTestResult, regEx);		
-		}  
-		tearDown();
+		
+		if (!hasToBeSkipped) {
+			setUp();	
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runRegEx(newTestResult, regEx);		
+			}  
+			tearDown();
+		}
 		
 		return newTestResult;
 	}
 	
 	
 	final public void runTest(TestResult result) {
-		setUp();
-		TestResult newTestResult = result.addTestResult(testCaseName);		
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
-			Test test = elements.nextElement();
-	    	test.setUpVariablesFromSuite(fixtures);
-			test.runTest(newTestResult);		
+		if (!hasToBeSkipped) {
+			setUp();
+			TestResult newTestResult = result.addTestResult(testCaseName);		
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
+				Test test = elements.nextElement();
+		    	test.setUpVariablesFromSuite(fixtures);
+				test.runTest(newTestResult);		
+			}
+			tearDown();
 		}
-		tearDown();
 	}
 
 	
 	final public TestResult runTest() {
-		setUp();
 		TestResult newTestResult = new TestResult(testCaseName);	
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
-			Test test = elements.nextElement();
-	    	test.setUpVariablesFromSuite(fixtures);
-			test.runTest(newTestResult);		
+		
+		if (!hasToBeSkipped) {
+			setUp();	
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
+				Test test = elements.nextElement();
+		    	test.setUpVariablesFromSuite(fixtures);
+				test.runTest(newTestResult);		
+			}
+			tearDown();
 		}
-		tearDown();
 		
 		return newTestResult;
 	}

@@ -11,6 +11,7 @@ public abstract class Test {
 	
 	protected String testCaseName;
 	protected String testType;
+	protected boolean hasToBeSkipped;
 	protected Map<String,Object> fixtures;
 	
 
@@ -71,5 +72,15 @@ public abstract class Test {
 			addAFixtureItem(key,fixtures.get(key));
 		}
 	}
+	
+	
+	public void beSkipped() {
+		hasToBeSkipped = true;
+	}
 
+	
+	public void dontBeSkipped() {
+		hasToBeSkipped = false;
+	}
+	
 }
