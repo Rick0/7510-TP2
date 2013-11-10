@@ -24,8 +24,8 @@ public class Timer {
 	}
 	
 	
-	public long getElapsedTime() {
-		return (System.nanoTime() - elapsedTime);
+	public String getElapsedTime() {
+		return (System.nanoTime() - elapsedTime) + "ns";
 	}
 
 }

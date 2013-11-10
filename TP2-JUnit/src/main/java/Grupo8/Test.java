@@ -15,7 +15,7 @@ public abstract class Test {
 	protected Map<String,Object> fixtureMap;
 	protected TestConditions testConditions;
 	protected boolean testConditionsCaseAND;	// true = AND	false = OR
-	protected long elapsedTime;
+	protected String elapsedTime;
 
 	
 	// Familia de runTest:
@@ -113,7 +113,7 @@ public abstract class Test {
 	
 	
 	// getter de elpasedTime:
-	public long getElapsedTime() {
+	public String getElapsedTime() {
 		return elapsedTime;
 	}
 	

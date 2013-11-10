@@ -40,7 +40,7 @@ public class TestCase extends Test {
 		hasToBeSkipped = false;
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
-		elapsedTime = 0;
+		elapsedTime = "notRun";
 		
 		valuesQuantity = 0;
 		valuesAreSeted = false;
