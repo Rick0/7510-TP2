@@ -3,23 +3,18 @@ package Grupo8;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
-
-
 import java.io.*;
 
 /*
  * Clase encargado de la logica de los resultados de los tests.
- * Tiene 3 listas que guarda, acordemente, los tests correctos, los tests fallidos,
- * y los tests con errores, para luego mostrarlos ordenadamente por consola.
+ * Despues de ordenar los resultados de los tests, puede mostrar los resultados
+ * tanto por consola como a traves de un archivo de texto.
  */
 public class TestResult {
 
 	List<TestAssertResult> tests;	
 	List<TestResult> testsResults;
 	
-	List<Test> testsPassed;	
-	List<Test> testsFailed;
-	List<Test> testsError;	
 	private String name;
 	private String reportPath;
 	
@@ -83,7 +78,6 @@ public class TestResult {
 		
 	}
 	
-	
 	public List<Test> getListFailure() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Fail",this);
@@ -133,9 +127,9 @@ public class TestResult {
 		int failures = getListFailure().size();
 		String line;		
 		if (errors + failures > 0) {
-			//System.out.print("[failure]");
 			line = "[failure]";
-		}else{
+		}
+		else {
 			line = "[OK]";
 		}		
 		line= line+"Summary";
@@ -217,7 +211,6 @@ public class TestResult {
 		}		
 				
 		return ("\t-");
-		
 	}
 
 }

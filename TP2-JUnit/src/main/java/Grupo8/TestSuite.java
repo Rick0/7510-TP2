@@ -3,11 +3,10 @@ package Grupo8;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
 
 /*
  * Clase que contiene a todos los "tests individuales".
+ * Puede contener otro TestSuite.
  */
 public class TestSuite extends Test {	
 
@@ -22,29 +21,10 @@ public class TestSuite extends Test {
 	
 	
 	public TestSuite() {
-		testCaseName = "Unnamed TestSuite";
+		testCaseName = "UnnamedTestSuite";
 		testType = "TestSuite";
 		fixtures = new HashMap<String, Object>();
 	}
-	
-	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
-			}
-		}
-		else {
-			fixtures.put(name, value);
-		}
-	}
-
-	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
-	
 	
 	
 	final public void runRegEx(TestResult result, String regEx) {
@@ -85,10 +65,7 @@ public class TestSuite extends Test {
 	
 	final public TestResult runTest() {
 		setUp();
-		TestResult newTestResult = new TestResult(testCaseName);
-		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		System.out.println(timeStamp);
-		newTestResult.setReportPath(testCaseName);
+		TestResult newTestResult = new TestResult(testCaseName);	
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 	    	test.setUpVariablesFromSuite(fixtures);
@@ -116,9 +93,6 @@ public class TestSuite extends Test {
 	
 	
 	// setUp y tearDown vacios por defecto.
-	public void testBody() {
-	}
-	
 	public void setUp() {	
 	}
 	

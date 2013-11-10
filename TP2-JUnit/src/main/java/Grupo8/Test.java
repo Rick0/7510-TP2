@@ -20,9 +20,6 @@ public abstract class Test {
 	public abstract void runRegEx (TestResult result, String regEx);
 	
 	
-	public abstract void testBody();
-	
-	
 	public abstract void setUp();
 
 	
@@ -58,25 +55,6 @@ public abstract class Test {
 		}
 	}
 
-
-
-//	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {}	
-
-	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
-		/*Iterator it = fixtures.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry)it.next();			
-			addAFixtureItem((String)e.getKey(),e.getValue());
-		}*/
-		Iterator<String> it = fixtures.keySet().iterator();
-		while (it.hasNext()){
-			String key = it.next();
-			addAFixtureItem(key,fixtures.get(key));
-		}
-
-	}
-	
-
 	
 	public Object getAFixtureItem(String name) {
 		if (fixtures.containsKey(name)) {
@@ -86,7 +64,12 @@ public abstract class Test {
 	}
 	
 	
-	
-	
+	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
+		Iterator<String> it = fixtures.keySet().iterator();
+		while (it.hasNext()){
+			String key = it.next();
+			addAFixtureItem(key,fixtures.get(key));
+		}
+	}
 
 }
