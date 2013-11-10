@@ -19,6 +19,7 @@ public class TestSuite extends Test {
 		testType = "TestSuite";
 		hasToBeSkipped = false;
 		fixtureMap = new HashMap<String, Object>();
+		testConditions = new TestConditionsBuilder().buildTestConditions();
 	}
 	
 	
@@ -27,6 +28,7 @@ public class TestSuite extends Test {
 		testType = "TestSuite";
 		hasToBeSkipped = false;
 		fixtureMap = new HashMap<String, Object>();
+		testConditions = new TestConditionsBuilder().buildTestConditions();
 	}
 	
 	

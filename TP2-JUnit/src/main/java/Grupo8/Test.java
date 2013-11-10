@@ -14,6 +14,7 @@ public abstract class Test {
 	protected String testType;
 	protected boolean hasToBeSkipped;
 	protected Map<String,Object> fixtureMap;
+	protected TestConditions testConditions;
 	
 
 	// Familia de runTest:
