@@ -40,6 +40,7 @@ public class TestCase extends Test {
 		hasToBeSkipped = false;
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
+		elapsedTime = 0;
 		
 		valuesQuantity = 0;
 		valuesAreSeted = false;
@@ -75,6 +76,9 @@ public class TestCase extends Test {
 
 
 	private void internalRunTest(TestResult result) {
+		Timer timer = new Timer();
+		timer.startCounting();
+		
 		setUp();
 		testBody();
 		
@@ -82,28 +86,36 @@ public class TestCase extends Test {
 			try {
 				if (valuesQuantity == 2) {
 					Assertions.assertEqual(testValue1, testValue2);
+					elapsedTime = timer.getElapsedTime();
 					result.addPassed(this);
 				}
 				else if (valuesQuantity == 1) {
 					Assertions.assertTrue((boolean)testValue1);
+					elapsedTime = timer.getElapsedTime();
 					result.addPassed(this);
 				}
 				else {
+					elapsedTime = timer.getElapsedTime();
 					result.addError(this);
 				}
 			}		
 			catch(FailureException e) {
+				elapsedTime = timer.getElapsedTime();
 				result.addFailure(this);
 			}		
 			catch(Throwable e) {
+				elapsedTime = timer.getElapsedTime();
 				result.addError(this);
 			}
 		}
 		else {
+			elapsedTime = timer.getElapsedTime();
 			result.addError(this);
 		}
 		
 		tearDown();
+		
+	//	elapsedTime = timer.getElapsedTime();
 	}
 	
 	
