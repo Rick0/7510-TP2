@@ -177,7 +177,7 @@ public class TestResult {
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
 				TestAssertResult t = (TestAssertResult)it.next();
-				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
+				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
 			}
 		}
 	}

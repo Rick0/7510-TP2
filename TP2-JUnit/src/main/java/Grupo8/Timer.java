@@ -6,7 +6,6 @@ package Grupo8;
 public class Timer {
 	
 	private long elapsedTime;
-//	private String timeUnit = "ns";	// nanoTime is in nano seconds
 	
 	
 	public Timer() {
@@ -24,8 +23,28 @@ public class Timer {
 	}
 	
 	
-	public String getElapsedTime() {
+	public String getElapsedTime() {		// don't use  :P
+		return (System.nanoTime() - elapsedTime) + "";
+	}
+	
+	
+	public String getElapsedTimeInNs() {	//  nano seconds
 		return (System.nanoTime() - elapsedTime) + "ns";
+	}
+	
+	
+	public String getElapsedTimeInUs() {	// micro seconds
+		return ((System.nanoTime() - elapsedTime)/1000) + "us";
+	}
+	
+	
+	public String getElapsedTimeInMs() {	//  mili seconds
+		return ((System.nanoTime() - elapsedTime)/1000000) + "ms";
+	}
+	
+	
+	public String getElapsedTimeInSeg() {	//       seconds
+		return ((System.nanoTime() - elapsedTime)/1000000000) + "s";
 	}
 
 }
