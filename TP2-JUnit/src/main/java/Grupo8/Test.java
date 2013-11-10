@@ -14,8 +14,9 @@ public abstract class Test {
 	protected boolean hasToBeSkipped;
 	protected Map<String,Object> fixtureMap;
 	protected TestConditions testConditions;
-	
+	protected boolean testConditionsCaseAND;	// true = AND	false = OR
 
+	
 	// Familia de runTest:
 	public abstract void runTest(TestResult result);
 	
@@ -96,6 +97,17 @@ public abstract class Test {
 
 	public void setTestConditions(TestConditions testConditions) {
 		this.testConditions = testConditions;
+	}
+	
+	
+	// getter y setter de 'testConditionsCaseAND':
+	public boolean isTestConditionsCaseAND() {
+		return testConditionsCaseAND;
+	}
+
+
+	public void setTestConditionsCaseAND(boolean testConditionsCaseAND) {
+		this.testConditionsCaseAND = testConditionsCaseAND;
 	}
 	
 }

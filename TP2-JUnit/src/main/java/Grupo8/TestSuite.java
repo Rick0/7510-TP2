@@ -32,6 +32,7 @@ public class TestSuite extends Test {
 		hasToBeSkipped = false;
 		fixtureMap = new HashMap<String, Object>();
 		testConditions = new TestConditionsBuilder().buildTestConditions();
+		testConditionsCaseAND = true;
 	}
 	
 
@@ -74,6 +75,16 @@ public class TestSuite extends Test {
 	
 	// Checkeador de testCondicions para 'testSuite':
 	private boolean testConditionsOK() {
+		if (testConditionsCaseAND) {
+			return testConditionRegEx();
+		}
+		else {
+			return true;
+		}
+	}
+
+
+	private boolean testConditionRegEx() {
 		if (testConditions.testSuiteRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testSuiteRegEx);
 		    Matcher matcher = regularExpression.matcher(testName);

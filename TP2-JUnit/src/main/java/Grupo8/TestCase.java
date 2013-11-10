@@ -38,6 +38,7 @@ public class TestCase extends Test {
 		fixtureMap = new HashMap<String, Object>();
 		hasToBeSkipped = false;
 		testConditions = new TestConditionsBuilder().buildTestConditions();
+		testConditionsCaseAND = true;
 		
 		valuesQuantity = 0;
 		valuesAreSeted = false;
@@ -106,11 +107,16 @@ public class TestCase extends Test {
 	
 	// Checkeador de testCondicions para 'testCase':
 	private boolean testConditionsOK() {
-		return (testConditionsTags()  &&  testConditionRegEx());
+		if (testConditionsCaseAND) {
+			return (testConditionTags()  &&  testConditionRegEx());
+		}
+		else {
+			return (testConditionTags()  ||  testConditionRegEx());
+		}
 	}
 
 
-	private boolean testConditionsTags() {
+	private boolean testConditionTags() {
 		if (!testConditions.tags.isEmpty()) {
 			if ( !tagsSet.containsAll(testConditions.tags) ) {
 				return false;
