@@ -19,6 +19,7 @@ public class TestCase extends Test {
 	private int valuesQuantity;	
 	private boolean valuesAreSeted;
 	private Set<String> tagsSet;
+	private boolean tagsConditionAll;	// true = all	false = any
 	
 
 	public TestCase() {
@@ -43,6 +44,7 @@ public class TestCase extends Test {
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		tagsSet = new HashSet<String>();
+		tagsConditionAll = true;
 	}
 	
 	
@@ -118,7 +120,17 @@ public class TestCase extends Test {
 
 	private boolean testConditionTags() {
 		if (!testConditions.tags.isEmpty()) {
-			if ( !tagsSet.containsAll(testConditions.tags) ) {
+			if (tagsConditionAll) {
+				if ( !tagsSet.containsAll(testConditions.tags) ) {
+					return false;
+				}
+			}
+			else {
+				for (String oneTag : testConditions.tags) {
+					if ( tagsSet.contains(oneTag) ) {
+						return true;
+					}
+			    }
 				return false;
 			}
 		}
