@@ -17,42 +17,61 @@ public class TestResult {
 	private String name;
 	private String reportPath;
 	private String separator = "-----------------------------------";
+	boolean print;
 	
 	
 	public TestResult() {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
 		name = "Unnamed";
-		reportPath=name+".txt";
+		separator = repeatString("-",name.length()); 
+		reportPath=name+".txt";		
+		print = false;
 	}
 	
 	
 	public TestResult(String aName) {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
-		name = aName;
+		name = aName;		
 		reportPath=name+".txt";
+		separator = repeatString("-",name.length());
+		print = false;
 	}	
 	
+	public void setPrint(boolean bool){
+		print=bool;
+	}
 	
 	public TestResult addTestResult(String testResultName){
 		TestResult newTestResult = new TestResult(name+"."+testResultName);
+		newTestResult.setPrint(print);
 		newTestResult.setReportPath(reportPath);
 		testsResults.add(newTestResult);
+		newTestResult.setPrint(print);
 		return newTestResult;
 	}	
 	
 	
 	public void addFailure(Test test) {
 		tests.add(new TestAssertResult(test,"Fail"));
+		if (print){
+			System.out.println("[Failure] "+test.getName());		
+		}
 	}
 	
 	public void addError(Test test) {		
 		tests.add(new TestAssertResult(test,"Error"));
+		if (print){
+			System.out.println("[Error] "+test.getName());	
+		}		
 	}
 	
 	public void addPassed(Test test) {		
 		tests.add(new TestAssertResult(test,"OK"));
+		if (print){
+			System.out.println("[OK] "+test.getName());
+		}
 	}
 	
 	
@@ -63,7 +82,7 @@ public class TestResult {
 	
 	public List<Test> getListPassed() {
 		List<Test> list = new ArrayList<Test>();
-		fillList(list,"OK",this);
+		fillList(list,"OK",this);		
 		return list;
 	}		
 	
@@ -99,7 +118,7 @@ public class TestResult {
 	}
 	
 	
-	public void showResults() {
+	public void showResults() {		
 		System.out.println("");
 		System.out.println("Resultado de los tests corridos");
 		System.out.println("");
@@ -115,7 +134,7 @@ public class TestResult {
 	}
 	
 	
-	private void printList(List<Test> aList) {
+	private void printList(List<Test> aList) {		
 		if (aList.isEmpty()) {
 			System.out.println("\t-");
 		}
@@ -128,11 +147,53 @@ public class TestResult {
 		}
 	}
 	
+	public String getResultName(){
+		return name;
+	}
+	
+	public void printResultName(){
+		if (print){
+			System.out.println("");
+			System.out.println(name);
+			System.out.println(separator);			
+		}
+	}
 	
 	public void showReport() {
 		File file = new File(reportPath);
 		file.delete();
 		showTestResultData();
+		printResume();
+
+	}
+
+
+	public void printResume() {
+		List<String> summary = getSummaryLines();
+		Iterator<String> it = summary.iterator();
+		while (it.hasNext()) {
+			String line = it.next();
+			writeLine(line);
+		}
+	}
+	
+	public void consoleResume(){
+		if (print){
+			List<String> summary = getSummaryLines();
+			Iterator<String> it = summary.iterator();
+			while (it.hasNext()) {
+				String line = it.next();
+				System.out.println(line);
+			}
+		}
+		
+	}
+	
+	
+	
+	public List<String> getSummaryLines(){
+		List<String> summary = new ArrayList<String>();
+
 		int errors = getListError().size();
 		int oks = getListPassed().size();
 		int failures = getListFailure().size();
@@ -144,19 +205,21 @@ public class TestResult {
 		else {
 			line = "[OK]";
 		}
-		writeLine("");
+		summary.add("");
 		line = line+"Summary";
-		writeLine(line);
-		writeLine(separator);
-		writeLine(separator);
-		writeLine("Run: "+(oks+errors+failures));
+		summary.add(line);		
+		summary.add(separator);
+		summary.add(separator);
+		summary.add("Run: "+(oks+errors+failures));
 		if (errors > 0){
-			writeLine("Errors: "+errors);
+			summary.add("Errors: "+errors);
 		}
 		if (failures > 0){
-			writeLine("Failures: "+failures);
+			summary.add("Failures: "+failures);
 		}
-
+		
+		return summary;
+		
 	}
 
 	
@@ -231,5 +294,14 @@ public class TestResult {
 				
 		return ("\t-");
 	}
+	
+	private String repeatString(String string, Integer n) {
+		String returnString = "";
+	    for (Integer x = 0; x < n; x++){
+	        returnString = returnString+string;
+	    }
+	    return returnString;	    
+	}
 
 }
+
