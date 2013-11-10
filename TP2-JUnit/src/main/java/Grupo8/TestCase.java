@@ -59,6 +59,15 @@ public class TestCase extends Test {
 	
 	
 	// Familia de runTest:
+	final public void runTagTest(TestResult result, Collection<String> tags) {
+		if (!hasToBeSkipped) {
+			if (tagsSet.containsAll(tags)) {
+				this.runTest(result);
+			}
+		}
+	}
+	
+	
 	final public void runTagTest(TestResult result, String tag) {
 		if (!hasToBeSkipped) {
 			if (tagsSet.contains(tag)) {

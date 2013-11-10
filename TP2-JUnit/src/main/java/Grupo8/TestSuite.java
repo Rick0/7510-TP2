@@ -1,5 +1,6 @@
 package Grupo8;
 
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
@@ -30,6 +31,35 @@ public class TestSuite extends Test {
 	
 	
 	// Familia de runTest:
+	final public void runTagTest(TestResult result, Collection<String> tags) {
+		if (!hasToBeSkipped) {
+			setUp();
+			TestResult newTestResult = result.addTestResult(testCaseName);
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runTagTest(newTestResult, tags);		
+			}  
+			tearDown();
+		}
+	}
+	
+	
+	final public TestResult runTagTest(Collection<String> tags) {
+		TestResult newTestResult = new TestResult(testCaseName);
+		
+		if (!hasToBeSkipped) {
+			setUp();	
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runTagTest(newTestResult, tags);		
+			}  
+			tearDown();
+		}
+		
+		return newTestResult;
+	}
+	
+	
 	final public void runTagTest(TestResult result, String tag) {
 		if (!hasToBeSkipped) {
 			setUp();

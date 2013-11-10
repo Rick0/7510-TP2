@@ -1,5 +1,6 @@
 package Grupo8;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -15,39 +16,36 @@ public abstract class Test {
 	protected Map<String,Object> fixtureMap;
 	
 
+	// Familia de runTest:
 	public abstract void runTest(TestResult result);
 	
 	
 	public abstract void runRegExTest(TestResult result, String regEx);
 	
 	
-	public abstract void runTagTest(TestResult result, String regEx);
+	public abstract void runTagTest(TestResult result, String tag);
 	
 	
+	public abstract void runTagTest(TestResult result, Collection<String> tags);
+	
+	
+	// setUp y tearDown:
 	public abstract void setUp();
 
 	
 	public abstract void tearDown();
-		
-	
-	public String getName() {
-		return testCaseName;
-	}
-
-	
-	public void setName(String aName) {
-		testCaseName = aName;
-	}
 	
 	
+	// repeatedTest:
 	public boolean repeatedTest(Test anotherTest) {
-		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))) {			
-				return true;
+		if ( (testType.equals(anotherTest.testType))  &&  (testCaseName.equals(anotherTest.testCaseName)) ) {			
+			return true;
 		}		
 		return false;			
 	}
 	
 	
+	// alta, getter y setter de fixture:
 	public void addAFixtureItem(String name, Object value) {
 		if (!fixtureMap.isEmpty()) {
 			if (!fixtureMap.containsKey(name)) {
@@ -77,6 +75,7 @@ public abstract class Test {
 	}
 	
 	
+	// setters de 'hasToBeSkipped':
 	public void beSkipped() {
 		hasToBeSkipped = true;
 	}
@@ -84,6 +83,17 @@ public abstract class Test {
 	
 	public void dontBeSkipped() {
 		hasToBeSkipped = false;
+	}
+	
+	
+	// getter y setter de 'testCaseName':
+	public String getName() {
+		return testCaseName;
+	}
+
+	
+	public void setName(String aName) {
+		testCaseName = aName;
 	}
 	
 }
