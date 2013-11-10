@@ -2,7 +2,10 @@ package Grupo8;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * Clase que representa un "test individual".
@@ -14,7 +17,8 @@ public class TestCase extends Test {
 	private Object testValue1;
 	private Object testValue2;
 	private int valuesQuantity;	
-	private boolean valuesAreSeted;	
+	private boolean valuesAreSeted;
+	private Set<String> tags;
 	
 
 	public TestCase () {
@@ -24,7 +28,8 @@ public class TestCase extends Test {
 		hasToBeSkipped = false;
 		
 		valuesQuantity = 0;
-		valuesAreSeted = false;			
+		valuesAreSeted = false;
+		tags = new HashSet<String>();
 	}
 	
 	
@@ -45,6 +50,7 @@ public class TestCase extends Test {
 	}
 	
 	
+	// Familia de setAssertValue:
 	final public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
 		testValue2 = aTestValue2;
@@ -60,6 +66,7 @@ public class TestCase extends Test {
 	}
 	
 	
+	// Familia de runTest:
 	final public void runRegEx (TestResult result, String regEx) {
 		if (!hasToBeSkipped) {
 		    Pattern regularExpression = Pattern.compile(regEx);
@@ -107,7 +114,36 @@ public class TestCase extends Test {
 	}
 	
 	
-	// testBody, setUp y tearDown vacios por defecto.
+	// Operaciones con el HashSet "tags":
+	public void addTag(String newTag) {
+		if (!tags.contains(newTag)) {
+			tags.add(newTag);
+		}
+	}
+	
+	
+	public void removeTag(String oneTag) {
+		if (tags.contains(oneTag)) {
+			tags.remove(oneTag);
+		}
+	}
+	
+	
+	public void addAllTags(Collection<String> newTags) {
+		for (String oneTag : newTags) {
+			addTag(oneTag);
+	    }
+	}
+	
+	
+	public void removeAllTags(Collection<String> someTags) {
+		for (String oneTag : someTags) {
+			removeTag(oneTag);
+	    }
+	}
+	
+	
+	// testBody, setUp y tearDown vacios por defecto, para que el cliente los redefina
 	public void testBody() {
 	}
 	
