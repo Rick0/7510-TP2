@@ -61,19 +61,7 @@ public class TestCase extends Test {
 	}
 	
 	
-	// Familia de runTest:
-	final public void runRegExTest(TestResult result, String regEx) {
-		if (!hasToBeSkipped) {
-		    Pattern regularExpression = Pattern.compile(regEx);
-		    Matcher matcher = regularExpression.matcher(this.testCaseName);
-		    
-		    if (matcher.find()) {
-		    	this.runTest(result);
-		    }
-		}
-	}
-	
-	
+	// runTest:
 	final public void runTest(TestResult result) {
 		if (!hasToBeSkipped) {
 			if (testConditionsOK()) {
@@ -116,7 +104,7 @@ public class TestCase extends Test {
 	}
 	
 	
-	// checkeador de testCondicions:
+	// Checkeador de testCondicions para 'testCase':
 	private boolean testConditionsOK() {
 		if (testConditions.testCaseRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testCaseRegEx);
@@ -135,6 +123,7 @@ public class TestCase extends Test {
 		
 		return true;
 	}
+	
 	
 	// Operaciones con el HashSet "tags":
 	public void addTag(String newTag) {

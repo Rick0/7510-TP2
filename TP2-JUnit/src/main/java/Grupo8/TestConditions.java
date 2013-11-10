@@ -9,14 +9,14 @@ import java.util.Collection;
 public class TestConditions {
 
 	public String testCaseRegEx;
-	public String testSuitRegEx;
+	public String testSuiteRegEx;
 	public Collection<String> tags;
 	
 	
-	public TestConditions(String oneTestCaseRegEx, String oneTestSuitRegEx, Collection<String> someTags) {
-		testCaseRegEx = oneTestCaseRegEx;
-		testSuitRegEx = oneTestSuitRegEx;
-		tags          = someTags;
+	public TestConditions(String oneTestCaseRegEx, String oneTestSuiteRegEx, Collection<String> someTags) {
+		testCaseRegEx  = oneTestCaseRegEx;
+		testSuiteRegEx = oneTestSuiteRegEx;
+		tags           = someTags;
 	}
 	
 }

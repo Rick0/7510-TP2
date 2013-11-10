@@ -59,7 +59,7 @@ public abstract class Test {
 	
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
 		Iterator<String> it = fixtures.keySet().iterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			String key = it.next();
 			addAFixtureItem(key,fixtures.get(key));
 		}

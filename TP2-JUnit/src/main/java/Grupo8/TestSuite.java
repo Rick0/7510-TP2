@@ -3,6 +3,8 @@ package Grupo8;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  * Clase que contiene a todos los "tests individuales".
@@ -38,7 +40,9 @@ public class TestSuite extends Test {
 		TestResult newTestResult = result.addTestResult(testCaseName);		
 		
 		if (!hasToBeSkipped) {
-			internalRunTest(newTestResult);
+			if (testConditionsOK()) {
+				internalRunTest(newTestResult);
+			}
 		}
 	}
 
@@ -47,7 +51,9 @@ public class TestSuite extends Test {
 		TestResult newTestResult = new TestResult(testCaseName);	
 		
 		if (!hasToBeSkipped) {
-			internalRunTest(newTestResult);
+			if (testConditionsOK()) {
+				internalRunTest(newTestResult);
+			}
 		}
 		
 		return newTestResult;
@@ -63,6 +69,21 @@ public class TestSuite extends Test {
 			test.runTest(newTestResult);		
 		}
 		tearDown();
+	}
+	
+	
+	// Checkeador de testCondicions para 'testSuite':
+	private boolean testConditionsOK() {
+		if (testConditions.testSuiteRegEx != "") {
+			Pattern regularExpression = Pattern.compile(testConditions.testSuiteRegEx);
+		    Matcher matcher = regularExpression.matcher(testCaseName);
+
+		    if ( !matcher.find() ) {
+		    	return false;
+		    }
+		}
+		
+		return true;
 	}
 	
 	

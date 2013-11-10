@@ -10,7 +10,7 @@ import java.util.Vector;
 public class TestConditionsBuilder {
 
 	private String testCaseRegEx = "";
-	private String testSuitRegEx = "";
+	private String testSuiteRegEx = "";
 	private Collection<String> tags = new Vector<String>();
 
 
@@ -19,7 +19,7 @@ public class TestConditionsBuilder {
 
     
     public TestConditions buildTestConditions() {
-    	return new TestConditions(testCaseRegEx, testSuitRegEx, tags);
+    	return new TestConditions(testCaseRegEx, testSuiteRegEx, tags);
     }
 
     
@@ -29,8 +29,8 @@ public class TestConditionsBuilder {
     }
 
     
-    public TestConditionsBuilder testSuitRegEx(String oneRegEx) {
-    	testSuitRegEx = oneRegEx;
+    public TestConditionsBuilder testSuiteRegEx(String oneRegEx) {
+    	testSuiteRegEx = oneRegEx;
         return this;
     }
 
