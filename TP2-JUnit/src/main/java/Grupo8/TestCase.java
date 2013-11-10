@@ -40,14 +40,6 @@ public class TestCase extends Test {
 		testType = "TestCase";
 		fixtures = new HashMap<String, Object>();				
 	}
-
-	
-	public Object getAFixtureItemFromSuite(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
-		}
-		return null;
-	}
 	
 	
 	// Familia de setAssertValue:
