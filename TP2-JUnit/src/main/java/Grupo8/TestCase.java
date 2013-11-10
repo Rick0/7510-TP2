@@ -106,6 +106,22 @@ public class TestCase extends Test {
 	
 	// Checkeador de testCondicions para 'testCase':
 	private boolean testConditionsOK() {
+		return (testConditionsTags()  &&  testConditionRegEx());
+	}
+
+
+	private boolean testConditionsTags() {
+		if (!testConditions.tags.isEmpty()) {
+			if ( !tagsSet.containsAll(testConditions.tags) ) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+
+	private boolean testConditionRegEx() {
 		if (testConditions.testCaseRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testCaseRegEx);
 		    Matcher matcher = regularExpression.matcher(testCaseName);
@@ -113,12 +129,6 @@ public class TestCase extends Test {
 		    if ( !matcher.find() ) {
 		    	return false;
 		    }
-		}
-		
-		if (!testConditions.tags.isEmpty()) {
-			if ( !tagsSet.containsAll(testConditions.tags) ) {
-				return false;
-			}
 		}
 		
 		return true;
