@@ -22,13 +22,13 @@ public class TestCase extends Test {
 	
 
 	public TestCase() {
-		testCaseName = "Unnamed TestCase";
+		testName = "Unnamed TestCase";
 		testCaseInitialValues();
 	}
 
 	
 	public TestCase(String name) {
-		testCaseName = name;
+		testName = name;
 		testCaseInitialValues();	
 	}
 	
@@ -124,7 +124,7 @@ public class TestCase extends Test {
 	private boolean testConditionRegEx() {
 		if (testConditions.testCaseRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testCaseRegEx);
-		    Matcher matcher = regularExpression.matcher(testCaseName);
+		    Matcher matcher = regularExpression.matcher(testName);
 
 		    if ( !matcher.find() ) {
 		    	return false;

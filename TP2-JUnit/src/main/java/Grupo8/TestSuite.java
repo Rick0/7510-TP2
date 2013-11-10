@@ -16,13 +16,13 @@ public class TestSuite extends Test {
 	
 	
 	public TestSuite() {
-		testCaseName = "UnnamedTestSuite";
+		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
 	}
 	
 	
 	public TestSuite(String name) {
-		testCaseName = name;
+		testName = name;
 		testSuiteInitialValues();
 	}
 
@@ -37,7 +37,7 @@ public class TestSuite extends Test {
 
 	// Familia de runTest:	
 	final public void runTest(TestResult result) {
-		TestResult newTestResult = result.addTestResult(testCaseName);		
+		TestResult newTestResult = result.addTestResult(testName);		
 		
 		if (!hasToBeSkipped) {
 			if (testConditionsOK()) {
@@ -48,7 +48,7 @@ public class TestSuite extends Test {
 
 	
 	final public TestResult runTest() {
-		TestResult newTestResult = new TestResult(testCaseName);	
+		TestResult newTestResult = new TestResult(testName);	
 		
 		if (!hasToBeSkipped) {
 			if (testConditionsOK()) {
@@ -76,7 +76,7 @@ public class TestSuite extends Test {
 	private boolean testConditionsOK() {
 		if (testConditions.testSuiteRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testSuiteRegEx);
-		    Matcher matcher = regularExpression.matcher(testCaseName);
+		    Matcher matcher = regularExpression.matcher(testName);
 
 		    if ( !matcher.find() ) {
 		    	return false;

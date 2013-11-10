@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public abstract class Test {
 	
-	protected String testCaseName;
+	protected String testName;
 	protected String testType;
 	protected boolean hasToBeSkipped;
 	protected Map<String,Object> fixtureMap;
@@ -29,7 +29,7 @@ public abstract class Test {
 	
 	// repeatedTest:
 	public boolean repeatedTest(Test anotherTest) {
-		if ( (testType.equals(anotherTest.testType))  &&  (testCaseName.equals(anotherTest.testCaseName)) ) {			
+		if ( (testType.equals(anotherTest.testType))  &&  (testName.equals(anotherTest.testName)) ) {			
 			return true;
 		}		
 		return false;			
@@ -79,12 +79,12 @@ public abstract class Test {
 	
 	// getter y setter de 'testCaseName':
 	public String getName() {
-		return testCaseName;
+		return testName;
 	}
 
 	
 	public void setName(String aName) {
-		testCaseName = aName;
+		testName = aName;
 	}
 	
 	
