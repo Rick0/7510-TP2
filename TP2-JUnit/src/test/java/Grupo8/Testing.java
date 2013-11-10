@@ -178,8 +178,11 @@ public class Testing {
 		
 		suite.addTest(test1);
 		suite.addTest(test2);		
-				
-		result = suite.runRegExTest(".*special");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+		
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 1);
@@ -204,7 +207,10 @@ public class Testing {
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);		
 				
-		result = suite1.runRegExTest(".*special");
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);
+		result = suite1.runTest();
+		
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 1);
@@ -276,7 +282,10 @@ public class Testing {
 		suite.addTest(test2);
 		suite.addTest(test3);
 				
-		result = suite.runRegExTest(".*special");
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+		
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 2);
@@ -295,7 +304,10 @@ public class Testing {
 		suite.addTest(test2);
 		suite.addTest(test3);
 				
-		result = suite.runRegExTest(".*special");
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+		
 		Assert.assertEquals(result.getListError().size(), 3);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
@@ -319,7 +331,10 @@ public class Testing {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		
-		result = suite.runRegExTest(".*special");
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+		
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 3);
@@ -343,7 +358,10 @@ public class Testing {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		
-		result = suite.runRegExTest(".*unexisting name");
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*unexisting name").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);

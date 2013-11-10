@@ -1,6 +1,5 @@
 package Grupo8;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -19,15 +18,6 @@ public abstract class Test {
 
 	// Familia de runTest:
 	public abstract void runTest(TestResult result);
-	
-	
-	public abstract void runRegExTest(TestResult result, String regEx);
-	
-	
-	public abstract void runTagTest(TestResult result, String tag);
-	
-	
-	public abstract void runTagTest(TestResult result, Collection<String> tags);
 	
 	
 	// setUp y tearDown:
@@ -95,6 +85,17 @@ public abstract class Test {
 	
 	public void setName(String aName) {
 		testCaseName = aName;
+	}
+	
+	
+	// getter y setter de 'testConditions':
+	public TestConditions getTestConditions() {
+		return testConditions;
+	}
+
+
+	public void setTestConditions(TestConditions testConditions) {
+		this.testConditions = testConditions;
 	}
 	
 }

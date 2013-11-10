@@ -17,20 +17,24 @@ public class TestConditionsBuilder {
     public TestConditionsBuilder() {
     }
 
+    
     public TestConditions buildTestConditions() {
     	return new TestConditions(testCaseRegEx, testSuitRegEx, tags);
     }
 
+    
     public TestConditionsBuilder testCaseRegEx(String oneRegEx) {
     	testCaseRegEx = oneRegEx;
         return this;
     }
 
+    
     public TestConditionsBuilder testSuitRegEx(String oneRegEx) {
     	testSuitRegEx = oneRegEx;
         return this;
     }
 
+    
     public TestConditionsBuilder tags(Collection<String> someTags) {
     	tags = someTags;
         return this;
