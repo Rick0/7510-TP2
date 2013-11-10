@@ -12,13 +12,16 @@ public abstract class Test {
 	protected String testCaseName;
 	protected String testType;
 	protected boolean hasToBeSkipped;
-	protected Map<String,Object> fixtures;
+	protected Map<String,Object> fixtureMap;
 	
 
 	public abstract void runTest(TestResult result);
 	
 	
-	public abstract void runRegEx (TestResult result, String regEx);
+	public abstract void runRegExTest(TestResult result, String regEx);
+	
+	
+	public abstract void runTagTest(TestResult result, String regEx);
 	
 	
 	public abstract void setUp();
@@ -46,20 +49,20 @@ public abstract class Test {
 	
 	
 	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
+		if (!fixtureMap.isEmpty()) {
+			if (!fixtureMap.containsKey(name)) {
+				fixtureMap.put(name, value);
 			}
 		}
 		else {
-			fixtures.put(name, value);
+			fixtureMap.put(name, value);
 		}
 	}
 
 	
 	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
+		if (fixtureMap.containsKey(name)) {
+			return fixtureMap.get(name);
 		}
 		return null;
 	}

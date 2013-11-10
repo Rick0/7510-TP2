@@ -18,18 +18,18 @@ public class TestCase extends Test {
 	private Object testValue2;
 	private int valuesQuantity;	
 	private boolean valuesAreSeted;
-	private Set<String> tags;
+	private Set<String> tagsSet;
 	
 
 	public TestCase () {
 		testCaseName = "Unnamed TestCase";
 		testType = "TestCase";
-		fixtures = new HashMap<String, Object>();
+		fixtureMap = new HashMap<String, Object>();
 		hasToBeSkipped = false;
 		
 		valuesQuantity = 0;
 		valuesAreSeted = false;
-		tags = new HashSet<String>();
+		tagsSet = new HashSet<String>();
 	}
 	
 	
@@ -38,7 +38,7 @@ public class TestCase extends Test {
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		testType = "TestCase";
-		fixtures = new HashMap<String, Object>();				
+		fixtureMap = new HashMap<String, Object>();				
 	}
 	
 	
@@ -59,7 +59,16 @@ public class TestCase extends Test {
 	
 	
 	// Familia de runTest:
-	final public void runRegEx (TestResult result, String regEx) {
+	final public void runTagTest(TestResult result, String tag) {
+		if (!hasToBeSkipped) {
+			if (tagsSet.contains(tag)) {
+				this.runTest(result);
+			}
+		}
+	}
+	
+	
+	final public void runRegExTest(TestResult result, String regEx) {
 		if (!hasToBeSkipped) {
 		    Pattern regularExpression = Pattern.compile(regEx);
 		    Matcher matcher = regularExpression.matcher(this.testCaseName);
@@ -108,15 +117,15 @@ public class TestCase extends Test {
 	
 	// Operaciones con el HashSet "tags":
 	public void addTag(String newTag) {
-		if (!tags.contains(newTag)) {
-			tags.add(newTag);
+		if (!tagsSet.contains(newTag)) {
+			tagsSet.add(newTag);
 		}
 	}
 	
 	
 	public void removeTag(String oneTag) {
-		if (tags.contains(oneTag)) {
-			tags.remove(oneTag);
+		if (tagsSet.contains(oneTag)) {
+			tagsSet.remove(oneTag);
 		}
 	}
 	

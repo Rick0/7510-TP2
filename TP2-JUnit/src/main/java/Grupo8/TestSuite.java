@@ -17,7 +17,7 @@ public class TestSuite extends Test {
 		testCaseName = name;
 		testType = "TestSuite";
 		hasToBeSkipped = false;
-		fixtures = new HashMap<String, Object>();
+		fixtureMap = new HashMap<String, Object>();
 	}
 	
 	
@@ -25,31 +25,61 @@ public class TestSuite extends Test {
 		testCaseName = "UnnamedTestSuite";
 		testType = "TestSuite";
 		hasToBeSkipped = false;
-		fixtures = new HashMap<String, Object>();
+		fixtureMap = new HashMap<String, Object>();
 	}
 	
 	
-	final public void runRegEx(TestResult result, String regEx) {
+	// Familia de runTest:
+	final public void runTagTest(TestResult result, String tag) {
 		if (!hasToBeSkipped) {
 			setUp();
 			TestResult newTestResult = result.addTestResult(testCaseName);
 			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
 				Test test = elements.nextElement();
-				test.runRegEx(newTestResult, regEx);		
+				test.runTagTest(newTestResult, tag);		
 			}  
 			tearDown();
 		}
 	}
 
 	
-	final public TestResult runRegEx(String regEx) {
+	final public TestResult runTagTest(String tag) {
 		TestResult newTestResult = new TestResult(testCaseName);
 		
 		if (!hasToBeSkipped) {
 			setUp();	
 			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
 				Test test = elements.nextElement();
-				test.runRegEx(newTestResult, regEx);		
+				test.runTagTest(newTestResult, tag);		
+			}  
+			tearDown();
+		}
+		
+		return newTestResult;
+	}
+	
+	
+	final public void runRegExTest(TestResult result, String regEx) {
+		if (!hasToBeSkipped) {
+			setUp();
+			TestResult newTestResult = result.addTestResult(testCaseName);
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runRegExTest(newTestResult, regEx);		
+			}  
+			tearDown();
+		}
+	}
+
+	
+	final public TestResult runRegExTest(String regEx) {
+		TestResult newTestResult = new TestResult(testCaseName);
+		
+		if (!hasToBeSkipped) {
+			setUp();	
+			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
+				Test test = elements.nextElement();
+				test.runRegExTest(newTestResult, regEx);		
 			}  
 			tearDown();
 		}
@@ -64,7 +94,7 @@ public class TestSuite extends Test {
 			TestResult newTestResult = result.addTestResult(testCaseName);		
 			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 				Test test = elements.nextElement();
-		    	test.setUpVariablesFromSuite(fixtures);
+		    	test.setUpVariablesFromSuite(fixtureMap);
 				test.runTest(newTestResult);		
 			}
 			tearDown();
@@ -79,7 +109,7 @@ public class TestSuite extends Test {
 			setUp();	
 			for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 				Test test = elements.nextElement();
-		    	test.setUpVariablesFromSuite(fixtures);
+		    	test.setUpVariablesFromSuite(fixtureMap);
 				test.runTest(newTestResult);		
 			}
 			tearDown();
@@ -89,12 +119,13 @@ public class TestSuite extends Test {
 	}
 	
 	
+	// addTest:
 	public void addTest(Test test) {
 		boolean found = false;
 		Enumeration<Test> elements = tests.elements();
 		while ((!found) && (elements.hasMoreElements())) {			
 			Test chargedTest = elements.nextElement();
-			if (chargedTest.repeatedTest(test)){
+			if (chargedTest.repeatedTest(test)) {
 				found = true;
 			}							
 		}
@@ -104,7 +135,7 @@ public class TestSuite extends Test {
 	}
 	
 	
-	// setUp y tearDown vacios por defecto.
+	// setUp y tearDown vacios por defecto
 	public void setUp() {	
 	}
 	

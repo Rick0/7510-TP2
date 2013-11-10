@@ -226,7 +226,7 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		resultFather = suite.runRegEx(".*unexisting name");
+		resultFather = suite.runRegExTest(".*unexisting name");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -239,7 +239,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -258,7 +258,7 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		resultFather = suite.runRegEx(".*");
+		resultFather = suite.runRegExTest(".*");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -271,7 +271,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -286,7 +286,7 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		result = suite.runRegEx(".*");
+		result = suite.runRegExTest(".*");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -299,7 +299,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -318,7 +318,7 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		result = suite.runRegEx(".*");
+		result = suite.runRegExTest(".*");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -331,7 +331,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -344,7 +344,7 @@ public class TestingGrupo8 {
 		test2.setAssertValue(0, 0);
 		suite.addTest(test1);
 		suite.addTest(test2);		
-		result = suite.runRegEx(".*special");
+		result = suite.runRegExTest(".*special");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -357,7 +357,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -376,7 +376,7 @@ public class TestingGrupo8 {
 		suite1.addTest(test1);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);		
-		result = suite1.runRegEx(".*special");
+		result = suite1.runRegExTest(".*special");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -390,7 +390,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test7);
 		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -405,7 +405,7 @@ public class TestingGrupo8 {
 		
 		test.setAssertValue(test.getAFixtureItem("numberA"), test.getAFixtureItem("numberB"));		
 		suite.addTest(test);
-		result = suite.runRegEx(".*special");
+		result = suite.runRegExTest(".*special");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -419,7 +419,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test7);
 		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -437,7 +437,7 @@ public class TestingGrupo8 {
 		test2.setAssertValue(test1.getAFixtureItem("numberA"), 1);
 		suite.addTest(test1);
 		suite.addTest(test2);
-		result = suite.runRegEx(".*special");
+		result = suite.runRegExTest(".*special");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -451,7 +451,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test7);
 		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
@@ -470,7 +470,7 @@ public class TestingGrupo8 {
 		suite3.addTest(test2);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);
-		result = suite1.runRegEx(".*special");
+		result = suite1.runRegExTest(".*special");
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -484,7 +484,7 @@ public class TestingGrupo8 {
 		testSuite.addTest(test7);
 		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		resultFather = testSuite.runRegExTest(".*for");
 	}
 	
 	
