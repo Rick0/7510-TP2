@@ -14,9 +14,9 @@ public class TestResult {
 
 	List<TestAssertResult> tests;	
 	List<TestResult> testsResults;
-	
 	private String name;
 	private String reportPath;
+	private String separator = "-----------------------------------";
 	
 	
 	public TestResult() {
@@ -26,6 +26,7 @@ public class TestResult {
 		reportPath=name+".txt";
 	}
 	
+	
 	public TestResult(String aName) {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
@@ -33,12 +34,14 @@ public class TestResult {
 		reportPath=name+".txt";
 	}	
 	
+	
 	public TestResult addTestResult(String testResultName){
 		TestResult newTestResult = new TestResult(name+"."+testResultName);
 		newTestResult.setReportPath(reportPath);
 		testsResults.add(newTestResult);
 		return newTestResult;
 	}	
+	
 	
 	public void addFailure(Test test) {
 		tests.add(new TestAssertResult(test,"Fail"));
@@ -52,15 +55,18 @@ public class TestResult {
 		tests.add(new TestAssertResult(test,"OK"));
 	}
 	
+	
 	public void setReportPath(String path){
 		reportPath = path;
 	}
+	
 	
 	public List<Test> getListPassed() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"OK",this);
 		return list;
 	}		
+	
 	
 	private void fillList(List<Test> list, String result, TestResult testResult){
 		Iterator<TestAssertResult> it = testResult.tests.iterator();		
@@ -78,17 +84,20 @@ public class TestResult {
 		
 	}
 	
+	
 	public List<Test> getListFailure() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Fail",this);
 		return list;
 	}
 
+	
 	public List<Test> getListError() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Error",this);
 		return list;
 	}
+	
 	
 	public void showResults() {
 		System.out.println("");
@@ -105,6 +114,7 @@ public class TestResult {
 		System.out.println("");
 	}
 	
+	
 	private void printList(List<Test> aList) {
 		if (aList.isEmpty()) {
 			System.out.println("\t-");
@@ -117,7 +127,8 @@ public class TestResult {
 			}
 		}
 	}
-		
+	
+	
 	public void showReport() {
 		File file = new File(reportPath);
 		file.delete();
@@ -125,17 +136,19 @@ public class TestResult {
 		int errors = getListError().size();
 		int oks = getListPassed().size();
 		int failures = getListFailure().size();
+		
 		String line;		
 		if (errors + failures > 0) {
 			line = "[failure]";
 		}
 		else {
 			line = "[OK]";
-		}		
-		line= line+"Summary";
+		}
+		writeLine("");
+		line = line+"Summary";
 		writeLine(line);
-		writeLine("-------------------------");
-		writeLine("-------------------------");
+		writeLine(separator);
+		writeLine(separator);
 		writeLine("Run: "+(oks+errors+failures));
 		if (errors > 0){
 			writeLine("Errors: "+errors);
@@ -146,25 +159,29 @@ public class TestResult {
 
 	}
 
+	
 	public void showTestResultData(){
 		writeLine(name);
-		writeLine("-------------------------");
+		writeLine(separator);
 		printTestsList();
 		writeLine("");
 		printTestsResults();
 	}
 	
+	
 	private void printTestsList() {
 		if (tests.isEmpty()) {
 			writeLine("\t-");
-		}else{
+		}
+		else {
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
 				TestAssertResult t = (TestAssertResult)it.next();
-				writeLine("\t" + "[" + t.getResult()+"] "+t.getTest().getName());
+				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
 			}
 		}
 	}
+	
 	
 	private void printTestsResults() {
 		if (!testsResults.isEmpty()) {
@@ -175,6 +192,7 @@ public class TestResult {
 			}
 		}
 	}
+	
 	
 	private void writeLine(String line) {
 		try {
@@ -187,6 +205,7 @@ public class TestResult {
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public String getResult(String testName){
 		if (! tests.isEmpty()) {		

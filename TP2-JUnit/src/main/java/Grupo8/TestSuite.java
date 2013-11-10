@@ -3,6 +3,8 @@ package Grupo8;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /*
  * Clase que contiene a todos los "tests individuales".
@@ -13,76 +15,97 @@ public class TestSuite extends Test {
 	private Vector<Test> tests = new Vector<Test>();
 	
 	
-	public TestSuite(String name) {
-		testCaseName = name;
-		testType = "TestSuite";
-		fixtures = new HashMap<String, Object>();
-	}
-	
-	
 	public TestSuite() {
-		testCaseName = "UnnamedTestSuite";
-		testType = "TestSuite";
-		fixtures = new HashMap<String, Object>();
+		testName = "UnnamedTestSuite";
+		testSuiteInitialValues();
 	}
 	
 	
-	final public void runRegEx(TestResult result, String regEx) {
-		setUp();
-		TestResult newTestResult = result.addTestResult(testCaseName);
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			Test test = elements.nextElement();
-			test.runRegEx(newTestResult, regEx);		
-		}  
-		tearDown();
+	public TestSuite(String name) {
+		testName = name;
+		testSuiteInitialValues();
 	}
 
-	
-	final public TestResult runRegEx(String regEx) {
-		setUp();
-		TestResult newTestResult = new TestResult(testCaseName);
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) { 
-			Test test = elements.nextElement();
-			test.runRegEx(newTestResult, regEx);		
-		}  
-		tearDown();
-		
-		return newTestResult;
+
+	private void testSuiteInitialValues() {
+		testType = "TestSuite";
+		hasToBeSkipped = false;
+		fixtureMap = new HashMap<String, Object>();
+		testConditions = new TestConditionsBuilder().buildTestConditions();
+		testConditionsCaseAND = true;
+		elapsedTime = "notRun";
 	}
 	
-	
+
+	// Familia de runTest:	
 	final public void runTest(TestResult result) {
-		setUp();
-		TestResult newTestResult = result.addTestResult(testCaseName);		
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
-			Test test = elements.nextElement();
-	    	test.setUpVariablesFromSuite(fixtures);
-			test.runTest(newTestResult);		
+		TestResult newTestResult = result.addTestResult(testName);		
+		
+		if (!hasToBeSkipped) {
+			if (testConditionsOK()) {
+				internalRunTest(newTestResult);
+			}
 		}
-		tearDown();
 	}
 
 	
 	final public TestResult runTest() {
-		setUp();
-		TestResult newTestResult = new TestResult(testCaseName);	
-		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
-			Test test = elements.nextElement();
-	    	test.setUpVariablesFromSuite(fixtures);
-			test.runTest(newTestResult);		
+		TestResult newTestResult = new TestResult(testName);	
+		
+		if (!hasToBeSkipped) {
+			if (testConditionsOK()) {
+				internalRunTest(newTestResult);
+			}
 		}
-		tearDown();
 		
 		return newTestResult;
 	}
 	
 	
+	private void internalRunTest(TestResult newTestResult) {
+		setUp();
+		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
+			Test test = elements.nextElement();
+			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
+			test.setTestConditions(testConditions);		// se propagan las condiciones de test
+			test.runTest(newTestResult);		
+		}
+		tearDown();
+	}
+	
+	
+	// Checkeador de testCondicions para 'testSuite':
+	private boolean testConditionsOK() {
+		if (testConditionsCaseAND) {
+			return testConditionRegEx();
+		}
+		else {
+			return true;
+		}
+	}
+
+
+	private boolean testConditionRegEx() {
+		if (testConditions.testSuiteRegEx != "") {
+			Pattern regularExpression = Pattern.compile(testConditions.testSuiteRegEx);
+		    Matcher matcher = regularExpression.matcher(testName);
+
+		    if ( !matcher.find() ) {
+		    	return false;
+		    }
+		}
+		
+		return true;
+	}
+	
+	
+	// addTest:
 	public void addTest(Test test) {
 		boolean found = false;
 		Enumeration<Test> elements = tests.elements();
 		while ((!found) && (elements.hasMoreElements())) {			
 			Test chargedTest = elements.nextElement();
-			if (chargedTest.repeatedTest(test)){
+			if (chargedTest.repeatedTest(test)) {
 				found = true;
 			}							
 		}
@@ -92,7 +115,7 @@ public class TestSuite extends Test {
 	}
 	
 	
-	// setUp y tearDown vacios por defecto.
+	// setUp y tearDown vacios por defecto
 	public void setUp() {	
 	}
 	

@@ -226,7 +226,10 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		resultFather = suite.runRegEx(".*unexisting name");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*unexisting name").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		resultFather = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -239,7 +242,10 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+		
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -258,7 +264,10 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		resultFather = suite.runRegEx(".*");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		resultFather = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -271,7 +280,10 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	public static void testThatThrowsAnException(TestSuite suiteFather, TestResult resultFather) {
@@ -285,7 +297,10 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		result = suite.runRegEx(".*");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -298,7 +313,10 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -317,7 +335,10 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		result = suite.runRegEx(".*");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -330,7 +351,10 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -342,8 +366,11 @@ public class TestingGrupo8 {
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);
 		suite.addTest(test1);
-		suite.addTest(test2);		
-		result = suite.runRegEx(".*special");
+		suite.addTest(test2);
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -356,7 +383,10 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -375,7 +405,10 @@ public class TestingGrupo8 {
 		suite1.addTest(test1);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);		
-		result = suite1.runRegEx(".*special");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);
+		result = suite1.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -387,9 +420,11 @@ public class TestingGrupo8 {
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -404,7 +439,10 @@ public class TestingGrupo8 {
 		
 		test.setAssertValue(test.getAFixtureItem("numberA"), test.getAFixtureItem("numberB"));		
 		suite.addTest(test);
-		result = suite.runRegEx(".*special");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -416,9 +454,11 @@ public class TestingGrupo8 {
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -436,7 +476,10 @@ public class TestingGrupo8 {
 		test2.setAssertValue(test1.getAFixtureItem("numberA"), 1);
 		suite.addTest(test1);
 		suite.addTest(test2);
-		result = suite.runRegEx(".*special");
+
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -448,9 +491,11 @@ public class TestingGrupo8 {
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	
@@ -469,7 +514,10 @@ public class TestingGrupo8 {
 		suite3.addTest(test2);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);
-		result = suite1.runRegEx(".*special");
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);
+		result = suite1.runTest();
 		
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
@@ -481,9 +529,11 @@ public class TestingGrupo8 {
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
-		
 		suiteFather.addTest(testSuite);
-		resultFather = testSuite.runRegEx(".*for");
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
 	}
 	
 	

@@ -9,16 +9,18 @@ public class TestAssertResult {
 	private String result;
 	
 	
-	public TestAssertResult(Test aTest,String resultName){
+	public TestAssertResult(Test aTest, String resultName) {
 		test = aTest;
 		result = resultName;
 	}
 	
-	public Test getTest(){
+	
+	public Test getTest() {
 		return test;
 	}
 	
-	public String getResult(){
+	
+	public String getResult() {
 		return result;
 	}
 

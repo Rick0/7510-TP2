@@ -9,56 +9,51 @@ import java.util.Map;
  */
 public abstract class Test {
 	
-	protected String testCaseName;
+	protected String testName;
 	protected String testType;
-	protected Map<String,Object> fixtures;
-	
+	protected boolean hasToBeSkipped;
+	protected Map<String,Object> fixtureMap;
+	protected TestConditions testConditions;
+	protected boolean testConditionsCaseAND;	// true = AND	false = OR
+	protected String elapsedTime;
 
+	
+	// Familia de runTest:
 	public abstract void runTest(TestResult result);
 	
 	
-	public abstract void runRegEx (TestResult result, String regEx);
-	
-	
+	// setUp y tearDown:
 	public abstract void setUp();
 
 	
 	public abstract void tearDown();
-		
-	
-	public String getName() {
-		return testCaseName;
-	}
-
-	
-	public void setName(String aName) {
-		testCaseName = aName;
-	}
 	
 	
+	// repeatedTest:
 	public boolean repeatedTest(Test anotherTest) {
-		if ((testType.equals(anotherTest.testType)) && (testCaseName.equals(anotherTest.testCaseName))) {			
-				return true;
+		if ( (testType.equals(anotherTest.testType))  &&  (testName.equals(anotherTest.testName)) ) {			
+			return true;
 		}		
 		return false;			
 	}
 	
 	
+	// alta, getter y setter de fixture:
 	public void addAFixtureItem(String name, Object value) {
-		if (!fixtures.isEmpty()) {
-			if (!fixtures.containsKey(name)) {
-				fixtures.put(name, value);
+		if (!fixtureMap.isEmpty()) {
+			if (!fixtureMap.containsKey(name)) {
+				fixtureMap.put(name, value);
 			}
 		}
 		else {
-			fixtures.put(name, value);
+			fixtureMap.put(name, value);
 		}
 	}
 
 	
 	public Object getAFixtureItem(String name) {
-		if (fixtures.containsKey(name)) {
-			return fixtures.get(name);
+		if (fixtureMap.containsKey(name)) {
+			return fixtureMap.get(name);
 		}
 		return null;
 	}
@@ -66,10 +61,60 @@ public abstract class Test {
 	
 	public void setUpVariablesFromSuite(Map<String, Object> fixtures) {
 		Iterator<String> it = fixtures.keySet().iterator();
-		while (it.hasNext()){
+		while (it.hasNext()) {
 			String key = it.next();
 			addAFixtureItem(key,fixtures.get(key));
 		}
 	}
+	
+	
+	// setters de 'hasToBeSkipped':
+	public void beSkipped() {
+		hasToBeSkipped = true;
+	}
 
+	
+	public void dontBeSkipped() {
+		hasToBeSkipped = false;
+	}
+	
+	
+	// getter y setter de 'testCaseName':
+	public String getName() {
+		return testName;
+	}
+
+	
+	public void setName(String aName) {
+		testName = aName;
+	}
+	
+	
+	// getter y setter de 'testConditions':
+	public TestConditions getTestConditions() {
+		return testConditions;
+	}
+
+
+	public void setTestConditions(TestConditions testConditions) {
+		this.testConditions = testConditions;
+	}
+	
+	
+	// getter y setter de 'testConditionsCaseAND':
+	public boolean isTestConditionsCaseAND() {
+		return testConditionsCaseAND;
+	}
+
+
+	public void setTestConditionsCaseAND(boolean testConditionsCaseAND) {
+		this.testConditionsCaseAND = testConditionsCaseAND;
+	}
+	
+	
+	// getter de elpasedTime:
+	public String getElapsedTime() {
+		return elapsedTime;
+	}
+	
 }
