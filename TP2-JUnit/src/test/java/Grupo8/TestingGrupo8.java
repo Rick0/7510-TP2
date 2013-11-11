@@ -1,5 +1,8 @@
 package Grupo8;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 /*
  * TestingGrupo8: se testea el correcto funcionamiento de nuestro framework, usando el mismo framework.
  */
@@ -48,6 +51,13 @@ public class TestingGrupo8 {
 		testForTwoTestAndEachSetUp(testsList, result);		//  4
 		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
 		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
+		
+		testForATag(testsList, result);
+		testForSkippedTestWithTag(testsList, result);
+		testForVariousTags(testsList, result);
+		testForTagsAndRegex(testsList, result);
+		testForVariousTagsAndNames(testsList, result);
+		testForElapsedTime(testsList, result);
 		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
@@ -212,7 +222,7 @@ public class TestingGrupo8 {
 		}
 	}
 	
-	/* Tests TP2.1 */
+		/* Tests TP2.1 */
 	
 	public static void testForUnexistingName(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite("testForUnexistingName 1");
@@ -289,7 +299,6 @@ public class TestingGrupo8 {
 		resultFather = testSuite.runTest();
 	}
 	
-	
 	public static void testThatThrowsAnException(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -322,7 +331,6 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
 	
 	public static void testThatFails(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
@@ -552,4 +560,284 @@ public class TestingGrupo8 {
 		resultFather = suiteB.runTest();
 	}
 	
+	/* Tests TP2.2 */
+
+	//1
+	public static void testForATag(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0);
+		
+		test1.addTag("SLOW");
+		test3.addTag("SLOW");
+		
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);		
+		
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("SLOW");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+		
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
+		test5.setAssertValue(resultFather.getListError().size(), 0);
+		test6.setAssertValue(resultFather.getListFailure().size(), 0);
+		test7.setAssertValue(resultFather.getListPassed().size(), 2);
+		TestSuite testSuite = new TestSuite ("testForATag");
+		testSuite.addTest(test5);
+		testSuite.addTest(test6);
+		testSuite.addTest(test7);
+		suiteFather.addTest(testSuite);
+		
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+	
+	//3
+	public static void testForSkippedTestWithTag(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("my special test case");
+		TestCase test2 = new TestCase("my special test case 1");
+		TestCase test3 = new TestCase("my special");
+		
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0);
+		
+		test1.addTag("SLOW");
+		test3.addTag("SLOW");
+		
+		test1.beSkipped();
+		
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);		
+		
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("SLOW");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+		
+		TestCase test4 = new TestCase ("for list error");
+		TestCase test5 = new TestCase ("for list failure");
+		TestCase test6 = new TestCase ("for list passed");
+		test4.setAssertValue(resultFather.getListError().size(), 0);
+		test5.setAssertValue(resultFather.getListFailure().size(), 0);
+		test6.setAssertValue(resultFather.getListPassed().size(), 1);
+		TestSuite testSuite = new TestSuite ("testForSkippedTestWithTag");
+		testSuite.addTest(test4);
+		testSuite.addTest(test5);
+		testSuite.addTest(test6);
+		suiteFather.addTest(testSuite);
+		
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+	
+	//4
+	public static void testForVariousTags(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");
+		TestCase test4 = new TestCase("T4");
+		TestCase test5 = new TestCase("T5");
+		TestCase test6 = new TestCase("T6");
+
+		test1.addTag("SLOW");
+		test1.addTag("DB");
+		test2.addTag("SLOW");
+		test3.addTag("DB");
+		test4.addTag("FAST");
+		test5.addTag("SMOKE");
+		test6.addTag("-");
+
+		test1.setAssertValue(0, 0);		
+		test4.setAssertValue(0, 1);
+		test5.setAssertValue(0, 0);
+
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);		
+
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("DB");
+		someTags.add("FAST");
+		someTags.add("SMOKE");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+
+		TestCase test7 = new TestCase ("for list error");
+		TestCase test8 = new TestCase ("for list failure");
+		TestCase test9 = new TestCase ("for list passed");
+		test7.setAssertValue(resultFather.getListError().size(), 1);
+		test8.setAssertValue(resultFather.getListFailure().size(), 1);
+		test9.setAssertValue(resultFather.getListPassed().size(), 2);
+		TestSuite testSuite = new TestSuite ("testForVariousTags");
+		testSuite.addTest(test7);
+		testSuite.addTest(test8);
+		testSuite.addTest(test9);
+		suiteFather.addTest(testSuite);
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+
+	//5
+	public static void testForTagsAndRegex(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");
+		TestCase test4 = new TestCase("NO CORRER");
+
+		test1.addTag("SLOW");
+		test2.addTag("FAST");
+		test3.addTag("SLOW");
+		test4.addTag("SLOW");		
+
+		test1.setAssertValue(0, 0);		
+		test4.setAssertValue(0, 0);
+
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+		suite.addTest(test4);		
+
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("SLOW");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx("^[^correr]*").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+
+		TestCase test5 = new TestCase ("for list error");
+		TestCase test6 = new TestCase ("for list failure");
+		TestCase test7 = new TestCase ("for list passed");
+		test5.setAssertValue(resultFather.getListError().size(), 2);
+		test6.setAssertValue(resultFather.getListFailure().size(), 0);
+		test7.setAssertValue(resultFather.getListPassed().size(), 1);
+		TestSuite testSuite = new TestSuite ("testForTagsAndRegex");
+		testSuite.addTest(test5);
+		testSuite.addTest(test6);
+		testSuite.addTest(test7);
+		suiteFather.addTest(testSuite);
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+	
+	//5
+	public static void testForVariousTagsAndNames(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");
+		TestCase test4 = new TestCase("...mysql...1");
+		TestCase test5 = new TestCase("...mysql...2");
+		TestCase test6 = new TestCase("...mysql...3");
+
+		test1.addTag("DB");
+		test2.addTag("DB");
+		test3.addTag("SLOW");
+		test4.addTag("DB");
+		test5.addTag("DB");
+		test6.addTag("-");
+
+		test1.setAssertValue(0, 0);		
+		test4.setAssertValue(0, 0);
+		test5.setAssertValue(0, 1);
+
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+		suite.addTest(test4);
+		suite.addTest(test5);	
+		suite.addTest(test6);	
+
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("DB");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx(".*mysql*.").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+
+		TestCase test7 = new TestCase ("for list error");
+		TestCase test8 = new TestCase ("for list failure");
+		TestCase test9 = new TestCase ("for list passed");
+		test5.setAssertValue(resultFather.getListError().size(), 0);
+		test6.setAssertValue(resultFather.getListFailure().size(), 1);
+		test7.setAssertValue(resultFather.getListPassed().size(), 1);
+		TestSuite testSuite = new TestSuite ("testForVariousTagsAndNames");
+		testSuite.addTest(test7);
+		testSuite.addTest(test8);
+		testSuite.addTest(test9);
+		suiteFather.addTest(testSuite);
+
+		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+	
+	//6
+	public static void testForElapsedTime(TestSuite suiteFather, TestResult resultFather) {
+		TestSuite suite = new TestSuite();
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");
+		
+		test1.setAssertValue(0, 0);		
+		test2.setAssertValue(0, 1);		
+
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);
+		
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*T*.").buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+
+		suiteFather.addTest(suite);
+		resultFather = suite.runTest();
+
+		TestCase test4 = new TestCase ();
+		TestCase test5 = new TestCase ();
+		TestCase test6 = new TestCase ();
+		test4.setAssertValue(test1.getElapsedTime(), 0);
+		test5.setAssertValue(test2.getElapsedTime(), 0);
+		test6.setAssertValue(test3.getElapsedTime(), 0);
+		TestSuite testSuite = new TestSuite ("testForElapsedTime");
+		testSuite.addTest(test4);
+		testSuite.addTest(test5);
+		testSuite.addTest(test6);
+		suiteFather.addTest(testSuite);
+
+		oneTestCondition = new TestConditionsBuilder().buildTestConditions();
+		testSuite.setTestConditions(oneTestCondition);
+		resultFather = testSuite.runTest();
+	}
+
+
 }
