@@ -10,7 +10,9 @@ public class TestingGrupo8 {
 	
 	public static void main(String[] args) {
 		TestResult result = new TestResult();
+		result.setPrint(true);
 		TestSuite testsList = new TestSuite("TestingGrupo8");
+		testsList.setPrintTests(true);
 		
 		TestCase test1  = new TestCase("test1");
 		TestCase test2  = new TestCase("test2");
@@ -65,8 +67,9 @@ public class TestingGrupo8 {
 		testsList.addTest(test10);
 		testsList.addTest(test11);
 		
-		testsList.runTest(result);
-		result.showResults();
+		testsList.setPrintTests(true);
+//		testsList.runTest(result);		
+//		result.showResults();		
 		result = testsList.runTest();
 		result.showReport();
 	}

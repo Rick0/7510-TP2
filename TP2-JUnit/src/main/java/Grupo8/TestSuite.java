@@ -13,20 +13,26 @@ import java.util.regex.Pattern;
 public class TestSuite extends Test {	
 
 	private Vector<Test> tests = new Vector<Test>();
-	
+	boolean print;
 	
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
+		print=false;
 	}
-	
-	
+		
 	public TestSuite(String name) {
-		testName = name;
+		testName = name;		
 		testSuiteInitialValues();
+		print=false;
 	}
-
-
+	
+	
+	public void setPrintTests(boolean mustPrint){
+		print = mustPrint;
+	}
+	
+	
 	private void testSuiteInitialValues() {
 		testType = "TestSuite";
 		hasToBeSkipped = false;
@@ -40,7 +46,6 @@ public class TestSuite extends Test {
 	// Familia de runTest:	
 	final public void runTest(TestResult result) {
 		TestResult newTestResult = result.addTestResult(testName);		
-		
 		if (!hasToBeSkipped) {
 			if (testConditionsOK()) {
 				internalRunTest(newTestResult);
@@ -50,11 +55,12 @@ public class TestSuite extends Test {
 
 	
 	final public TestResult runTest() {
-		TestResult newTestResult = new TestResult(testName);	
-		
-		if (!hasToBeSkipped) {
-			if (testConditionsOK()) {
-				internalRunTest(newTestResult);
+		TestResult newTestResult = new TestResult(testName);
+		newTestResult.setPrint(print);
+		if (!hasToBeSkipped) {			
+			if (testConditionsOK()) {				
+				internalRunTest(newTestResult);				
+				newTestResult.consoleResume();
 			}
 		}
 		
@@ -63,7 +69,8 @@ public class TestSuite extends Test {
 	
 	
 	private void internalRunTest(TestResult newTestResult) {
-		setUp();
+		setUp();		
+		newTestResult.printResultName();
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
@@ -109,7 +116,7 @@ public class TestSuite extends Test {
 				found = true;
 			}							
 		}
-	    if (!found) {
+	    if (!found) {	    	
 	    	tests.addElement(test); 
 	    }
 	}

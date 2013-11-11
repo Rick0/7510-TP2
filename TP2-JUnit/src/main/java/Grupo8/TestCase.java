@@ -23,7 +23,7 @@ public class TestCase extends Test {
 	
 
 	public TestCase() {
-		testName = "Unnamed TestCase";
+		testName = "Unnamed TestCase";		
 		testCaseInitialValues();
 	}
 
