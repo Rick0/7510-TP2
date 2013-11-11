@@ -52,6 +52,13 @@ public class TestingGrupo8 {
 		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
 		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
 		
+		testForATag(testsList, result);
+		testForSkippedTestWithTag(testsList, result);
+		testForVariousTags(testsList, result);
+		testForTagsAndRegex(testsList, result);
+		testForVariousTagsAndNames(testsList, result);
+		testForElapsedTime(testsList, result);
+		
 		testsList.addTest(test1);
 		testsList.addTest(test2);
 		testsList.addTest(test3a);
