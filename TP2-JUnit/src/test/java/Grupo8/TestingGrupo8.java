@@ -594,7 +594,7 @@ public class TestingGrupo8 {
 		test5.setAssertValue(resultFather.getListError().size(), 0);
 		test6.setAssertValue(resultFather.getListFailure().size(), 0);
 		test7.setAssertValue(resultFather.getListPassed().size(), 2);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForATag");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
@@ -639,7 +639,7 @@ public class TestingGrupo8 {
 		test4.setAssertValue(resultFather.getListError().size(), 0);
 		test5.setAssertValue(resultFather.getListFailure().size(), 0);
 		test6.setAssertValue(resultFather.getListPassed().size(), 1);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForSkippedTestWithTag");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
@@ -692,7 +692,7 @@ public class TestingGrupo8 {
 		test7.setAssertValue(resultFather.getListError().size(), 1);
 		test8.setAssertValue(resultFather.getListFailure().size(), 1);
 		test9.setAssertValue(resultFather.getListPassed().size(), 2);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForVariousTags");
 		testSuite.addTest(test7);
 		testSuite.addTest(test8);
 		testSuite.addTest(test9);
@@ -738,7 +738,7 @@ public class TestingGrupo8 {
 		test5.setAssertValue(resultFather.getListError().size(), 2);
 		test6.setAssertValue(resultFather.getListFailure().size(), 0);
 		test7.setAssertValue(resultFather.getListPassed().size(), 1);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForTagsAndRegex");
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
@@ -791,7 +791,7 @@ public class TestingGrupo8 {
 		test5.setAssertValue(resultFather.getListError().size(), 0);
 		test6.setAssertValue(resultFather.getListFailure().size(), 1);
 		test7.setAssertValue(resultFather.getListPassed().size(), 1);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForVariousTagsAndNames");
 		testSuite.addTest(test7);
 		testSuite.addTest(test8);
 		testSuite.addTest(test9);
@@ -828,7 +828,7 @@ public class TestingGrupo8 {
 		test4.setAssertValue(test1.getElapsedTime(), 0);
 		test5.setAssertValue(test2.getElapsedTime(), 0);
 		test6.setAssertValue(test3.getElapsedTime(), 0);
-		TestSuite testSuite = new TestSuite ();
+		TestSuite testSuite = new TestSuite ("testForElapsedTime");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
