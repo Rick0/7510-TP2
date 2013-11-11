@@ -439,8 +439,10 @@ public class Testing {
 		TestCase test4 = new TestCase("T4");
 		TestCase test5 = new TestCase("T5");
 		TestCase test6 = new TestCase("T6");		
-		test1.addTag("SLOW");
-		test1.addTag("DB");
+		Collection<String> tags = new LinkedList<String>();
+		tags.add("DB");
+		tags.add("SLOW");
+		test1.addAllTags(tags);
 		test2.addTag("SLOW");
 		test3.addTag("DB");
 		test4.addTag("FAST");
