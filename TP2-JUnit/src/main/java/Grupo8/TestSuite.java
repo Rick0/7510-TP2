@@ -14,17 +14,18 @@ public class TestSuite extends Test {
 
 	private Vector<Test> tests = new Vector<Test>();
 	boolean print;
+
 	
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
-		print=false;
+		print = false;
 	}
 		
 	public TestSuite(String name) {
 		testName = name;		
 		testSuiteInitialValues();
-		print=false;
+		print = false;
 	}
 	
 	

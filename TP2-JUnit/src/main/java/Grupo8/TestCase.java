@@ -21,7 +21,7 @@ public class TestCase extends Test {
 	private Set<String> tagsSet;
 	private boolean tagsConditionAll;	// true = all	false = any
 	
-
+	
 	public TestCase() {
 		testName = "Unnamed TestCase";		
 		testCaseInitialValues();
@@ -185,6 +185,17 @@ public class TestCase extends Test {
 		for (String oneTag : someTags) {
 			removeTag(oneTag);
 	    }
+	}
+	
+	
+	// getter y setter de 'tagsConditionAll':
+	public boolean isTagsConditionAll() {
+		return tagsConditionAll;
+	}
+
+
+	public void setTagsConditionAll(boolean tagsConditionAll) {
+		this.tagsConditionAll = tagsConditionAll;
 	}
 	
 	

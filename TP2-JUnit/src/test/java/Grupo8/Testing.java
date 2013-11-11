@@ -371,7 +371,8 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
 	
-	/*Tercera entrega*/
+	
+	/* Tests TP2.2 */
 	
 	@Test //1
 	public void testForATag() {
@@ -448,6 +449,12 @@ public class Testing {
 		test4.addTag("FAST");
 		test5.addTag("SMOKE");
 		test6.addTag("-");
+		test1.setTagsConditionAll(false);
+		test2.setTagsConditionAll(false);
+		test3.setTagsConditionAll(false);
+		test4.setTagsConditionAll(false);
+		test5.setTagsConditionAll(false);
+		test6.setTagsConditionAll(false);
 		
 		test1.setAssertValue(0, 0); 
 		test3.setAssertValue(0, 0); 
@@ -497,9 +504,8 @@ public class Testing {
 		
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("SLOW");		
-		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx("^[^correr]*").buildTestConditions();
-		suite1.setTestConditions(oneTestCondition);		
-					
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx("^[^no correr]").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);
 		result = suite1.runTest();
 
 		Assert.assertEquals(result.getListError().size(), 0);
