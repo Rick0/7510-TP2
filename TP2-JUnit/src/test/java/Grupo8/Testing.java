@@ -1,6 +1,10 @@
 package Grupo8;
 
 import static org.junit.Assert.*;
+
+import java.util.Collection;
+import java.util.LinkedList;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -366,5 +370,203 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
+	
+	/*Tercera entrega*/
+	
+	@Test //1
+	public void testForATag() {
+		TestResult result = new TestResult();
+		TestSuite suite = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+		test1.addTag("SLOW");
+		test3.addTag("SLOW");
+		test1.setAssertValue(0, 0);
+		test2.setAssertValue(0, 1);				
+		suite.addTest(test1);
+		suite.addTest(test2);
+		suite.addTest(test3);		
+		
+		Collection<String> newTags = new LinkedList<String>();
+		newTags.add("SLOW");		
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(newTags).buildTestConditions();
+		suite.setTestConditions(oneTestCondition);
+		result = suite.runTest();
+
+		Assert.assertEquals(result.getListError().size(), 1);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 1);
+	}	
+		
+	@Test //3
+	public void testForSkippedTestWithTag() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+		test1.addTag("SLOW");
+		test1.beSkipped();
+		test3.addTag("SLOW");
+				
+		test1.setAssertValue(0, 0); 
+		test2.setAssertValue(0, 0); 
+		test3.setAssertValue(0, 1);
+		suite1.addTest(test1);
+		suite1.addTest(test2);
+		suite1.addTest(test3);		
+		
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("SLOW");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);				
+				
+		result = suite1.runTest();
+
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 0);
+	}
+	
+	@Test //4
+	public void testForVariousTags() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");		
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+		TestCase test4 = new TestCase("T4");
+		TestCase test5 = new TestCase("T5");
+		TestCase test6 = new TestCase("T6");		
+		test1.addTag("SLOW");
+		test1.addTag("DB");
+		test2.addTag("SLOW");
+		test3.addTag("DB");
+		test4.addTag("FAST");
+		test5.addTag("SMOKE");
+		test6.addTag("-");
+		
+		test1.setAssertValue(0, 0); 
+		test3.setAssertValue(0, 0); 
+		test4.setAssertValue(0, 1);								
+		suite1.addTest(test1);
+		suite1.addTest(test2);
+		suite1.addTest(test3);		
+		suite1.addTest(test4);
+		suite1.addTest(test5);
+		suite1.addTest(test6);
+				
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("DB");
+		someTags.add("FAST");
+		someTags.add("SMOKE");
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);		
+					
+		result = suite1.runTest();
+
+		Assert.assertEquals(result.getListError().size(), 1);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
+	@Test //5
+	public void testForTagsAndRegex() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");		
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+		TestCase test4 = new TestCase("no correr");
+		test1.addTag("SLOW");
+		test2.addTag("FAST");
+		test3.addTag("SLOW");
+		test4.addTag("SLOW");		
+		
+		test1.setAssertValue(0, 0); 
+		test2.setAssertValue(0, 0);
+		test3.setAssertValue(0, 0); 
+		test4.setAssertValue(0, 1);								
+		suite1.addTest(test1);
+		suite1.addTest(test2);
+		suite1.addTest(test3);		
+		suite1.addTest(test4);
+		
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("SLOW");		
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx("^[^correr]*").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);		
+					
+		result = suite1.runTest();
+
+		Assert.assertEquals(result.getListError().size(), 0);
+		Assert.assertEquals(result.getListFailure().size(), 0);
+		Assert.assertEquals(result.getListPassed().size(), 2);
+	}
+	
+	@Test //6
+	public void testForVariousTagsAndNames() {
+		TestResult result = new TestResult();
+		TestSuite suite1 = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");		
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+		TestCase test4 = new TestCase("...mysql...1");
+		TestCase test5 = new TestCase("...mysql...2");
+		TestCase test6 = new TestCase("...mysql...3");		
+		test1.addTag("DB");
+		test2.addTag("DB");
+		test3.addTag("SLOW");
+		test4.addTag("DB");
+		test5.addTag("DB");
+		test6.addTag("-");
+		
+		test1.setAssertValue(0, 0); 
+		test3.setAssertValue(0, 0); 
+		test4.setAssertValue(0, 1);
+		
+		suite1.addTest(test1);
+		suite1.addTest(test2);
+		suite1.addTest(test3);		
+		suite1.addTest(test4);
+		suite1.addTest(test5);
+		suite1.addTest(test6);
+				
+		Collection<String> someTags = new LinkedList<String>();
+		someTags.add("DB");		
+		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx(".*mysql*.").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);		
+					
+		result = suite1.runTest();
+
+		Assert.assertEquals(result.getListError().size(), 1);
+		Assert.assertEquals(result.getListFailure().size(), 1);
+		Assert.assertEquals(result.getListPassed().size(), 0);
+	}	
+	
+	@Test //7
+	public void testForElapsedTime() {		
+		TestSuite suite1 = new TestSuite("TS1");
+		TestCase test1 = new TestCase("T1");		
+		TestCase test2 = new TestCase("T2");
+		TestCase test3 = new TestCase("T3");		
+				
+		test1.setAssertValue(0, 0); 
+		test2.setAssertValue(0, 1);		
+		
+		suite1.addTest(test1);
+		suite1.addTest(test2);
+		suite1.addTest(test3);		
+						
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*T*.").testCaseRegEx(".*mysql*.").buildTestConditions();
+		suite1.setTestConditions(oneTestCondition);		
+					
+		suite1.runTest();
+
+		Assert.assertNotNull(test1.getElapsedTime());
+		Assert.assertNotNull(test2.getElapsedTime());
+		Assert.assertNotNull(test3.getElapsedTime());		
+	}	
 
 }
