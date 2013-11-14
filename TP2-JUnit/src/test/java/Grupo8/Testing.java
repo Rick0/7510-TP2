@@ -400,6 +400,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}	
 
+
 	@Test //3
 	public void testForSkippedTestWithTag() {
 		TestResult result = new TestResult();
@@ -429,6 +430,7 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
+
 
 	@Test //4
 	public void testForVariousTags() {
@@ -480,6 +482,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
 
+
 	@Test //5
 	public void testForTagsAndRegex() {
 		TestResult result = new TestResult();
@@ -512,6 +515,7 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
+
 
 	@Test //6
 	public void testForVariousTagsAndNames() {
@@ -553,6 +557,7 @@ public class Testing {
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}	
 
+
 	@Test //7
 	public void testForElapsedTime() {		
 		TestSuite suite1 = new TestSuite("TS1");
@@ -560,21 +565,25 @@ public class Testing {
 		TestCase test2 = new TestCase("T2");
 		TestCase test3 = new TestCase("T3");		
 
-		test1.setAssertValue(0, 0); 
-		test2.setAssertValue(0, 1);		
+		test1.setAssertValue("alfa", "alfa"); 
+		test2.setAssertValue(true, false);
+		test3.setAssertValue(1.001, 1);
 
 		suite1.addTest(test1);
 		suite1.addTest(test2);
 		suite1.addTest(test3);		
 
-		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*T*.").testCaseRegEx(".*mysql*.").buildTestConditions();
+		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*T*.").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);		
 
 		suite1.runTest();
 
-		Assert.assertNotNull(test1.getElapsedTime());
-		Assert.assertNotNull(test2.getElapsedTime());
-		Assert.assertNotNull(test3.getElapsedTime());		
+		final long ESTIMATEDTIME = 60;	// in micro seconds
+
+		Assert.assertTrue(test1.getElapsedTime() < ESTIMATEDTIME);
+		Assert.assertTrue(test2.getElapsedTime() < ESTIMATEDTIME);
+		Assert.assertTrue(test3.getElapsedTime() < ESTIMATEDTIME);
+		Assert.assertTrue(suite1.getElapsedTime() < ESTIMATEDTIME*4);	
 	}	
 
 }

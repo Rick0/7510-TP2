@@ -85,14 +85,18 @@ public class TestSuite extends Test {
 	private void internalRunTest(TestResult newTestResult) {
 		setUp();		
 		newTestResult.printResultName();
+		long accumulatedTime = 0;
+		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
 			test.setTestConditions(testConditions);		// se propagan las condiciones de test				
-			test.runTest(newTestResult);			
+			test.runTest(newTestResult);
+			accumulatedTime += test.getElapsedTime();
 		}
 
 		tearDown();
+		elapsedTime = accumulatedTime;
 	}
 
 

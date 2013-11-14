@@ -38,16 +38,16 @@ public class TestingGrupo8 {
 		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
 		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
 
-		testForATag(testsList, result);
-		testForSkippedTestWithTag(testsList, result);
-		testForVariousTags(testsList, result);
-		testForTagsAndRegex(testsList, result);
-		testForVariousTagsAndNames(testsList, result);
-		testForElapsedTime(testsList, result);
+		testForATag(testsList, result);		// 1
+		testForSkippedTestWithTag(testsList, result);		// 3
+		testForVariousTags(testsList, result);		// 4
+		testForTagsAndRegex(testsList, result);		// 5
+		testForVariousTagsAndNames(testsList, result);		// 6
+		testForElapsedTime(testsList, result);		// 7
 
 
-		//		testsList.runTest(result);		
-		//		result.showResults();		
+//		testsList.runTest(result);		
+//		result.showResults();		
 		result = testsList.runTest();
 		result.showReport();
 	}
@@ -823,8 +823,9 @@ public class TestingGrupo8 {
 		TestCase test2 = new TestCase("T2");
 		TestCase test3 = new TestCase("T3");
 
-		test1.setAssertValue(0, 0);		
-		test2.setAssertValue(0, 1);		
+		test1.setAssertValue(0, 1);
+		test2.setAssertValue(false);
+		test3.setAssertValue("daytime", "nighttime");	
 
 		suite.addTest(test1);
 		suite.addTest(test2);
@@ -836,19 +837,28 @@ public class TestingGrupo8 {
 		suiteFather.addTest(suite);
 		resultFather = suite.runTest();
 
-		TestCase test4 = new TestCase ("falta terminar este test");
-		TestCase test5 = new TestCase ("falta terminar este test");
-		TestCase test6 = new TestCase ("falta terminar este test");
-		test4.setAssertValue(0, 0);
-		test5.setAssertValue(0, 0);
-		test6.setAssertValue(0, 0);
-		//		test4.setAssertValue(test1.getElapsedTime(), 0);
-		//		test5.setAssertValue(test2.getElapsedTime(), 0);
-		//		test6.setAssertValue(test3.getElapsedTime(), 0);
+		TestCase test4 = new TestCase("T1 time");
+		TestCase test5 = new TestCase("T2 time");
+		TestCase test6 = new TestCase("T3 time");
+		TestCase test7 = new TestCase("Suite time");
+		
+		final long ESTIMATEDTIME = 60;	// in micro seconds
+
+		test4.setAssertValue(test1.getElapsedTime()  < ESTIMATEDTIME);
+		test5.setAssertValue(test2.getElapsedTime()  < ESTIMATEDTIME);
+		test6.setAssertValue(test3.getElapsedTime()  < ESTIMATEDTIME);
+		test7.setAssertValue(suite.getElapsedTime()  < ESTIMATEDTIME*4);
+		
+		System.out.println(test1.getElapsedTime());
+		System.out.println(test2.getElapsedTime());
+		System.out.println(test3.getElapsedTime());
+		System.out.println(suite.getElapsedTime());
+		
 		TestSuite testSuite = new TestSuite ("testForElapsedTime");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
+		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
 
 		oneTestCondition = new TestConditionsBuilder().buildTestConditions();
