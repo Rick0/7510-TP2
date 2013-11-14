@@ -98,7 +98,7 @@ public class TestSuite extends Test {
 		fixtureMap = new HashMap<String, Object>();
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
-		elapsedTime = "notRun";
+		elapsedTime = 0;
 	}
 	
 
