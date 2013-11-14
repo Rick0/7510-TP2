@@ -23,8 +23,8 @@ public class Timer {
 	}
 	
 	
-	public String getElapsedTime() {		// don't use  :P
-		return (System.nanoTime() - elapsedTime) + "";
+	public long getElapsedTime() {
+		return (System.nanoTime() - elapsedTime);
 	}
 	
 	

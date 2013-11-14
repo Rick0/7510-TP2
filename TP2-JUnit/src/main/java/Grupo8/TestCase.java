@@ -40,7 +40,7 @@ public class TestCase extends Test {
 		hasToBeSkipped = false;
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
-		elapsedTime = "notRun";
+		elapsedTime = 0;
 		
 		valuesQuantity = 0;
 		valuesAreSeted = false;
@@ -109,7 +109,7 @@ public class TestCase extends Test {
 		
 		tearDown();
 		
-		elapsedTime = timer.getElapsedTimeInNs();
+		elapsedTime = timer.getElapsedTime();
 	}
 	
 	
