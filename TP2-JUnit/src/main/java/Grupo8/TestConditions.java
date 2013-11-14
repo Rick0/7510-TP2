@@ -11,12 +11,12 @@ public class TestConditions {
 	public String testCaseRegEx;
 	public String testSuiteRegEx;
 	public Collection<String> tags;
-	
-	
+
+
 	public TestConditions(String oneTestCaseRegEx, String oneTestSuiteRegEx, Collection<String> someTags) {
 		testCaseRegEx  = oneTestCaseRegEx;
 		testSuiteRegEx = oneTestSuiteRegEx;
 		tags           = someTags;
 	}
-	
+
 }

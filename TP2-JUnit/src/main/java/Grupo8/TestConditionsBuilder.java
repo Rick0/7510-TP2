@@ -14,30 +14,30 @@ public class TestConditionsBuilder {
 	private Collection<String> tags = new Vector<String>();
 
 
-    public TestConditionsBuilder() {
-    }
+	public TestConditionsBuilder() {
+	}
 
-    
-    public TestConditions buildTestConditions() {
-    	return new TestConditions(testCaseRegEx, testSuiteRegEx, tags);
-    }
 
-    
-    public TestConditionsBuilder testCaseRegEx(String oneRegEx) {
-    	testCaseRegEx = oneRegEx;
-        return this;
-    }
+	public TestConditions buildTestConditions() {
+		return new TestConditions(testCaseRegEx, testSuiteRegEx, tags);
+	}
 
-    
-    public TestConditionsBuilder testSuiteRegEx(String oneRegEx) {
-    	testSuiteRegEx = oneRegEx;
-        return this;
-    }
 
-    
-    public TestConditionsBuilder tags(Collection<String> someTags) {
-    	tags = someTags;
-        return this;
-    }
-    
+	public TestConditionsBuilder testCaseRegEx(String oneRegEx) {
+		testCaseRegEx = oneRegEx;
+		return this;
+	}
+
+
+	public TestConditionsBuilder testSuiteRegEx(String oneRegEx) {
+		testSuiteRegEx = oneRegEx;
+		return this;
+	}
+
+
+	public TestConditionsBuilder tags(Collection<String> someTags) {
+		tags = someTags;
+		return this;
+	}
+
 }

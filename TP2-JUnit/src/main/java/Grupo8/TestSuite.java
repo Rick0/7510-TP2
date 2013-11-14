@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/*
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Result;
@@ -19,6 +19,7 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Text;
+ */
 
 /*
  * Clase que contiene a todos los "tests individuales".
@@ -26,33 +27,23 @@ import org.w3c.dom.Text;
  */
 public class TestSuite extends Test {	
 
-	private Vector<Test> tests = new Vector<Test>();
-	boolean print;
+	private Vector<Test> tests;
+	boolean haveToPrint;
 
 
-	
+	// Constructores:
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
-		print = false;
 	}
-		
-		
-		
+
+
 	public TestSuite(String name) {
 		testName = name;		
 		testSuiteInitialValues();
-		print = false;
-		
-		
 	}
-	
-	
-	public void setPrintTests(boolean mustPrint){
-		print = mustPrint;
-	}
-	
-	
+
+
 	private void testSuiteInitialValues() {
 		testType = "TestSuite";
 		hasToBeSkipped = false;
@@ -60,8 +51,11 @@ public class TestSuite extends Test {
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
 		elapsedTime = 0;
+		
+		tests = new Vector<Test>();
+		haveToPrint = false;
 	}
-	
+
 
 	// Familia de runTest:	
 	final public void runTest(TestResult result) {
@@ -73,35 +67,39 @@ public class TestSuite extends Test {
 		}
 	}
 
-	
+
 	final public TestResult runTest() {
 		TestResult newTestResult = new TestResult(testName);
-		newTestResult.setPrint(print);
+		newTestResult.setPrint(haveToPrint);
 		if (!hasToBeSkipped) {			
 			if (testConditionsOK()) {				
 				internalRunTest(newTestResult);				
 				newTestResult.consoleResume();
 			}
 		}
-		
+
 		return newTestResult;
 	}
-	
-	
+
+
 	private void internalRunTest(TestResult newTestResult) {
 		setUp();		
 		newTestResult.printResultName();
+		long accumulatedTime = 0;
+		
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
 			test.setTestConditions(testConditions);		// se propagan las condiciones de test				
-			test.runTest(newTestResult);			
+			test.runTest(newTestResult);
+			accumulatedTime += test.getElapsedTime();
 		}
 
 		tearDown();
+		elapsedTime = accumulatedTime;
 	}
-	
-	
+
+
 	// Checkeador de testCondicions para 'testSuite':
 	private boolean testConditionsOK() {
 		if (testConditionsCaseAND) {
@@ -116,17 +114,17 @@ public class TestSuite extends Test {
 	private boolean testConditionRegEx() {
 		if (testConditions.testSuiteRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testSuiteRegEx);
-		    Matcher matcher = regularExpression.matcher(testName);
+			Matcher matcher = regularExpression.matcher(testName);
 
-		    if ( !matcher.find() ) {
-		    	return false;
-		    }
+			if ( !matcher.find() ) {
+				return false;
+			}
 		}
-		
+
 		return true;
 	}
-	
-	
+
+
 	// addTest:
 	public void addTest(Test test) {
 		boolean found = false;
@@ -137,16 +135,22 @@ public class TestSuite extends Test {
 				found = true;
 			}							
 		}
-	    if (!found) {	    	
-	    	tests.addElement(test); 
-	    }
+		if (!found) {	    	
+			tests.addElement(test); 
+		}
+	}
+
+	
+	// setter de 'haveToPrint':
+	public void setPrintTests(boolean printCondition) {
+		haveToPrint = printCondition;
 	}
 	
-	
+
 	// setUp y tearDown vacios por defecto
 	public void setUp() {	
 	}
-	
+
 	public void tearDown() {
 	}
 
