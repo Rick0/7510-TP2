@@ -22,6 +22,7 @@ public class TestCase extends Test {
 	private boolean tagsConditionAll;	// true = all	false = any
 
 
+	// Constructores:
 	public TestCase() {
 		testName = "Unnamed TestCase";		
 		testCaseInitialValues();

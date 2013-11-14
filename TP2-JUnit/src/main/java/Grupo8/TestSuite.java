@@ -27,26 +27,20 @@ import org.w3c.dom.Text;
  */
 public class TestSuite extends Test {	
 
-	private Vector<Test> tests = new Vector<Test>();
-	boolean print;
+	private Vector<Test> tests;
+	boolean haveToPrint;
 
 
+	// Constructores:
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
-		print = false;
 	}
 
 
 	public TestSuite(String name) {
 		testName = name;		
 		testSuiteInitialValues();
-		print = false;
-	}
-
-
-	public void setPrintTests(boolean mustPrint) {
-		print = mustPrint;
 	}
 
 
@@ -57,6 +51,9 @@ public class TestSuite extends Test {
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
 		elapsedTime = 0;
+		
+		tests = new Vector<Test>();
+		haveToPrint = false;
 	}
 
 
@@ -73,7 +70,7 @@ public class TestSuite extends Test {
 
 	final public TestResult runTest() {
 		TestResult newTestResult = new TestResult(testName);
-		newTestResult.setPrint(print);
+		newTestResult.setPrint(haveToPrint);
 		if (!hasToBeSkipped) {			
 			if (testConditionsOK()) {				
 				internalRunTest(newTestResult);				
@@ -139,6 +136,12 @@ public class TestSuite extends Test {
 		}
 	}
 
+	
+	// setter de 'haveToPrint':
+	public void setPrintTests(boolean printCondition) {
+		haveToPrint = printCondition;
+	}
+	
 
 	// setUp y tearDown vacios por defecto
 	public void setUp() {	

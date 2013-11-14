@@ -31,7 +31,7 @@ public class TestResult {
 	private String name;
 	private String reportPath;
 	private String separator = "";
-	boolean print;
+	boolean haveToPrint;
 	final public String TIMEUNIT = "us";
 
 	/*DocumentBuilderFactory factory;
@@ -42,44 +42,44 @@ public class TestResult {
 	Element root;*/
 
 
+	// Constructores:
 	public TestResult() {
-		tests = new ArrayList<TestAssertResult>();
-		testsResults = new ArrayList<TestResult>();
 		name = "Unnamed";
-		separator = repeatString("-",name.length()); 
-		reportPath=name+".txt";		
-		print = false;
+		testResultInitialValues();
 	}
 
 
 	public TestResult(String aName) {
+		name = aName;
+		testResultInitialValues();
+	}
+
+	
+	private void testResultInitialValues() {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
-		name = aName;		
-		reportPath = name+".txt";
+		reportPath = name + ".txt";
 		separator = repeatString("-",name.length());
-		print = false;
-	}	
-
-
-	public void setPrint(boolean bool){
-		print = bool;
+		haveToPrint = false;
 	}
+
+	
+
 
 
 	public TestResult addTestResult(String testResultName){
 		TestResult newTestResult = new TestResult(name+"."+testResultName);
-		newTestResult.setPrint(print);
+		newTestResult.setPrint(haveToPrint);
 		newTestResult.setReportPath(reportPath);
 		testsResults.add(newTestResult);
-		newTestResult.setPrint(print);
+		newTestResult.setPrint(haveToPrint);
 		return newTestResult;
 	}	
 
 
 	public void addFailure(Test test) {
 		tests.add(new TestAssertResult(test,"Fail"));
-		if (print) {
+		if (haveToPrint) {
 			System.out.println("[Failure] "+test.getName());		
 		}
 	}
@@ -87,7 +87,7 @@ public class TestResult {
 	
 	public void addError(Test test) {		
 		tests.add(new TestAssertResult(test,"Error"));
-		if (print) {
+		if (haveToPrint) {
 			System.out.println("[Error] "+test.getName());	
 		}		
 	}
@@ -95,7 +95,7 @@ public class TestResult {
 	
 	public void addPassed(Test test) {		
 		tests.add(new TestAssertResult(test,"OK"));
-		if (print) {
+		if (haveToPrint) {
 			System.out.println("[OK] "+test.getName());
 		}
 	}
@@ -179,7 +179,7 @@ public class TestResult {
 
 	
 	public void printResultName(){
-		if (print){
+		if (haveToPrint){
 			System.out.println("");
 			System.out.println(name);
 			System.out.println(separator);			
@@ -208,7 +208,7 @@ public class TestResult {
 
 
 	public void consoleResume(){
-		if (print) {
+		if (haveToPrint) {
 			List<String> summary = getSummaryLines();
 			Iterator<String> it = summary.iterator();
 			while (it.hasNext()) {
@@ -374,6 +374,7 @@ public class TestResult {
 		return ("\t-");
 	}
 
+	
 	private String repeatString(String string, Integer n) {
 		String returnString = "";
 		for (Integer x = 0; x < n; x++){
@@ -381,6 +382,11 @@ public class TestResult {
 		}
 		return returnString;	    
 	}
+	
+
+	// setter de 'haveToPrint':
+	public void setPrint(boolean printCondition) {
+		haveToPrint = printCondition;
+	}
 
 }
-
