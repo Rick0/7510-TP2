@@ -23,28 +23,23 @@ public class Timer {
 	}
 
 
-	public long getElapsedTime() {
+	public long getElapsedTimeInNs() {	//  nano seconds
 		return (System.nanoTime() - elapsedTime);
 	}
 
 
-	public String getElapsedTimeInNs() {	//  nano seconds
-		return (System.nanoTime() - elapsedTime) + "ns";
+	public long getElapsedTimeInUs() {	// micro seconds
+		return ((System.nanoTime() - elapsedTime)/1000);
 	}
 
 
-	public String getElapsedTimeInUs() {	// micro seconds
-		return ((System.nanoTime() - elapsedTime)/1000) + "us";
+	public long getElapsedTimeInMs() {	//  mili seconds
+		return ((System.nanoTime() - elapsedTime)/1000000);
 	}
 
 
-	public String getElapsedTimeInMs() {	//  mili seconds
-		return ((System.nanoTime() - elapsedTime)/1000000) + "ms";
-	}
-
-
-	public String getElapsedTimeInSeg() {	//       seconds
-		return ((System.nanoTime() - elapsedTime)/1000000000) + "s";
+	public long getElapsedTimeInSeg() {	//       seconds
+		return ((System.nanoTime() - elapsedTime)/1000000000);
 	}
 
 }

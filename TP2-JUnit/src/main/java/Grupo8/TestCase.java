@@ -109,7 +109,7 @@ public class TestCase extends Test {
 
 		tearDown();
 
-		elapsedTime = timer.getElapsedTime();
+		elapsedTime = timer.getElapsedTimeInUs();
 	}
 
 

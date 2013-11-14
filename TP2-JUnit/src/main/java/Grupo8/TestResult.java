@@ -32,6 +32,7 @@ public class TestResult {
 	private String reportPath;
 	private String separator = "";
 	boolean print;
+	final public String TIMEUNIT = "us";
 
 	/*DocumentBuilderFactory factory;
 	DocumentBuilder builder = null;
@@ -299,7 +300,7 @@ public class TestResult {
 				node.setAttribute("name", t.getTest().getName());
 				node.setAttribute("result", t.getResult());				
 				suiteNode.appendChild(node);*/				
-				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
+				writeLine("\t" + "[" + t.getTest().getElapsedTime() + TIMEUNIT + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
 			}
 		}	
 		//raiz.appendChild(suiteNode);
