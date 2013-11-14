@@ -14,7 +14,7 @@ import org.junit.Test;
 public class Testing {
 
 	/* Tests TP2 */
-	
+
 	@Test
 	public void testEqualInt() {
 		int testValue1 = 0;
@@ -27,8 +27,8 @@ public class Testing {
 			assertTrue(false);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testNotEqualInt() {
 		int testValue1 = 0;
@@ -40,8 +40,8 @@ public class Testing {
 			assertEquals(e instanceof FailureException, true);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testEqualChar() {
 		int testValue1 = 'a';
@@ -54,8 +54,8 @@ public class Testing {
 			assertTrue(false);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testNotEqualChar() {
 		int testValue1 = 'b';
@@ -67,8 +67,8 @@ public class Testing {
 			assertEquals(e instanceof FailureException, true);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testEqualFloat() {
 		float testValue1 = 1.2f;
@@ -81,8 +81,8 @@ public class Testing {
 			assertTrue(false);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testNotEqualFloat() {
 		float testValue1 = 1.2f;
@@ -94,8 +94,8 @@ public class Testing {
 			assertEquals(e instanceof FailureException, true);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testEqualBooleanTrue() {
 		boolean testValue1 = true;
@@ -108,8 +108,8 @@ public class Testing {
 			assertTrue(false);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testEqualBooleanFalse() {
 		boolean testValue1 = false;
@@ -122,8 +122,8 @@ public class Testing {
 			assertTrue(false);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testNotEqualBoolean() {
 		boolean testValue1 = true;
@@ -135,19 +135,19 @@ public class Testing {
 			assertEquals(e instanceof FailureException, true);
 		}
 	}
-	
-	
+
+
 	@Test
 	public void testResultErrorListGrowth() {		
 		TestCase test = new TestCase("test");
 		TestResult result = new TestResult ();
 		Assert.assertEquals(result.getListError().size(), 0);
-		
+
 		test.runTest(result);
 		Assert.assertEquals(result.getListError().size(), 1);		
 	}
-	
-	
+
+
 	@Test
 	public void testResultListsGrowth() {
 		TestResult result = new TestResult();
@@ -160,14 +160,14 @@ public class Testing {
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
-		
+
 		suite.runTest(result);
 		Assert.assertEquals(result.getListError().size(), 1);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
-	
-	
+
+
 	/* Tests TP2.1 */
 
 	@Test //1
@@ -176,23 +176,23 @@ public class Testing {
 		TestSuite suite = new TestSuite();
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case");		
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);		
-		
+
 		suite.addTest(test1);
 		suite.addTest(test2);		
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
-	
-	
+
+
 	@Test //2
 	public void testForNameUnicityOfTestSuites() {
 		TestResult result = new TestResult();
@@ -202,25 +202,25 @@ public class Testing {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case");
 		TestCase test3 = new TestCase("my special test case");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);		
 		test3.setAssertValue(0, 0);
-		
+
 		suite1.addTest(test1);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);		
-				
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);
 		result = suite1.runTest();
-		
+
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}
-	
-	
+
+
 	@Test //3
 	public void testForSetUpForATestCase() {
 		TestResult result = new TestResult();
@@ -228,8 +228,8 @@ public class Testing {
 		test.runTest(result);
 		assertEquals(1,result.getListPassed().size());
 	}
-	
-	
+
+
 	@Test //4
 	public void testForTwoTestAndEachSetUp() {
 		TestSuiteTest4 suite = new TestSuiteTest4("TestSuiteTest4");
@@ -240,8 +240,8 @@ public class Testing {
 		TestResult result = suite.runTest();
 		assertEquals(2,result.getListPassed().size());
 	}
-	
-	
+
+
 	@Test //5
 	public void testForASuiteWithTwoSuitesWithATestEachOne() {
 		TestSuiteTest5 test5 = new TestSuiteTest5("TestSuiteTest5");
@@ -256,8 +256,8 @@ public class Testing {
 		TestResult result = test5.runTest();
 		assertEquals(2,result.getListPassed().size());
 	}
-	
-	
+
+
 	@Test //6
 	public void testTheAccessToTheFixtureOfATestCaseAndATestSuite(){
 		TestCaseC c = new TestCaseC("TestCaseC");
@@ -268,8 +268,8 @@ public class Testing {
 		TestResult result = b.runTest();
 		assertEquals(result.getListPassed().size(),1);	
 	}
-	
-	
+
+
 	@Test //7
 	public void testForAFailedTest() {
 		TestResult result = new TestResult();
@@ -277,25 +277,25 @@ public class Testing {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);
 		test3.setAssertValue(1, 0);
-		
+
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
-				
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
-	
-	
+
+
 	@Test //8
 	public void testForTestWithErrorWhichThrowAnException() {
 		TestResult result = new TestResult();
@@ -303,21 +303,21 @@ public class Testing {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
-		
+
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
-				
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		Assert.assertEquals(result.getListError().size(), 3);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
-	
-	
+
+
 	@Test //9
 	public void testForExistingName() {
 		TestResult result = new TestResult();
@@ -334,17 +334,17 @@ public class Testing {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 3);
 	}
-	
-	
+
+
 	@Test //10
 	public void testForUnexistingNameRegEx() {
 		TestResult result = new TestResult();
@@ -361,7 +361,7 @@ public class Testing {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*unexisting name").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
@@ -370,10 +370,10 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
-	
-	
+
+
 	/* Tests TP2.2 */
-	
+
 	@Test //1
 	public void testForATag() {
 		TestResult result = new TestResult();
@@ -388,7 +388,7 @@ public class Testing {
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);		
-		
+
 		Collection<String> newTags = new LinkedList<String>();
 		newTags.add("SLOW");		
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(newTags).buildTestConditions();
@@ -399,7 +399,7 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 1);
 	}	
-		
+
 	@Test //3
 	public void testForSkippedTestWithTag() {
 		TestResult result = new TestResult();
@@ -410,26 +410,26 @@ public class Testing {
 		test1.addTag("SLOW");
 		test1.beSkipped();
 		test3.addTag("SLOW");
-				
+
 		test1.setAssertValue(0, 0); 
 		test2.setAssertValue(0, 0); 
 		test3.setAssertValue(0, 1);
 		suite1.addTest(test1);
 		suite1.addTest(test2);
 		suite1.addTest(test3);		
-		
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("SLOW");
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);				
-				
+
 		result = suite1.runTest();
 
 		Assert.assertEquals(result.getListError().size(), 0);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}
-	
+
 	@Test //4
 	public void testForVariousTags() {
 		TestResult result = new TestResult();
@@ -455,7 +455,7 @@ public class Testing {
 		test4.setTagsConditionAll(false);
 		test5.setTagsConditionAll(false);
 		test6.setTagsConditionAll(false);
-		
+
 		test1.setAssertValue(0, 0); 
 		test3.setAssertValue(0, 0); 
 		test4.setAssertValue(0, 1);								
@@ -465,21 +465,21 @@ public class Testing {
 		suite1.addTest(test4);
 		suite1.addTest(test5);
 		suite1.addTest(test6);
-				
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("DB");
 		someTags.add("FAST");
 		someTags.add("SMOKE");
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);		
-					
+
 		result = suite1.runTest();
 
 		Assert.assertEquals(result.getListError().size(), 1);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
-	
+
 	@Test //5
 	public void testForTagsAndRegex() {
 		TestResult result = new TestResult();
@@ -492,7 +492,7 @@ public class Testing {
 		test2.addTag("FAST");
 		test3.addTag("SLOW");
 		test4.addTag("SLOW");		
-		
+
 		test1.setAssertValue(0, 0); 
 		test2.setAssertValue(0, 0);
 		test3.setAssertValue(0, 0); 
@@ -501,7 +501,7 @@ public class Testing {
 		suite1.addTest(test2);
 		suite1.addTest(test3);		
 		suite1.addTest(test4);
-		
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("SLOW");		
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx("^[^no correr]").buildTestConditions();
@@ -512,7 +512,7 @@ public class Testing {
 		Assert.assertEquals(result.getListFailure().size(), 0);
 		Assert.assertEquals(result.getListPassed().size(), 2);
 	}
-	
+
 	@Test //6
 	public void testForVariousTagsAndNames() {
 		TestResult result = new TestResult();
@@ -529,47 +529,47 @@ public class Testing {
 		test4.addTag("DB");
 		test5.addTag("DB");
 		test6.addTag("-");
-		
+
 		test1.setAssertValue(0, 0); 
 		test3.setAssertValue(0, 0); 
 		test4.setAssertValue(0, 1);
-		
+
 		suite1.addTest(test1);
 		suite1.addTest(test2);
 		suite1.addTest(test3);		
 		suite1.addTest(test4);
 		suite1.addTest(test5);
 		suite1.addTest(test6);
-				
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("DB");		
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).testCaseRegEx(".*mysql*.").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);		
-					
+
 		result = suite1.runTest();
 
 		Assert.assertEquals(result.getListError().size(), 1);
 		Assert.assertEquals(result.getListFailure().size(), 1);
 		Assert.assertEquals(result.getListPassed().size(), 0);
 	}	
-	
+
 	@Test //7
 	public void testForElapsedTime() {		
 		TestSuite suite1 = new TestSuite("TS1");
 		TestCase test1 = new TestCase("T1");		
 		TestCase test2 = new TestCase("T2");
 		TestCase test3 = new TestCase("T3");		
-				
+
 		test1.setAssertValue(0, 0); 
 		test2.setAssertValue(0, 1);		
-		
+
 		suite1.addTest(test1);
 		suite1.addTest(test2);
 		suite1.addTest(test3);		
-						
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*T*.").testCaseRegEx(".*mysql*.").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);		
-					
+
 		suite1.runTest();
 
 		Assert.assertNotNull(test1.getElapsedTime());

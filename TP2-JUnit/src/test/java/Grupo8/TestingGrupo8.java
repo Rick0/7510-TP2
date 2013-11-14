@@ -7,14 +7,14 @@ import java.util.LinkedList;
  * TestingGrupo8: se testea el correcto funcionamiento de nuestro framework, usando el mismo framework.
  */
 public class TestingGrupo8 {
-	
+
 	public static void main(String[] args) {
 		TestResult result = new TestResult();
 		result.setPrint(true);
 		TestSuite testsList = new TestSuite("TestingGrupo8");
 		testsList.setPrintTests(true);
-					
-		
+
+
 		fillTest1(testsList);
 		fillTest2(testsList);
 		fillTest3(testsList);
@@ -26,7 +26,7 @@ public class TestingGrupo8 {
 		fillTest9(testsList);
 		fillTest10(testsList);
 		fillTest11(testsList);
-		
+
 		testForUnexistingName(testsList, result);		// 10
 		testForExistingName(testsList, result);			//  9
 		testThatThrowsAnException(testsList, result);	//  8
@@ -37,23 +37,23 @@ public class TestingGrupo8 {
 		testForTwoTestAndEachSetUp(testsList, result);		//  4
 		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
 		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
-		
+
 		testForATag(testsList, result);
 		testForSkippedTestWithTag(testsList, result);
 		testForVariousTags(testsList, result);
 		testForTagsAndRegex(testsList, result);
 		testForVariousTagsAndNames(testsList, result);
 		testForElapsedTime(testsList, result);
-		
-		
-//		testsList.runTest(result);		
-//		result.showResults();		
+
+
+		//		testsList.runTest(result);		
+		//		result.showResults();		
 		result = testsList.runTest();
 		result.showReport();
 	}
 
 	/* Tests TP2 */
-	
+
 	public static void fillTest1(TestSuite testFather) {
 		TestCase test  = new TestCase("test1");
 		int a = 0;
@@ -67,8 +67,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest2(TestSuite testFather) {
 		TestCase test = new TestCase("test2");
 		int a = 0;
@@ -81,8 +81,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest3(TestSuite testFather) {
 		TestCase test3a = new TestCase("test3a");
 		TestCase test3b = new TestCase("test3b");		
@@ -94,8 +94,8 @@ public class TestingGrupo8 {
 		testFather.addTest(test3a);
 		testFather.addTest(test3b);
 	}
-		
-	
+
+
 	public static void fillTest4(TestSuite testFather) {
 		TestCase a = new TestCase("test4a");
 		TestCase b = new TestCase("test4b");
@@ -119,7 +119,7 @@ public class TestingGrupo8 {
 		testFather.addTest(c);
 	}
 
-	
+
 	public static void fillTest5(TestSuite testFather) {
 		TestCase test = new TestCase("test5");
 		float a = 12.3f;
@@ -133,8 +133,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest6(TestSuite testFather) {
 		TestCase test = new TestCase("test6");
 		float a = 12.3f;
@@ -148,8 +148,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest7(TestSuite testFather) {
 		TestCase test = new TestCase("test7");
 		boolean a = true;
@@ -163,8 +163,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest8(TestSuite testFather) {
 		TestCase test = new TestCase("test8");
 		boolean a = true;
@@ -177,8 +177,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest9(TestSuite testFather) {
 		TestCase test = new TestCase("test9");
 		char a = 'f';
@@ -192,8 +192,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest10(TestSuite testFather) {
 		TestCase test = new TestCase("test10");
 		char a = 'f';
@@ -206,8 +206,8 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-	
+
+
 	public static void fillTest11(TestSuite testFather) {
 		TestCase test = new TestCase("test11");
 		boolean a = true;
@@ -220,9 +220,9 @@ public class TestingGrupo8 {
 		}
 		testFather.addTest(test);
 	}
-	
-		/* Tests TP2.1 */
-	
+
+	/* Tests TP2.1 */
+
 	public static void testForUnexistingName(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite("testForUnexistingName 1");
 		TestCase test1 = new TestCase("my special test case");
@@ -238,11 +238,11 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*unexisting name").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		resultFather = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -254,13 +254,13 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		
+
 		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForExistingName(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite("testForExistingName 1");
 		TestCase test1 = new TestCase("my special test case");
@@ -276,11 +276,11 @@ public class TestingGrupo8 {
 		suite.addTest(test3);
 		suite.addTest(test4);
 		suiteFather.addTest(suite);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		resultFather = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -297,7 +297,7 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
+
 	public static void testThatThrowsAnException(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -309,11 +309,11 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -330,7 +330,7 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
+
 	public static void testThatFails(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -346,11 +346,11 @@ public class TestingGrupo8 {
 		suite.addTest(test2);
 		suite.addTest(test3);
 		suite.addTest(test4);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -367,8 +367,8 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForNameUnicityOfTestCases(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -378,11 +378,11 @@ public class TestingGrupo8 {
 		test2.setAssertValue(0, 0);
 		suite.addTest(test1);
 		suite.addTest(test2);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -399,8 +399,8 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForNameUnicityOfTestSuites(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("testForNameUnicityOfTestSuites 1");
@@ -409,18 +409,18 @@ public class TestingGrupo8 {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case");
 		TestCase test3 = new TestCase("my special test case");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);		
 		test3.setAssertValue(0, 0);
 		suite1.addTest(test1);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);		
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);
 		result = suite1.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -437,24 +437,24 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForSetUpForATestCase(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
 		TestCase test = new TestCase("my special test case");
-		
+
 		//This is the set up
 		test.addAFixtureItem("numberA", 1);
 		test.addAFixtureItem("numberB", 2);
-		
+
 		test.setAssertValue(test.getAFixtureItem("numberA"), test.getAFixtureItem("numberB"));		
 		suite.addTest(test);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -471,18 +471,18 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForTwoTestAndEachSetUp(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite("suite");
 		TestCase test1 = new TestCase("my special test case 1");
 		TestCase test2 = new TestCase("my special test case 2");
-		
+
 		//This is the set up
 		test1.addAFixtureItem("numberA", 1);
 		test2.addAFixtureItem("numberA", 2);
-		
+
 		test1.setAssertValue(test1.getAFixtureItem("numberA"), 1);
 		test2.setAssertValue(test1.getAFixtureItem("numberA"), 1);
 		suite.addTest(test1);
@@ -491,7 +491,7 @@ public class TestingGrupo8 {
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 		result = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -508,8 +508,8 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testForASuiteWithTwoSuitesWithATestEachOne(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite1 = new TestSuite("suite 1");
@@ -517,19 +517,19 @@ public class TestingGrupo8 {
 		TestSuite suite3 = new TestSuite("suite 3");
 		TestCase test1 = new TestCase("my special test case 1");
 		TestCase test2 = new TestCase("my special test case 2");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);
-		
+
 		suite2.addTest(test1);
 		suite3.addTest(test2);
 		suite1.addTest(suite2);
 		suite1.addTest(suite3);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*special").buildTestConditions();
 		suite1.setTestConditions(oneTestCondition);
 		result = suite1.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -546,20 +546,20 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	public static void testTheAccessToTheFixtureOfATestCaseAndATestSuite(TestSuite suiteFather, TestResult resultFather) {
 		TestCaseC  caseC  = new TestCaseC ("TestCaseC");
 		TestSuiteB suiteB = new TestSuiteB("testTheAccessToTheFixtureOfATestCaseAndATestSuite");
 		TestSuiteA suiteA = new TestSuiteA("TestSuiteA");
 		suiteA.addTest(caseC);
 		suiteB.addTest(suiteA);
-		
+
 		suiteFather.addTest(suiteB);
 		resultFather = suiteB.runTest();
 	}
-	
-	
+
+
 	/* Tests TP2.2 */
 
 	//1
@@ -568,26 +568,26 @@ public class TestingGrupo8 {
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);
 		test3.setAssertValue(0, 0);
-		
+
 		test1.addTag("SLOW");
 		test3.addTag("SLOW");
-		
+
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);		
-		
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("SLOW");
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
-		
+
 		suiteFather.addTest(suite);
 		resultFather = suite.runTest();
-		
+
 		TestCase test5 = new TestCase ("for list error");
 		TestCase test6 = new TestCase ("for list failure");
 		TestCase test7 = new TestCase ("for list passed");
@@ -599,41 +599,41 @@ public class TestingGrupo8 {
 		testSuite.addTest(test6);
 		testSuite.addTest(test7);
 		suiteFather.addTest(testSuite);
-		
+
 		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	//3
 	public static void testForSkippedTestWithTag(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite();
 		TestCase test1 = new TestCase("my special test case");
 		TestCase test2 = new TestCase("my special test case 1");
 		TestCase test3 = new TestCase("my special");
-		
+
 		test1.setAssertValue(0, 0);
 		test2.setAssertValue(0, 0);
 		test3.setAssertValue(0, 0);
-		
+
 		test1.addTag("SLOW");
 		test3.addTag("SLOW");
-		
+
 		test1.beSkipped();
-		
+
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);		
-		
+
 		Collection<String> someTags = new LinkedList<String>();
 		someTags.add("SLOW");
 		TestConditions oneTestCondition = new TestConditionsBuilder().tags(someTags).buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
-		
+
 		suiteFather.addTest(suite);
 		resultFather = suite.runTest();
-		
+
 		TestCase test4 = new TestCase ("for list error");
 		TestCase test5 = new TestCase ("for list failure");
 		TestCase test6 = new TestCase ("for list passed");
@@ -645,13 +645,13 @@ public class TestingGrupo8 {
 		testSuite.addTest(test5);
 		testSuite.addTest(test6);
 		suiteFather.addTest(testSuite);
-		
+
 		oneTestCondition = new TestConditionsBuilder().testCaseRegEx(".*for").buildTestConditions();
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	//4
 	public static void testForVariousTags(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite();
@@ -714,7 +714,7 @@ public class TestingGrupo8 {
 		resultFather = testSuite.runTest();
 	}
 
-	
+
 	//5
 	public static void testForTagsAndRegex(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite();
@@ -760,8 +760,8 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	//6
 	public static void testForVariousTagsAndNames(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite();
@@ -814,22 +814,22 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
-	
-	
+
+
 	//7
 	public static void testForElapsedTime(TestSuite suiteFather, TestResult resultFather) {
 		TestSuite suite = new TestSuite();
 		TestCase test1 = new TestCase("T1");
 		TestCase test2 = new TestCase("T2");
 		TestCase test3 = new TestCase("T3");
-		
+
 		test1.setAssertValue(0, 0);		
 		test2.setAssertValue(0, 1);		
 
 		suite.addTest(test1);
 		suite.addTest(test2);
 		suite.addTest(test3);
-		
+
 		TestConditions oneTestCondition = new TestConditionsBuilder().buildTestConditions();
 		suite.setTestConditions(oneTestCondition);
 
@@ -842,9 +842,9 @@ public class TestingGrupo8 {
 		test4.setAssertValue(0, 0);
 		test5.setAssertValue(0, 0);
 		test6.setAssertValue(0, 0);
-//		test4.setAssertValue(test1.getElapsedTime(), 0);
-//		test5.setAssertValue(test2.getElapsedTime(), 0);
-//		test6.setAssertValue(test3.getElapsedTime(), 0);
+		//		test4.setAssertValue(test1.getElapsedTime(), 0);
+		//		test5.setAssertValue(test2.getElapsedTime(), 0);
+		//		test6.setAssertValue(test3.getElapsedTime(), 0);
 		TestSuite testSuite = new TestSuite ("testForElapsedTime");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);

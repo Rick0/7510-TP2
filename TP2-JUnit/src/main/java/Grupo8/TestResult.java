@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.*;
-
+/*
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.Result;
@@ -17,6 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+ */
 
 /*
  * Clase encargado de la logica de los resultados de los tests.
@@ -29,16 +30,17 @@ public class TestResult {
 	List<TestResult> testsResults;
 	private String name;
 	private String reportPath;
-	private String separator = "-----------------------------------";
+	private String separator = "";
 	boolean print;
-	
+
 	/*DocumentBuilderFactory factory;
 	DocumentBuilder builder = null;
 	DOMImplementation implementation;
 	Document document;
 	Element xml;
 	Element root;*/
-		
+
+
 	public TestResult() {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
@@ -46,26 +48,24 @@ public class TestResult {
 		separator = repeatString("-",name.length()); 
 		reportPath=name+".txt";		
 		print = false;
-		
-		
 	}
-	
-	
+
+
 	public TestResult(String aName) {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
 		name = aName;		
-		reportPath=name+".txt";
+		reportPath = name+".txt";
 		separator = repeatString("-",name.length());
 		print = false;
-		
-		
 	}	
-	
+
+
 	public void setPrint(boolean bool){
-		print=bool;
+		print = bool;
 	}
-	
+
+
 	public TestResult addTestResult(String testResultName){
 		TestResult newTestResult = new TestResult(name+"."+testResultName);
 		newTestResult.setPrint(print);
@@ -74,42 +74,44 @@ public class TestResult {
 		newTestResult.setPrint(print);
 		return newTestResult;
 	}	
-	
-	
+
+
 	public void addFailure(Test test) {
 		tests.add(new TestAssertResult(test,"Fail"));
-		if (print){
+		if (print) {
 			System.out.println("[Failure] "+test.getName());		
 		}
 	}
+
 	
 	public void addError(Test test) {		
 		tests.add(new TestAssertResult(test,"Error"));
-		if (print){
+		if (print) {
 			System.out.println("[Error] "+test.getName());	
 		}		
 	}
+
 	
 	public void addPassed(Test test) {		
 		tests.add(new TestAssertResult(test,"OK"));
-		if (print){
+		if (print) {
 			System.out.println("[OK] "+test.getName());
 		}
 	}
-	
-	
+
+
 	public void setReportPath(String path){
 		reportPath = path;
 	}
-	
-	
+
+
 	public List<Test> getListPassed() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"OK",this);		
 		return list;
 	}		
-	
-	
+
+
 	private void fillList(List<Test> list, String result, TestResult testResult){
 		Iterator<TestAssertResult> it = testResult.tests.iterator();		
 		while (it.hasNext()) {
@@ -123,24 +125,23 @@ public class TestResult {
 			TestResult tr = (TestResult)itResults.next();
 			fillList(list,result,tr);
 		}
-		
 	}
-	
-	
+
+
 	public List<Test> getListFailure() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Fail",this);
 		return list;
 	}
 
-	
+
 	public List<Test> getListError() {
 		List<Test> list = new ArrayList<Test>();
 		fillList(list,"Error",this);
 		return list;
 	}
-	
-	
+
+
 	public void showResults() {		
 		System.out.println("");
 		System.out.println("Resultado de los tests corridos");
@@ -155,8 +156,8 @@ public class TestResult {
 		printList(getListError());
 		System.out.println("");
 	}
-	
-	
+
+
 	private void printList(List<Test> aList) {		
 		if (aList.isEmpty()) {
 			System.out.println("\t-");
@@ -169,10 +170,12 @@ public class TestResult {
 			}
 		}
 	}
+
 	
 	public String getResultName(){
 		return name;
 	}
+
 	
 	public void printResultName(){
 		if (print){
@@ -181,15 +184,15 @@ public class TestResult {
 			System.out.println(separator);			
 		}
 	}
+
 	
 	public void showReport() {
 		File file = new File(reportPath);
 		file.delete();
-		Element elemento = null;
-		//showTestResultData(elemento);
-		showTestResultData();
+/*		Element elemento = null;
+		showTestResultData(elemento);
+*/		showTestResultData();
 		printResume();
-
 	}
 
 
@@ -201,9 +204,10 @@ public class TestResult {
 			writeLine(line);
 		}
 	}
-	
+
+
 	public void consoleResume(){
-		if (print){
+		if (print) {
 			List<String> summary = getSummaryLines();
 			Iterator<String> it = summary.iterator();
 			while (it.hasNext()) {
@@ -211,18 +215,16 @@ public class TestResult {
 				System.out.println(line);
 			}
 		}
-		
 	}
-	
-	
-	
+
+
 	public List<String> getSummaryLines(){
 		List<String> summary = new ArrayList<String>();
 
 		int errors = getListError().size();
 		int oks = getListPassed().size();
 		int failures = getListFailure().size();
-		
+
 		String line;		
 		if (errors + failures > 0) {
 			line = "[failure]";
@@ -242,15 +244,14 @@ public class TestResult {
 		if (failures > 0){
 			summary.add("Failures: "+failures);
 		}
-		
+
 		return summary;
-		
 	}
 
-	
+
 	/*public void showTestResultData(){		
 		/*Seteo el XML*/
-		/*factory = DocumentBuilderFactory.newInstance();
+	/*factory = DocumentBuilderFactory.newInstance();
 		try{
 			builder = factory.newDocumentBuilder();
 		}
@@ -259,12 +260,12 @@ public class TestResult {
 		document = implementation.createDocument(null, "Reporte", null);
 		document.setXmlVersion("1.0");
 		xml = document.getDocumentElement();
-		
+
 		raiz = document.createElement("TestSuite");// sin espacios!
 		Element elemento = document.createElement("TestSuite");// sin espacios!
 		elemento.setAttribute("name", name);
 		root.appendChild(elemento);	
-		
+
 		writeLine(name);
 		writeLine(separator);
 		//printTestsList(elemento);
@@ -272,8 +273,9 @@ public class TestResult {
 		writeLine("");
 		printTestsResults();
 	}*/
+
 	
-	//public void showTestResultData(Element elemento){
+	//public void showTestResultData(Element elemento) {
 	public void showTestResultData(){
 		writeLine(name);
 		writeLine(separator);
@@ -282,8 +284,8 @@ public class TestResult {
 		writeLine("");
 		printTestsResults();
 	}
-	
-	
+
+
 	//private void printTestsList(Element suiteNode) {
 	private void printTestsList() {
 		if (tests.isEmpty()) {
@@ -302,8 +304,8 @@ public class TestResult {
 		}	
 		//raiz.appendChild(suiteNode);
 	}
-	
-	
+
+
 	private void printTestsResults() {
 		if (!testsResults.isEmpty()) {
 			Iterator<TestResult> it = testsResults.iterator();
@@ -328,11 +330,11 @@ public class TestResult {
 			transformer.transform(source, result);
 		}
 		catch (Exception e){}*/
-		
+
 		/*Fin del grabado del XML en disco*/
 	}
-	
-	
+
+
 	private void writeLine(String line) {
 		try {
 			FileWriter outFile = new FileWriter(reportPath,true);
@@ -344,8 +346,8 @@ public class TestResult {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	public String getResult(String testName){
 		if (! tests.isEmpty()) {		
 			Iterator<TestAssertResult> it = tests.iterator();
@@ -356,7 +358,7 @@ public class TestResult {
 				}
 			}
 		}
-		
+
 		if (!testsResults.isEmpty()) {
 			Iterator<TestResult> it = testsResults.iterator();
 			while (it.hasNext()) {
@@ -367,16 +369,16 @@ public class TestResult {
 				}
 			}
 		}		
-				
+
 		return ("\t-");
 	}
-	
+
 	private String repeatString(String string, Integer n) {
 		String returnString = "";
-	    for (Integer x = 0; x < n; x++){
-	        returnString = returnString+string;
-	    }
-	    return returnString;	    
+		for (Integer x = 0; x < n; x++){
+			returnString = returnString+string;
+		}
+		return returnString;	    
 	}
 
 }

@@ -13,27 +13,27 @@ import java.util.Set;
  * primero hay que setear los valores a comparar, con "setAssertValue".
  */
 public class TestCase extends Test {
-	
+
 	private Object testValue1;
 	private Object testValue2;
 	private int valuesQuantity;	
 	private boolean valuesAreSeted;
 	private Set<String> tagsSet;
 	private boolean tagsConditionAll;	// true = all	false = any
-	
-	
+
+
 	public TestCase() {
 		testName = "Unnamed TestCase";		
 		testCaseInitialValues();
 	}
 
-	
+
 	public TestCase(String name) {
 		testName = name;
 		testCaseInitialValues();	
 	}
-	
-	
+
+
 	private void testCaseInitialValues() {
 		testType = "TestCase";
 		fixtureMap = new HashMap<String, Object>();
@@ -41,14 +41,14 @@ public class TestCase extends Test {
 		testConditions = new TestConditionsBuilder().buildTestConditions();
 		testConditionsCaseAND = true;
 		elapsedTime = 0;
-		
+
 		valuesQuantity = 0;
 		valuesAreSeted = false;
 		tagsSet = new HashSet<String>();
 		tagsConditionAll = true;
 	}
-	
-	
+
+
 	// Familia de setAssertValue:
 	final public void setAssertValue(Object aTestValue1, Object aTestValue2) {
 		testValue1 = aTestValue1;
@@ -56,15 +56,15 @@ public class TestCase extends Test {
 		valuesQuantity = 2;
 		valuesAreSeted = true;
 	}
-	
-	
+
+
 	final public void setAssertValue(Object aTestValue) {
 		testValue1 = aTestValue;
 		valuesQuantity = 1;
 		valuesAreSeted = true;
 	}
-	
-	
+
+
 	// runTest:
 	final public void runTest(TestResult result) {
 		if (!hasToBeSkipped) {
@@ -78,10 +78,10 @@ public class TestCase extends Test {
 	private void internalRunTest(TestResult result) {
 		Timer timer = new Timer();
 		timer.startCounting();
-		
+
 		setUp();
 		testBody();
-		
+
 		if (valuesAreSeted) {			
 			try {
 				if (valuesQuantity == 2) {
@@ -106,13 +106,13 @@ public class TestCase extends Test {
 		else {
 			result.addError(this);
 		}
-		
+
 		tearDown();
-		
+
 		elapsedTime = timer.getElapsedTime();
 	}
-	
-	
+
+
 	// Checkeador de testCondicions para 'testCase':
 	private boolean testConditionsOK() {
 		if (testConditionsCaseAND) {
@@ -136,11 +136,11 @@ public class TestCase extends Test {
 					if ( tagsSet.contains(oneTag) ) {
 						return true;
 					}
-			    }
+				}
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -148,46 +148,46 @@ public class TestCase extends Test {
 	private boolean testConditionRegEx() {
 		if (testConditions.testCaseRegEx != "") {
 			Pattern regularExpression = Pattern.compile(testConditions.testCaseRegEx);
-		    Matcher matcher = regularExpression.matcher(testName);
+			Matcher matcher = regularExpression.matcher(testName);
 
-		    if ( !matcher.find() ) {
-		    	return false;
-		    }
+			if ( !matcher.find() ) {
+				return false;
+			}
 		}
-		
+
 		return true;
 	}
-	
-	
+
+
 	// Operaciones con el HashSet "tags":
 	public void addTag(String newTag) {
 		if (!tagsSet.contains(newTag)) {
 			tagsSet.add(newTag);
 		}
 	}
-	
-	
+
+
 	public void removeTag(String oneTag) {
 		if (tagsSet.contains(oneTag)) {
 			tagsSet.remove(oneTag);
 		}
 	}
-	
-	
+
+
 	public void addAllTags(Collection<String> newTags) {
 		for (String oneTag : newTags) {
 			addTag(oneTag);
-	    }
+		}
 	}
-	
-	
+
+
 	public void removeAllTags(Collection<String> someTags) {
 		for (String oneTag : someTags) {
 			removeTag(oneTag);
-	    }
+		}
 	}
-	
-	
+
+
 	// getter y setter de 'tagsConditionAll':
 	public boolean isTagsConditionAll() {
 		return tagsConditionAll;
@@ -197,15 +197,15 @@ public class TestCase extends Test {
 	public void setTagsConditionAll(boolean tagsConditionAll) {
 		this.tagsConditionAll = tagsConditionAll;
 	}
-	
-	
+
+
 	// testBody, setUp y tearDown vacios por defecto, para que el cliente los redefina
 	public void testBody() {
 	}
-	
+
 	public void setUp() {	
 	}
-	
+
 	public void tearDown() {
 	}
 
