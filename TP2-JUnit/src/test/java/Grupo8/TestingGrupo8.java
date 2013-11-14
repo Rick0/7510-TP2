@@ -849,11 +849,6 @@ public class TestingGrupo8 {
 		test6.setAssertValue(test3.getElapsedTime()  < ESTIMATEDTIME);
 		test7.setAssertValue(suite.getElapsedTime()  < ESTIMATEDTIME*4);
 		
-		System.out.println(test1.getElapsedTime());
-		System.out.println(test2.getElapsedTime());
-		System.out.println(test3.getElapsedTime());
-		System.out.println(suite.getElapsedTime());
-		
 		TestSuite testSuite = new TestSuite ("testForElapsedTime");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);
