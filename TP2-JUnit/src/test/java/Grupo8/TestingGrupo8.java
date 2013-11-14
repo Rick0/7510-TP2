@@ -14,7 +14,6 @@ public class TestingGrupo8 {
 		TestSuite testsList = new TestSuite("TestingGrupo8");
 		testsList.setPrintTests(true);
 
-
 		fillTest1(testsList);
 		fillTest2(testsList);
 		fillTest3(testsList);
@@ -45,12 +44,12 @@ public class TestingGrupo8 {
 		testForVariousTagsAndNames(testsList, result);		// 6
 		testForElapsedTime(testsList, result);		// 7
 
-
-//		testsList.runTest(result);		
-//		result.showResults();		
+		//		testsList.runTest(result);		
+		//		result.showResults();		
 		result = testsList.runTest();
 		result.showReport();
 	}
+
 
 	/* Tests TP2 */
 
@@ -221,6 +220,7 @@ public class TestingGrupo8 {
 		testFather.addTest(test);
 	}
 
+
 	/* Tests TP2.1 */
 
 	public static void testForUnexistingName(TestSuite suiteFather, TestResult resultFather) {
@@ -298,6 +298,7 @@ public class TestingGrupo8 {
 		resultFather = testSuite.runTest();
 	}
 
+
 	public static void testThatThrowsAnException(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
 		TestSuite suite = new TestSuite();
@@ -330,6 +331,7 @@ public class TestingGrupo8 {
 		testSuite.setTestConditions(oneTestCondition);
 		resultFather = testSuite.runTest();
 	}
+
 
 	public static void testThatFails(TestSuite suiteFather, TestResult resultFather) {
 		TestResult result = new TestResult();
@@ -841,14 +843,14 @@ public class TestingGrupo8 {
 		TestCase test5 = new TestCase("T2 time");
 		TestCase test6 = new TestCase("T3 time");
 		TestCase test7 = new TestCase("Suite time");
-		
+
 		final long ESTIMATEDTIME = 60;	// in micro seconds
 
-		test4.setAssertValue(test1.getElapsedTime()  < ESTIMATEDTIME);
-		test5.setAssertValue(test2.getElapsedTime()  < ESTIMATEDTIME);
-		test6.setAssertValue(test3.getElapsedTime()  < ESTIMATEDTIME);
-		test7.setAssertValue(suite.getElapsedTime()  < ESTIMATEDTIME*4);
-		
+		test4.setAssertValue(test1.getElapsedTime() < ESTIMATEDTIME);
+		test5.setAssertValue(test2.getElapsedTime() < ESTIMATEDTIME);
+		test6.setAssertValue(test3.getElapsedTime() < ESTIMATEDTIME);
+		test7.setAssertValue(suite.getElapsedTime() < ESTIMATEDTIME*4);
+
 		TestSuite testSuite = new TestSuite ("testForElapsedTime");
 		testSuite.addTest(test4);
 		testSuite.addTest(test5);
