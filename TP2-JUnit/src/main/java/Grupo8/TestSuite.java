@@ -6,6 +6,20 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Text;
+
 /*
  * Clase que contiene a todos los "tests individuales".
  * Puede contener otro TestSuite.
@@ -14,12 +28,36 @@ public class TestSuite extends Test {
 
 	private Vector<Test> tests = new Vector<Test>();
 	boolean print;
+	DocumentBuilderFactory factory;
+	DocumentBuilder builder;
+	DOMImplementation implementation;
+	Document document;
+	Element documento;
+	Element raiz;
 
 	
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
 		print = false;
+		
+		/*Seteo el XML*/
+		factory = DocumentBuilderFactory.newInstance();
+		try{
+			builder = factory.newDocumentBuilder();
+		}
+		catch (Exception e){}
+		implementation = builder.getDOMImplementation();
+		document = implementation.createDocument(null, "Reporte", null);
+		document.setXmlVersion("1.0");
+		documento = document.getDocumentElement();
+		
+		raiz = document.createElement("NombreDelSuite");// sin espacios!
+		Text valorDeSuite = document.createTextNode(this.getName());
+		raiz.appendChild(valorDeSuite);		
+		documento.appendChild(raiz);
+		
+		/*Fin del seteo XML*/
 	}
 		
 	public TestSuite(String name) {
@@ -77,7 +115,27 @@ public class TestSuite extends Test {
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
 			test.setTestConditions(testConditions);		// se propagan las condiciones de test
 			test.runTest(newTestResult);		
+			Element elemento = document.createElement(test.getName());// sin espacios!
+			Text valor = document.createTextNode(newTestResult.getResult(test.getName()));
+			elemento.appendChild(valor);
+			elemento.setAttribute("name", "value");		
+			raiz.appendChild(elemento);
 		}
+		
+		/*Grabo el XML en disco*/
+		Source source = new DOMSource(document);
+		Result result = new StreamResult(new java.io.File("resultado.xml"));
+		Transformer transformer = null;
+		try {
+			transformer = TransformerFactory.newInstance().newTransformer();
+		}
+		catch (Exception e){}
+		try {
+			transformer.transform(source, result);
+		}
+		catch (Exception e){}
+		
+		/*Fin del grabado del XML en disco*/
 		tearDown();
 	}
 	
