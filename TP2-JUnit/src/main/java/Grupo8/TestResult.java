@@ -1,18 +1,17 @@
 package Grupo8;
 
 import java.util.Iterator;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.*;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Result;
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.*;
+import javax.xml.parsers.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.*;
+import javax.xml.transform.stream.*;
 
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -32,12 +31,11 @@ public class TestResult {
 	private String separator = "-----------------------------------";
 	boolean print;
 	
-	/*DocumentBuilderFactory factory;
+	DocumentBuilderFactory factory;
 	DocumentBuilder builder = null;
 	DOMImplementation implementation;
 	Document document;
-	Element xml;
-	Element root;*/
+	Element xml;	
 		
 	public TestResult() {
 		tests = new ArrayList<TestAssertResult>();
@@ -186,7 +184,7 @@ public class TestResult {
 		File file = new File(reportPath);
 		file.delete();
 		Element elemento = null;
-		//showTestResultData(elemento);
+		showTestResultData(elemento);
 		showTestResultData();
 		printResume();
 
@@ -248,9 +246,9 @@ public class TestResult {
 	}
 
 	
-	/*public void showTestResultData(){		
+	public void showTestResultData(){		
 		/*Seteo el XML*/
-		/*factory = DocumentBuilderFactory.newInstance();
+		factory = DocumentBuilderFactory.newInstance();
 		try{
 			builder = factory.newDocumentBuilder();
 		}
@@ -260,64 +258,18 @@ public class TestResult {
 		document.setXmlVersion("1.0");
 		xml = document.getDocumentElement();
 		
-		raiz = document.createElement("TestSuite");// sin espacios!
 		Element elemento = document.createElement("TestSuite");// sin espacios!
-		elemento.setAttribute("name", name);
-		root.appendChild(elemento);	
+		elemento.setAttribute("name", name);			
 		
 		writeLine(name);
 		writeLine(separator);
-		//printTestsList(elemento);
-		printTestsList();
+		printTestsList(elemento);
+		//printTestsList();
 		writeLine("");
 		printTestsResults();
-	}*/
-	
-	//public void showTestResultData(Element elemento){
-	public void showTestResultData(){
-		writeLine(name);
-		writeLine(separator);
-		//printTestsList(elemento);
-		printTestsList();
-		writeLine("");
-		printTestsResults();
-	}
-	
-	
-	//private void printTestsList(Element suiteNode) {
-	private void printTestsList() {
-		if (tests.isEmpty()) {
-			writeLine("\t-");
-		}
-		else {			
-			Iterator<TestAssertResult> it = tests.iterator();
-			while (it.hasNext()) {
-				TestAssertResult t = (TestAssertResult)it.next();				
-				/*Element node = document.createElement("TestCase");// sin espacios!
-				node.setAttribute("name", t.getTest().getName());
-				node.setAttribute("result", t.getResult());				
-				suiteNode.appendChild(node);*/				
-				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
-			}
-		}	
-		//raiz.appendChild(suiteNode);
-	}
-	
-	
-	private void printTestsResults() {
-		if (!testsResults.isEmpty()) {
-			Iterator<TestResult> it = testsResults.iterator();
-			while (it.hasNext()) {				
-				TestResult t = (TestResult)it.next();
-				/*Element elemento = document.createElement("TestSuite");// sin espacios!
-				elemento.setAttribute("name", t.name);
-				raiz.appendChild(elemento);*/
-				//t.showTestResultData(elemento);
-				t.showTestResultData();
-			}
-		}
+		
 		/*Grabo el XML en disco*/
-		/*Source source = new DOMSource(document);
+		Source source = new DOMSource(document);
 		Result result = new StreamResult(new java.io.File("reporte.xml"));
 		Transformer transformer = null;
 		try {
@@ -327,9 +279,53 @@ public class TestResult {
 		try {
 			transformer.transform(source, result);
 		}
-		catch (Exception e){}*/
+		catch (Exception e){}
 		
 		/*Fin del grabado del XML en disco*/
+	}
+	
+	public void showTestResultData(Element elemento){
+	//public void showTestResultData(){
+		writeLine(name);
+		writeLine(separator);
+		printTestsList(elemento);
+		//printTestsList();
+		writeLine("");
+		printTestsResults();
+	}
+	
+	
+	private void printTestsList(Element suiteNode) {
+	//private void printTestsList() {
+		if (tests.isEmpty()) {
+			writeLine("\t-");
+		}
+		else {			
+			Iterator<TestAssertResult> it = tests.iterator();
+			while (it.hasNext()) {
+				TestAssertResult t = (TestAssertResult)it.next();				
+				Element node = document.createElement("TestCase");// sin espacios!
+				node.setAttribute("name", t.getTest().getName());
+				node.setAttribute("result", t.getResult());				
+				suiteNode.appendChild(node);				
+				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
+			}
+		}	
+		xml.appendChild(suiteNode);
+	}
+	
+	
+	private void printTestsResults() {
+		if (!testsResults.isEmpty()) {
+			Iterator<TestResult> it = testsResults.iterator();
+			while (it.hasNext()) {				
+				TestResult t = (TestResult)it.next();
+				Element elemento = document.createElement("TestSuite");// sin espacios!
+				elemento.setAttribute("name", t.name);				
+				t.showTestResultData(elemento);
+				t.showTestResultData();
+			}
+		}		
 	}
 	
 	

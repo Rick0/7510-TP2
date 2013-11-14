@@ -47,9 +47,9 @@ public class TestingGrupo8 {
 		
 		
 //		testsList.runTest(result);		
-//		result.showResults();		
+		result.showResults();		
 		result = testsList.runTest();
-		result.showReport();
+//		result.showReport();
 	}
 
 	/* Tests TP2 */
