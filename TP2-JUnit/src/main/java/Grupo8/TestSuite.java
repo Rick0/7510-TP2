@@ -52,9 +52,10 @@ public class TestSuite extends Test {
 		document.setXmlVersion("1.0");
 		documento = document.getDocumentElement();
 		
-		raiz = document.createElement("NombreDelSuite");// sin espacios!
-		Text valorDeSuite = document.createTextNode(this.getName());
-		raiz.appendChild(valorDeSuite);		
+		raiz = document.createElement("Reporte");// sin espacios!
+		//Text valorDeSuite = document.createTextNode(this.getName());
+		//raiz.appendChild(valorDeSuite);
+		raiz.setAttribute("Element", getName());
 		documento.appendChild(raiz);
 		
 		/*Fin del seteo XML*/
@@ -64,6 +65,25 @@ public class TestSuite extends Test {
 		testName = name;		
 		testSuiteInitialValues();
 		print = false;
+		
+		/*Seteo el XML*/
+		factory = DocumentBuilderFactory.newInstance();
+		try{
+			builder = factory.newDocumentBuilder();
+		}
+		catch (Exception e){}
+		implementation = builder.getDOMImplementation();
+		document = implementation.createDocument(null, "Reporte", null);
+		document.setXmlVersion("1.0");
+		documento = document.getDocumentElement();
+		
+		raiz = document.createElement("TestSuite");// sin espacios!
+		//Text valorDeSuite = document.createTextNode(this.getName());
+		//raiz.appendChild(valorDeSuite);
+		raiz.setAttribute("name", getName());
+		documento.appendChild(raiz);
+		
+		/*Fin del seteo XML*/
 	}
 	
 	
@@ -115,16 +135,15 @@ public class TestSuite extends Test {
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
 			test.setTestConditions(testConditions);		// se propagan las condiciones de test
 			test.runTest(newTestResult);		
-			Element elemento = document.createElement(test.getName());// sin espacios!
-			Text valor = document.createTextNode(newTestResult.getResult(test.getName()));
-			elemento.appendChild(valor);
-			elemento.setAttribute("name", "value");		
+			Element elemento = document.createElement("TestCase");// sin espacios!
+			elemento.setAttribute("name", test.getName());
+			elemento.setAttribute("result", newTestResult.getResult(test.getName()));
 			raiz.appendChild(elemento);
 		}
 		
 		/*Grabo el XML en disco*/
 		Source source = new DOMSource(document);
-		Result result = new StreamResult(new java.io.File("resultado.xml"));
+		Result result = new StreamResult(new java.io.File("reporte.xml"));
 		Transformer transformer = null;
 		try {
 			transformer = TransformerFactory.newInstance().newTransformer();

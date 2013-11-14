@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Reporte><NombreDelSuite>UnnamedTestSuite<test1 name="value">OK</test1><test2 name="value">Fail</test2><test3 name="value">Error</test3></NombreDelSuite></Reporte>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Reporte><Reporte Element="TestSuite"><NombreDelTest nombre="name"/></Reporte></Reporte>

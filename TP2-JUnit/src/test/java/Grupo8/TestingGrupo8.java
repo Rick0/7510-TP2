@@ -28,7 +28,7 @@ public class TestingGrupo8 {
 		fillTest11(testsList);
 		
 		testForUnexistingName(testsList, result);		// 10
-		testForExistingName(testsList, result);			//  9
+		/*testForExistingName(testsList, result);			//  9
 		testThatThrowsAnException(testsList, result);	//  8
 		testThatFails(testsList, result);				//  7
 		testForNameUnicityOfTestCases(testsList, result);	//  1
@@ -36,17 +36,16 @@ public class TestingGrupo8 {
 		testForSetUpForATestCase(testsList, result);		//  3
 		testForTwoTestAndEachSetUp(testsList, result);		//  4
 		testForASuiteWithTwoSuitesWithATestEachOne(testsList, result);	//  5
-		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6
+		testTheAccessToTheFixtureOfATestCaseAndATestSuite(testsList, result);	//  6*/
 		
-		testForATag(testsList, result);
+		/*testForATag(testsList, result);
 		testForSkippedTestWithTag(testsList, result);
 		testForVariousTags(testsList, result);
 		testForTagsAndRegex(testsList, result);
 		testForVariousTagsAndNames(testsList, result);
-		testForElapsedTime(testsList, result);
+		testForElapsedTime(testsList, result);*/
 		
 		
-		testsList.setPrintTests(true);
 //		testsList.runTest(result);		
 //		result.showResults();		
 		result = testsList.runTest();
