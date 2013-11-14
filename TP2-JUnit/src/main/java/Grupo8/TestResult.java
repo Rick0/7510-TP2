@@ -31,14 +31,14 @@ public class TestResult {
 	private String reportPath;
 	private String separator = "-----------------------------------";
 	boolean print;
+	
 	DocumentBuilderFactory factory;
-	DocumentBuilder builder;
+	DocumentBuilder builder = null;
 	DOMImplementation implementation;
 	Document document;
 	Element documento;
 	Element raiz;
-	
-	
+		
 	public TestResult() {
 		tests = new ArrayList<TestAssertResult>();
 		testsResults = new ArrayList<TestResult>();
@@ -47,19 +47,7 @@ public class TestResult {
 		reportPath=name+".txt";		
 		print = false;
 		
-		/*Seteo el XML*/
-		factory = DocumentBuilderFactory.newInstance();
-		try{
-			builder = factory.newDocumentBuilder();
-		}
-		catch (Exception e){}
-		implementation = builder.getDOMImplementation();
-		document = implementation.createDocument(null, "Reporte", null);
-		document.setXmlVersion("1.0");
-		documento = document.getDocumentElement();
 		
-		raiz = document.createElement("TestSuite");// sin espacios!		
-		/*Fin del seteo XML*/
 	}
 	
 	
@@ -71,20 +59,7 @@ public class TestResult {
 		separator = repeatString("-",name.length());
 		print = false;
 		
-		/*Seteo el XML*/
-		factory = DocumentBuilderFactory.newInstance();
-		try{
-			builder = factory.newDocumentBuilder();
-		}
-		catch (Exception e){}
-		implementation = builder.getDOMImplementation();
-		document = implementation.createDocument(null, "Reporte", null);
-		document.setXmlVersion("1.0");
-		documento = document.getDocumentElement();
 		
-		raiz = document.createElement("TestSuite");// sin espacios!
-		
-		/*Fin del seteo XML*/
 	}	
 	
 	public void setPrint(boolean bool){
@@ -210,7 +185,8 @@ public class TestResult {
 	public void showReport() {
 		File file = new File(reportPath);
 		file.delete();
-		showTestResultData();
+		Element elemento = null;
+		showTestResultData(elemento);
 		printResume();
 
 	}
@@ -271,16 +247,41 @@ public class TestResult {
 	}
 
 	
-	public void showTestResultData(){
+	public void showTestResultData(){		
+		/*Seteo el XML*/
+		factory = DocumentBuilderFactory.newInstance();
+		try{
+			builder = factory.newDocumentBuilder();
+		}
+		catch (Exception e){}
+		implementation = builder.getDOMImplementation();
+		document = implementation.createDocument(null, "Reporte", null);
+		document.setXmlVersion("1.0");
+		documento = document.getDocumentElement();
+		
+		raiz = document.createElement("TestSuite");// sin espacios!
+		Element elemento = document.createElement("TestSuite");// sin espacios!
+		elemento.setAttribute("name", name);
+		raiz.appendChild(elemento);
+		/*Fin del seteo XML*/
+		
 		writeLine(name);
 		writeLine(separator);
-		printTestsList();
+		printTestsList(elemento);
+		writeLine("");
+		printTestsResults();
+	}
+	
+	public void showTestResultData(Element elemento){		
+		writeLine(name);
+		writeLine(separator);
+		printTestsList(elemento);
 		writeLine("");
 		printTestsResults();
 	}
 	
 	
-	private void printTestsList() {
+	private void printTestsList(Element suiteNode) {
 		if (tests.isEmpty()) {
 			writeLine("\t-");
 		}
@@ -288,11 +289,26 @@ public class TestResult {
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
 				TestAssertResult t = (TestAssertResult)it.next();				
-				Element elemento = document.createElement("TestCase");// sin espacios!
-				elemento.setAttribute("name", t.getTest().getName());
-				elemento.setAttribute("result", t.getResult());
-				raiz.appendChild(elemento);
+				Element node = document.createElement("TestCase");// sin espacios!
+				node.setAttribute("name", t.getTest().getName());
+				node.setAttribute("result", t.getResult());				
+				suiteNode.appendChild(node);				
 				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
+			}
+		}	
+		raiz.appendChild(suiteNode);
+	}
+	
+	
+	private void printTestsResults() {
+		if (!testsResults.isEmpty()) {
+			Iterator<TestResult> it = testsResults.iterator();
+			while (it.hasNext()) {				
+				TestResult t = (TestResult)it.next();
+				Element elemento = document.createElement("TestSuite");// sin espacios!
+				elemento.setAttribute("name", t.name);
+				raiz.appendChild(elemento);
+				t.showTestResultData(elemento);
 			}
 		}
 		/*Grabo el XML en disco*/
@@ -309,20 +325,6 @@ public class TestResult {
 		catch (Exception e){}
 		
 		/*Fin del grabado del XML en disco*/
-	
-	}
-	
-	
-	private void printTestsResults() {
-		if (!testsResults.isEmpty()) {
-			Iterator<TestResult> it = testsResults.iterator();
-			while (it.hasNext()) {				
-				TestResult t = (TestResult)it.next();
-				raiz.setAttribute("name", t.name);
-				documento.appendChild(raiz);
-				t.showTestResultData();
-			}
-		}
 	}
 	
 	
