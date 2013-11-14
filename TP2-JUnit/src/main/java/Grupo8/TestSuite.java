@@ -28,62 +28,23 @@ public class TestSuite extends Test {
 
 	private Vector<Test> tests = new Vector<Test>();
 	boolean print;
-	DocumentBuilderFactory factory;
-	DocumentBuilder builder;
-	DOMImplementation implementation;
-	Document document;
-	Element documento;
-	Element raiz;
+
 
 	
 	public TestSuite() {
 		testName = "UnnamedTestSuite";
 		testSuiteInitialValues();
 		print = false;
-		
-		/*Seteo el XML*/
-		factory = DocumentBuilderFactory.newInstance();
-		try{
-			builder = factory.newDocumentBuilder();
-		}
-		catch (Exception e){}
-		implementation = builder.getDOMImplementation();
-		document = implementation.createDocument(null, "Reporte", null);
-		document.setXmlVersion("1.0");
-		documento = document.getDocumentElement();
-		
-		raiz = document.createElement("Reporte");// sin espacios!
-		//Text valorDeSuite = document.createTextNode(this.getName());
-		//raiz.appendChild(valorDeSuite);
-		raiz.setAttribute("Element", getName());
-		documento.appendChild(raiz);
-		
-		/*Fin del seteo XML*/
 	}
+		
+		
 		
 	public TestSuite(String name) {
 		testName = name;		
 		testSuiteInitialValues();
 		print = false;
 		
-		/*Seteo el XML*/
-		factory = DocumentBuilderFactory.newInstance();
-		try{
-			builder = factory.newDocumentBuilder();
-		}
-		catch (Exception e){}
-		implementation = builder.getDOMImplementation();
-		document = implementation.createDocument(null, "Reporte", null);
-		document.setXmlVersion("1.0");
-		documento = document.getDocumentElement();
 		
-		raiz = document.createElement("TestSuite");// sin espacios!
-		//Text valorDeSuite = document.createTextNode(this.getName());
-		//raiz.appendChild(valorDeSuite);
-		raiz.setAttribute("name", getName());
-		documento.appendChild(raiz);
-		
-		/*Fin del seteo XML*/
 	}
 	
 	
@@ -133,28 +94,10 @@ public class TestSuite extends Test {
 		for (Enumeration<Test> elements = tests.elements(); elements.hasMoreElements(); ) {			
 			Test test = elements.nextElement();
 			test.setUpVariablesFromSuite(fixtureMap);	// se propagan las variables del fixture
-			test.setTestConditions(testConditions);		// se propagan las condiciones de test
-			test.runTest(newTestResult);		
-			Element elemento = document.createElement("TestCase");// sin espacios!
-			elemento.setAttribute("name", test.getName());
-			elemento.setAttribute("result", newTestResult.getResult(test.getName()));
-			raiz.appendChild(elemento);
+			test.setTestConditions(testConditions);		// se propagan las condiciones de test				
+			test.runTest(newTestResult);			
 		}
-		
-		/*Grabo el XML en disco*/
-		Source source = new DOMSource(document);
-		Result result = new StreamResult(new java.io.File("reporte.xml"));
-		Transformer transformer = null;
-		try {
-			transformer = TransformerFactory.newInstance().newTransformer();
-		}
-		catch (Exception e){}
-		try {
-			transformer.transform(source, result);
-		}
-		catch (Exception e){}
-		
-		/*Fin del grabado del XML en disco*/
+
 		tearDown();
 	}
 	

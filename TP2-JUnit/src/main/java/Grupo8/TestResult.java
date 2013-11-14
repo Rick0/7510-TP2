@@ -5,6 +5,19 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.*;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /*
  * Clase encargado de la logica de los resultados de los tests.
  * Despues de ordenar los resultados de los tests, puede mostrar los resultados
@@ -18,6 +31,12 @@ public class TestResult {
 	private String reportPath;
 	private String separator = "-----------------------------------";
 	boolean print;
+	DocumentBuilderFactory factory;
+	DocumentBuilder builder;
+	DOMImplementation implementation;
+	Document document;
+	Element documento;
+	Element raiz;
 	
 	
 	public TestResult() {
@@ -27,6 +46,20 @@ public class TestResult {
 		separator = repeatString("-",name.length()); 
 		reportPath=name+".txt";		
 		print = false;
+		
+		/*Seteo el XML*/
+		factory = DocumentBuilderFactory.newInstance();
+		try{
+			builder = factory.newDocumentBuilder();
+		}
+		catch (Exception e){}
+		implementation = builder.getDOMImplementation();
+		document = implementation.createDocument(null, "Reporte", null);
+		document.setXmlVersion("1.0");
+		documento = document.getDocumentElement();
+		
+		raiz = document.createElement("TestSuite");// sin espacios!		
+		/*Fin del seteo XML*/
 	}
 	
 	
@@ -37,6 +70,21 @@ public class TestResult {
 		reportPath=name+".txt";
 		separator = repeatString("-",name.length());
 		print = false;
+		
+		/*Seteo el XML*/
+		factory = DocumentBuilderFactory.newInstance();
+		try{
+			builder = factory.newDocumentBuilder();
+		}
+		catch (Exception e){}
+		implementation = builder.getDOMImplementation();
+		document = implementation.createDocument(null, "Reporte", null);
+		document.setXmlVersion("1.0");
+		documento = document.getDocumentElement();
+		
+		raiz = document.createElement("TestSuite");// sin espacios!
+		
+		/*Fin del seteo XML*/
 	}	
 	
 	public void setPrint(boolean bool){
@@ -236,21 +284,42 @@ public class TestResult {
 		if (tests.isEmpty()) {
 			writeLine("\t-");
 		}
-		else {
+		else {			
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
-				TestAssertResult t = (TestAssertResult)it.next();
+				TestAssertResult t = (TestAssertResult)it.next();				
+				Element elemento = document.createElement("TestCase");// sin espacios!
+				elemento.setAttribute("name", t.getTest().getName());
+				elemento.setAttribute("result", t.getResult());
+				raiz.appendChild(elemento);
 				writeLine("\t" + "[" + t.getTest().getElapsedTime() + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
 			}
 		}
+		/*Grabo el XML en disco*/
+		Source source = new DOMSource(document);
+		Result result = new StreamResult(new java.io.File("reporte.xml"));
+		Transformer transformer = null;
+		try {
+			transformer = TransformerFactory.newInstance().newTransformer();
+		}
+		catch (Exception e){}
+		try {
+			transformer.transform(source, result);
+		}
+		catch (Exception e){}
+		
+		/*Fin del grabado del XML en disco*/
+	
 	}
 	
 	
 	private void printTestsResults() {
 		if (!testsResults.isEmpty()) {
 			Iterator<TestResult> it = testsResults.iterator();
-			while (it.hasNext()) {
+			while (it.hasNext()) {				
 				TestResult t = (TestResult)it.next();
+				raiz.setAttribute("name", t.name);
+				documento.appendChild(raiz);
 				t.showTestResultData();
 			}
 		}
