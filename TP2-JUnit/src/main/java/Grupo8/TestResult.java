@@ -32,6 +32,7 @@ public class TestResult {
 	Document document;
 	Element xml;
 
+	
 	// Constructores:
 	public TestResult() {
 		name = "Unnamed";
@@ -204,7 +205,7 @@ public class TestResult {
 	}
 
 
-	public List<String> getSummaryLines(){
+	public List<String> getSummaryLines() {
 		List<String> summary = new ArrayList<String>();
 
 		int errors = getListError().size();
@@ -293,9 +294,36 @@ public class TestResult {
 			Iterator<TestAssertResult> it = tests.iterator();
 			while (it.hasNext()) {
 				TestAssertResult t = (TestAssertResult)it.next();				
-				Element node = document.createElement("TestCase");// sin espacios!
+				Element node = document.createElement("TestCase");	// sin espacios!
 				node.setAttribute("name", t.getTest().getName());
-				node.setAttribute("result", t.getResult());				
+				node.setAttribute("result", t.getResult());		
+				
+				Element subElement = document.createElement("attribute");
+				subElement.setAttribute("name", "hasToBeSkipped");
+				if (t.getTest().getBeSkipped()){
+					subElement.setAttribute("value", "true");
+				}
+				else {
+					subElement.setAttribute("value", "false");
+				}
+				node.appendChild(subElement);
+				
+				Element elementTime = document.createElement("attribute");
+				elementTime.setAttribute("name", "elapsedTime");
+				elementTime.setAttribute("value", String.valueOf(t.getTest().getElapsedTime()));
+				elementTime.setAttribute("unit", TIMEUNIT);
+				node.appendChild(elementTime);
+				
+				Element elementTestValue1 = document.createElement("attribute");
+				elementTestValue1.setAttribute("name", "testValue1");
+				elementTestValue1.setAttribute("value", String.valueOf(((TestCase)t.getTest()).getTestValue1()));
+				node.appendChild(elementTestValue1);
+				
+				Element elementTestValue2 = document.createElement("attribute");
+				elementTestValue2.setAttribute("name", "testValue2");
+				elementTestValue2.setAttribute("value", String.valueOf(((TestCase)t.getTest()).getTestValue2()));				
+				node.appendChild(elementTestValue2);
+				
 				suiteNode.appendChild(node);				
 				writeLine("\t" + "[" + t.getTest().getElapsedTime() + TIMEUNIT + "]\t" + "[" + t.getResult()+"] " + t.getTest().getName() );
 			}

@@ -199,7 +199,18 @@ public class TestCase extends Test {
 		this.tagsConditionAll = tagsConditionAll;
 	}
 
+	
+	// getters de los test value:
+	public Object getTestValue1() {
+		return testValue1;
+	}
 
+
+	public Object getTestValue2() {
+		return testValue2;
+	}
+	
+	
 	// testBody, setUp y tearDown vacios por defecto, para que el cliente los redefina
 	public void testBody() {
 	}

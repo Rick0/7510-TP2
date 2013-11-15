@@ -78,7 +78,10 @@ public abstract class Test {
 		hasToBeSkipped = false;
 	}
 
-
+	public boolean getBeSkipped() {
+		return hasToBeSkipped;
+	}	
+	
 	// getter y setter de 'testCaseName':
 	public String getName() {
 		return testName;
