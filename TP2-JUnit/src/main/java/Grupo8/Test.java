@@ -31,21 +31,13 @@ public abstract class Test {
 
 	// repeatedTest:
 	public boolean repeatedTest(Test anotherTest) {
-		if ( (testType.equals(anotherTest.testType))  &&  (testName.equals(anotherTest.testName)) ) {			
-			return true;
-		}		
-		return false;			
+		return ( (testType.equals(anotherTest.testType))  &&  (testName.equals(anotherTest.testName)) );
 	}
 
 
 	// alta, getter y setter de fixture:
 	public void addAFixtureItem(String name, Object value) {
-		if (!fixtureMap.isEmpty()) {
-			if (!fixtureMap.containsKey(name)) {
-				fixtureMap.put(name, value);
-			}
-		}
-		else {
+		if (!fixtureMap.containsKey(name)) {
 			fixtureMap.put(name, value);
 		}
 	}

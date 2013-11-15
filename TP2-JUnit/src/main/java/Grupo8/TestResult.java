@@ -353,8 +353,8 @@ public class TestResult {
 			out.write(line);
 			out.write("\n");
 			out.close();
-		} catch (IOException e){
-			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("Error: " + e);
 		}
 	}
 
